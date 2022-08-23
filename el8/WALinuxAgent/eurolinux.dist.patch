@@ -1,0 +1,36 @@
+diff -uNr WALinuxAgent-2.3.0.2/azurelinuxagent/common/osutil/factory.py WALinuxAgent-2.3.0.2p/azurelinuxagent/common/osutil/factory.py
+--- WALinuxAgent-2.3.0.2/azurelinuxagent/common/osutil/factory.py	2021-06-11 19:20:57.000000000 +0000
++++ WALinuxAgent-2.3.0.2p/azurelinuxagent/common/osutil/factory.py	2021-11-16 21:16:36.726141282 +0000
+@@ -98,7 +98,7 @@
+ 
+         return DebianOSBaseUtil()
+ 
+-    if distro_name in ("redhat", "rhel", "centos", "oracle"):
++    if distro_name in ("redhat", "rhel", "centos", "oracle", "eurolinux"):
+         if Version(distro_version) < Version("7"):
+             return Redhat6xOSUtil()
+ 
+diff -uNr WALinuxAgent-2.3.0.2/azurelinuxagent/pa/rdma/factory.py WALinuxAgent-2.3.0.2p/azurelinuxagent/pa/rdma/factory.py
+--- WALinuxAgent-2.3.0.2/azurelinuxagent/pa/rdma/factory.py	2021-06-11 19:20:57.000000000 +0000
++++ WALinuxAgent-2.3.0.2p/azurelinuxagent/pa/rdma/factory.py	2021-11-16 21:17:10.014021485 +0000
+@@ -38,7 +38,7 @@
+     ):
+         return SUSERDMAHandler()
+ 
+-    if distro_full_name == 'CentOS Linux' or distro_full_name == 'CentOS' or distro_full_name == 'Red Hat Enterprise Linux Server':
++    if distro_full_name == 'CentOS Linux' or distro_full_name == 'CentOS' or distro_full_name == 'Red Hat Enterprise Linux Server' or distro_full_name == 'EuroLinux':
+         return CentOSRDMAHandler(distro_version)
+ 
+     if distro_full_name == 'Ubuntu':
+diff -uNr WALinuxAgent-2.3.0.2/setup.py WALinuxAgent-2.3.0.2p/setup.py
+--- WALinuxAgent-2.3.0.2/setup.py	2021-06-11 19:20:57.000000000 +0000
++++ WALinuxAgent-2.3.0.2p/setup.py	2021-11-16 21:17:27.839957326 +0000
+@@ -97,7 +97,7 @@
+     agent_bin_path = osutil.get_agent_bin_path()
+ 
+     set_bin_files(data_files, dest=agent_bin_path)
+-    if name == 'redhat' or name == 'centos':  # pylint: disable=R1714
++    if name == 'redhat' or name == 'centos' or name == 'eurolinux':  # pylint: disable=R1714
+         set_conf_files(data_files)
+         set_logrotate_files(data_files)
+         set_udev_files(data_files)

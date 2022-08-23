@@ -1,0 +1,110 @@
+diff -uNr sos-4.2/sos/policies/distros/redhat.py sos-4.2p/sos/policies/distros/redhat.py
+--- sos-4.2/sos/policies/distros/redhat.py	2022-06-14 10:04:57.615767715 +0000
++++ sos-4.2p/sos/policies/distros/redhat.py	2022-06-14 10:08:53.550114074 +0000
+@@ -28,16 +28,16 @@
+     REQUESTS_LOADED = False
+ 
+ OS_RELEASE = "/etc/os-release"
+-RHEL_RELEASE_STR = "Red Hat Enterprise Linux"
++RHEL_RELEASE_STR = "EuroLinux"
+ ATOMIC_RELEASE_STR = "Atomic"
+ 
+ 
+ class RedHatPolicy(LinuxPolicy):
+-    distro = "Red Hat"
+-    vendor = "Red Hat"
++    distro = "EuroLinux"
++    vendor = "EuroLinux"
+     vendor_urls = [
+-        ('Distribution Website', 'https://www.redhat.com/'),
+-        ('Commercial Support', 'https://www.access.redhat.com/')
++        ('Distribution Website', 'https://euro-linux.com/'),
++        ('Commercial Support', 'https://support.euro-linux.com/')
+     ]
+     _tmp_dir = "/var/tmp"
+     _in_container = False
+@@ -181,7 +181,7 @@
+ 
+ class RHELPolicy(RedHatPolicy):
+     distro = RHEL_RELEASE_STR
+-    vendor = "Red Hat"
++    vendor = "EuroLinux"
+     msg = _("""\
+ This command will collect diagnostic and configuration \
+ information from this %(distro)s system and installed \
+@@ -260,7 +260,7 @@
+ 
+     def get_upload_url_string(self):
+         if self.get_upload_url().startswith(RH_API_HOST):
+-            return "Red Hat Customer Portal"
++            return "EuroLinux Customer Portal"
+         elif self.get_upload_url().startswith(RH_SFTP_HOST):
+             return "Red Hat Secure FTP"
+         return self.upload_url
+@@ -279,64 +279,13 @@
+         generated anonymous login for the RH SFTP server if a username and
+         password are not given
+         """
+-        if RH_SFTP_HOST.split('//')[1] not in self.get_upload_url():
+-            return super(RHELPolicy, self).upload_sftp()
+-
+-        if not REQUESTS_LOADED:
+-            raise Exception("python3-requests is not installed and is required"
+-                            " for obtaining SFTP auth token.")
+-        _token = None
+-        _user = None
+-        url = RH_API_HOST + '/support/v2/sftp/token'
+-        # we have a username and password, but we need to reset the password
+-        # to be the token returned from the auth endpoint
+-        if self.get_upload_user() and self.get_upload_password():
+-            auth = self.get_upload_https_auth()
+-            ret = requests.post(url, auth=auth, timeout=10)
+-            if ret.status_code == 200:
+-                # credentials are valid
+-                _user = self.get_upload_user()
+-                _token = json.loads(ret.text)['token']
+-            else:
+-                print("Unable to retrieve Red Hat auth token using provided "
+-                      "credentials. Will try anonymous.")
+-        # we either do not have a username or password/token, or both
+-        if not _token:
+-            adata = {"isAnonymous": True}
+-            anon = requests.post(url, data=json.dumps(adata), timeout=10)
+-            if anon.status_code == 200:
+-                resp = json.loads(anon.text)
+-                _user = resp['username']
+-                _token = resp['token']
+-                print(
+-                    "User '%s'"  # lgtm [py/clear-text-logging-sensitive-data]
+-                    "used for anonymous upload. Please inform your support "
+-                    "engineer so they may retrieve the data."
+-                    % _user
+-                )
+-        if _user and _token:
+-            return super(RHELPolicy, self).upload_sftp(user=_user,
+-                                                       password=_token)
+-        raise Exception("Could not retrieve valid or anonymous credentials")
++        return False
+ 
+     def upload_archive(self, archive):
+         """Override the base upload_archive to provide for automatic failover
+         from RHCP failures to the public RH dropbox
+         """
+-        try:
+-            if not self.get_upload_user() or not self.get_upload_password():
+-                self.upload_url = RH_SFTP_HOST
+-            uploaded = super(RHELPolicy, self).upload_archive(archive)
+-        except Exception:
+-            uploaded = False
+-            if not self.upload_url.startswith(RH_API_HOST):
+-                raise
+-            else:
+-                print("Upload to Red Hat Customer Portal failed. Trying %s"
+-                      % RH_SFTP_HOST)
+-                self.upload_url = RH_SFTP_HOST
+-                uploaded = super(RHELPolicy, self).upload_archive(archive)
+-        return uploaded
++        return false
+ 
+     def dist_version(self):
+         try:

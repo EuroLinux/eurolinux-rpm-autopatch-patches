@@ -1,0 +1,13 @@
+diff -uNr opa-fm-10.10.1.0.35/MakeTools/funcs-ext.sh opa-fm-10.10.1.0.35-eurolinux/MakeTools/funcs-ext.sh
+--- opa-fm-10.10.1.0.35/MakeTools/funcs-ext.sh	2020-01-09 20:02:49.000000000 +0000
++++ opa-fm-10.10.1.0.35-eurolinux/MakeTools/funcs-ext.sh	2021-04-29 09:32:25.162293327 +0000
+@@ -722,6 +722,9 @@
+             centos)
+                 rval=redhat
+                 ;;
++            eurolinux)
++                rval=redhat
++                ;;
+             fedora)
+                 rval=redhat
+                 ;;
