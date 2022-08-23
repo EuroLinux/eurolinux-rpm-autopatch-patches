@@ -1,0 +1,71 @@
+diff -uNr openscap-1.3.5/cpe/openscap-cpe-dict.xml openscap-1.3.5p/cpe/openscap-cpe-dict.xml
+--- openscap-1.3.5/cpe/openscap-cpe-dict.xml	2021-04-23 10:39:58.000000000 +0000
++++ openscap-1.3.5p/cpe/openscap-cpe-dict.xml	2021-11-18 21:33:56.814508442 +0000
+@@ -20,6 +20,10 @@
+       <cpe-item name="cpe:/o:redhat:enterprise_linux:8">
+             <title xml:lang="en-us">Red Hat Enterprise Linux 8</title>
+             <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="openscap-cpe-oval.xml">oval:org.open-scap.cpe.rhel:def:8</check>
++    </cpe-item>
++      <cpe-item name="cpe:/o:eurolinux:eurolinux:8">
++            <title xml:lang="en-us">EuroLinux 8</title>
++            <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="openscap-cpe-oval.xml">oval:org.open-scap.cpe.eurolinux:def:8</check>
+       </cpe-item>
+       <cpe-item name="cpe:/o:centos:centos:5">
+             <title xml:lang="en-us">Community Enterprise Operating System 5</title>
+diff -uNr openscap-1.3.5/cpe/openscap-cpe-oval.xml openscap-1.3.5p/cpe/openscap-cpe-oval.xml
+--- openscap-1.3.5/cpe/openscap-cpe-oval.xml	2021-04-23 10:39:58.000000000 +0000
++++ openscap-1.3.5p/cpe/openscap-cpe-oval.xml	2021-11-18 21:36:12.773073994 +0000
+@@ -132,6 +132,19 @@
+                   <criteria>
+                         <criterion comment="Oracle Linux 8 is installed" test_ref="oval:org.open-scap.cpe.ol:tst:8"/>
+                   </criteria>
++	  </definition>
++           <definition class="inventory" id="oval:org.open-scap.cpe.eurolinux:def:8" version="1">
++                  <metadata>
++                        <title>EuroLinux 8</title>
++                        <affected family="unix">
++                              <platform>EuroLinux 8</platform>
++                        </affected>
++                        <reference ref_id="cpe:/o:eurolinux:eurolinux:8" source="CPE"/>
++                        <description>The operating system installed on the system is EuroLinux 8</description>
++                  </metadata>
++                  <criteria>
++                        <criterion comment="EuroLinux 8 is installed" test_ref="oval:org.open-scap.cpe.eurolinux:tst:8"/>
++                  </criteria>
+             </definition>
+             <definition class="inventory" id="oval:org.open-scap.cpe.rhel:def:1005" version="1">
+                   <metadata>
+@@ -853,6 +866,11 @@
+                   <object object_ref="oval:org.open-scap.cpe.oraclelinux-release:obj:1"/>
+                   <state state_ref="oval:org.open-scap.cpe.ol:ste:5"/>
+             </rpminfo_test>
++            <rpminfo_test check_existence="at_least_one_exists" id="oval:org.open-scap.cpe.eurolinux:tst:8" version="1" check="at least one" comment="el-release is version 8"
++                  xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
++                  <object object_ref="oval:org.open-scap.cpe.el-release:obj:1"/>
++                  <state state_ref="oval:org.open-scap.cpe.eurolinux:ste:8"/>
++            </rpminfo_test>
+             <rpminfo_test check_existence="at_least_one_exists" id="oval:org.open-scap.cpe.ol:tst:6" version="1" check="at least one" comment="oraclelinux-release is version 6"
+                   xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+                   <object object_ref="oval:org.open-scap.cpe.oraclelinux-release:obj:1"/>
+@@ -1223,6 +1241,10 @@
+             <rpminfo_object id="oval:org.open-scap.cpe.oraclelinux-release:obj:1" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+                   <name>oraclelinux-release</name>
+             </rpminfo_object>
++            <rpminfo_object id="oval:org.open-scap.cpe.el-release:obj:1" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
++                  <name>el-release</name>
++            </rpminfo_object>
++
+             <registry_object id="oval:org.open-scap.cpe.windows:obj:1" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" >
+                   <hive>HKEY_LOCAL_MACHINE</hive>
+                   <key>SOFTWARE\Microsoft\Windows NT\CurrentVersion</key>
+@@ -1307,6 +1329,10 @@
+                   <name operation="pattern match">^oraclelinux-release</name>
+                   <version operation="pattern match">^8</version>
+             </rpminfo_state>
++            <rpminfo_state id="oval:org.open-scap.cpe.eurolinux:ste:8" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
++                  <name operation="pattern match">^el-release</name>
++                  <version operation="pattern match">^8</version>
++            </rpminfo_state>
+             <rpminfo_state id="oval:org.open-scap.cpe.fedora:ste:16" version="1" xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+                   <version operation="pattern match">^16$</version>
+             </rpminfo_state>

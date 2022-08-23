@@ -1,0 +1,11 @@
+--- /home/Alex/workspace/EuroLinux/python-rpmpatch/srpms/rhel/bluez.spec	2021-12-13 06:39:29.000000000 +0100
++++ /home/Alex/workspace/EuroLinux/python-rpmpatch/srpms/el/bluez.spec	2022-08-23 15:52:04.514290569 +0200
+@@ -83,7 +83,7 @@
+ 	- l2test
+ 	- rctest
+ 	- gatttool
+-	- start scripts (Red Hat)
++	- start scripts
+ 	- pcmcia configuration files
+ 
+ The BLUETOOTH trademarks are owned by Bluetooth SIG, Inc., U.S.A.
