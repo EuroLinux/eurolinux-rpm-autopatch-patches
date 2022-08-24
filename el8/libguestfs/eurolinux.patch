@@ -1,0 +1,25 @@
+From f6b64a276669cd1e9ff0e98db5009083a35f2ef1 Mon Nov 17 00:00:00 2001
+From: Alex Baranowski <ab@euro-linux.com>
+Date: Mon, 22 Nov 2021 15:00:00 +0000
+Subject: [PATCH] Add EL detection
+
+---
+ m4/guestfs-appliance.m4 | 2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/m4/guestfs-appliance.m4 b/m4/guestfs-appliance.m4
+index 5a7af51..9481376 100644
+--- a/m4/guestfs-appliance.m4
++++ b/m4/guestfs-appliance.m4
+@@ -105,7 +105,7 @@
+             ( . /etc/os-release && echo $ID | tr '@<:@:lower:@:>@' '@<:@:upper:@:>@' ) >&AS_MESSAGE_LOG_FD
+             DISTRO="`. /etc/os-release && echo $ID | tr '@<:@:lower:@:>@' '@<:@:upper:@:>@'`"
+             AS_CASE([$DISTRO],
+-                    [FEDORA | RHEL | CENTOS],[DISTRO=REDHAT],
++                    [FEDORA | RHEL | CENTOS | EUROLINUX],[DISTRO=REDHAT],
+                     [OPENSUSE* | SLED | SLES],[DISTRO=SUSE],
+                     [ARCH],[DISTRO=ARCHLINUX],
+                     [OPENMANDRIVA],[DISTRO=OPENMANDRIVA])
+-- 
+2.31.1
+
