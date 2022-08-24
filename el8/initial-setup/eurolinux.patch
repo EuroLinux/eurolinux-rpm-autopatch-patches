@@ -1,0 +1,637 @@
+diff -uNr initial-setup-0.3.81.7/initial_setup/gui/spokes/eula.py initial-setup-0.3.81.7p/initial_setup/gui/spokes/eula.py
+--- initial-setup-0.3.81.7/initial_setup/gui/spokes/eula.py	2020-11-24 22:29:34.000000000 +0100
++++ initial-setup-0.3.81.7p/initial_setup/gui/spokes/eula.py	2021-07-09 19:29:43.674225171 +0200
+@@ -53,7 +53,7 @@
+             log.error("no license found")
+             self._have_eula = False
+             self._eula_buffer.set_text(_("No license found. Please report this "
+-                                         "at http://bugzilla.redhat.com"))
++                                         "at https://github.com/EuroLinux/eurolinux-distro-bugs"))
+             return
+ 
+         self._eula_buffer.set_text("")
+diff -uNr initial-setup-0.3.81.7/po/as.po initial-setup-0.3.81.7p/po/as.po
+--- initial-setup-0.3.81.7/po/as.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/as.po	2021-07-09 19:29:43.675225161 +0200
+@@ -75,7 +75,7 @@
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+diff -uNr initial-setup-0.3.81.7/po/be.po initial-setup-0.3.81.7p/po/be.po
+--- initial-setup-0.3.81.7/po/be.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/be.po	2021-07-09 19:29:43.675225161 +0200
+@@ -70,7 +70,7 @@
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+diff -uNr initial-setup-0.3.81.7/po/bn_IN.po initial-setup-0.3.81.7p/po/bn_IN.po
+--- initial-setup-0.3.81.7/po/bn_IN.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/bn_IN.po	2021-07-09 19:29:43.675225161 +0200
+@@ -75,7 +75,7 @@
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+diff -uNr initial-setup-0.3.81.7/po/ca.po initial-setup-0.3.81.7p/po/ca.po
+--- initial-setup-0.3.81.7/po/ca.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/ca.po	2021-07-09 19:29:43.675225161 +0200
+@@ -79,9 +79,9 @@
+ msgstr "Informació de la _llicència"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+-"No s'ha trobat cap llicència. Informeu-ho a http://bugzilla.redhat.com"
++"No s'ha trobat cap llicència. Informeu-ho a https://github.com/EuroLinux/eurolinux-distro-bugs"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+ msgid "No license found"
+diff -uNr initial-setup-0.3.81.7/po/cs.po initial-setup-0.3.81.7p/po/cs.po
+--- initial-setup-0.3.81.7/po/cs.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/cs.po	2021-07-09 19:29:43.675225161 +0200
+@@ -73,9 +73,9 @@
+ msgstr "Informace o _licenci"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+-"Licence nebyla nalezena. Nahlaste to prosím na http://bugzilla.redhat.com"
++"Licence nebyla nalezena. Nahlaste to prosím na https://github.com/EuroLinux/eurolinux-distro-bugs"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+ msgid "No license found"
+diff -uNr initial-setup-0.3.81.7/po/da.po initial-setup-0.3.81.7p/po/da.po
+--- initial-setup-0.3.81.7/po/da.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/da.po	2021-07-09 19:29:43.676225151 +0200
+@@ -80,9 +80,9 @@
+ msgstr "_Licensinformation"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+-"Ingen licens fundet. Rapportér det venligst på http://bugzilla.redhat.com"
++"Ingen licens fundet. Rapportér det venligst på https://github.com/EuroLinux/eurolinux-distro-bugs"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+ msgid "No license found"
+diff -uNr initial-setup-0.3.81.7/po/de.po initial-setup-0.3.81.7p/po/de.po
+--- initial-setup-0.3.81.7/po/de.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/de.po	2021-07-09 19:29:43.676225151 +0200
+@@ -81,9 +81,9 @@
+ msgstr "_Lizenz-Informationen"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+-"Keine Lizenz gefunden. Bitte melden SIe dies auf http://bugzilla.redhat.com"
++"Keine Lizenz gefunden. Bitte melden SIe dies auf https://github.com/EuroLinux/eurolinux-distro-bugs"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+ msgid "No license found"
+diff -uNr initial-setup-0.3.81.7/po/es.po initial-setup-0.3.81.7p/po/es.po
+--- initial-setup-0.3.81.7/po/es.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/es.po	2021-07-09 19:29:43.676225151 +0200
+@@ -81,9 +81,9 @@
+ msgstr "Información de _licencia"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+-"No se encontró la licencia. Por favor informe en http://bugzilla.redhat.com"
++"No se encontró la licencia. Por favor informe en https://github.com/EuroLinux/eurolinux-distro-bugs"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+ msgid "No license found"
+diff -uNr initial-setup-0.3.81.7/po/fi.po initial-setup-0.3.81.7p/po/fi.po
+--- initial-setup-0.3.81.7/po/fi.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/fi.po	2021-07-09 19:29:43.676225151 +0200
+@@ -74,8 +74,8 @@
+ msgstr "_Lisenssitiedot"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
+-msgstr "Lisenssiä ei löytynyt. Ilmoita ongelmasta: http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
++msgstr "Lisenssiä ei löytynyt. Ilmoita ongelmasta: https://github.com/EuroLinux/eurolinux-distro-bugs"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+ msgid "No license found"
+diff -uNr initial-setup-0.3.81.7/po/fr.po initial-setup-0.3.81.7p/po/fr.po
+--- initial-setup-0.3.81.7/po/fr.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/fr.po	2021-07-09 19:29:43.677225141 +0200
+@@ -84,10 +84,10 @@
+ msgstr "_Informations sur la licence"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ "Aucune licence trouvée. Merci de rapporter ce problème sur "
+-"http://bugzilla.redhat.com"
++"https://github.com/EuroLinux/eurolinux-distro-bugs"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+ msgid "No license found"
+diff -uNr initial-setup-0.3.81.7/po/fur.po initial-setup-0.3.81.7p/po/fur.po
+--- initial-setup-0.3.81.7/po/fur.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/fur.po	2021-07-09 19:29:43.677225141 +0200
+@@ -74,7 +74,7 @@
+ msgstr "_Informazions su la licence"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ "Nissune licence cjatade. Par plasê segnalilu su http://bugzilla.redhat.com"
+ 
+diff -uNr initial-setup-0.3.81.7/po/gl.po initial-setup-0.3.81.7p/po/gl.po
+--- initial-setup-0.3.81.7/po/gl.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/gl.po	2021-07-09 19:29:43.677225141 +0200
+@@ -75,7 +75,7 @@
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+diff -uNr initial-setup-0.3.81.7/po/gu.po initial-setup-0.3.81.7p/po/gu.po
+--- initial-setup-0.3.81.7/po/gu.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/gu.po	2021-07-09 19:29:43.677225141 +0200
+@@ -76,7 +76,7 @@
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+diff -uNr initial-setup-0.3.81.7/po/he.po initial-setup-0.3.81.7p/po/he.po
+--- initial-setup-0.3.81.7/po/he.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/he.po	2021-07-09 19:29:43.677225141 +0200
+@@ -75,8 +75,8 @@
+ msgstr "_פרטי הרישוי"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
+-msgstr "לא נמצא רישיון. נא לדווח על כך בכתובת http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
++msgstr "לא נמצא רישיון. נא לדווח על כך בכתובת https://github.com/EuroLinux/eurolinux-distro-bugs"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+ msgid "No license found"
+diff -uNr initial-setup-0.3.81.7/po/hi.po initial-setup-0.3.81.7p/po/hi.po
+--- initial-setup-0.3.81.7/po/hi.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/hi.po	2021-07-09 19:29:43.677225141 +0200
+@@ -75,7 +75,7 @@
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+diff -uNr initial-setup-0.3.81.7/po/hu.po initial-setup-0.3.81.7p/po/hu.po
+--- initial-setup-0.3.81.7/po/hu.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/hu.po	2021-07-09 19:29:43.678225131 +0200
+@@ -79,9 +79,9 @@
+ msgstr "_Licencinformációk"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+-"Nem található licenc. Kérjük jelentse ezt itt: http://bugzilla.redhat.com"
++"Nem található licenc. Kérjük jelentse ezt itt: https://github.com/EuroLinux/eurolinux-distro-bugs"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+ msgid "No license found"
+diff -uNr initial-setup-0.3.81.7/po/ia.po initial-setup-0.3.81.7p/po/ia.po
+--- initial-setup-0.3.81.7/po/ia.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/ia.po	2021-07-09 19:29:43.678225131 +0200
+@@ -75,7 +75,7 @@
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+diff -uNr initial-setup-0.3.81.7/po/id.po initial-setup-0.3.81.7p/po/id.po
+--- initial-setup-0.3.81.7/po/id.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/id.po	2021-07-09 19:29:43.678225131 +0200
+@@ -75,7 +75,7 @@
+ msgstr "Informasi _Lisensi"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ "Tidak ditemukan lisensi. Harap laporkan ini pada http://bugzilla.redhat.com"
+ 
+diff -uNr initial-setup-0.3.81.7/po/initial-setup.pot initial-setup-0.3.81.7p/po/initial-setup.pot
+--- initial-setup-0.3.81.7/po/initial-setup.pot	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/initial-setup.pot	2021-07-09 19:29:43.678225131 +0200
+@@ -72,7 +72,7 @@
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:55
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:94
+diff -uNr initial-setup-0.3.81.7/po/it.po initial-setup-0.3.81.7p/po/it.po
+--- initial-setup-0.3.81.7/po/it.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/it.po	2021-07-09 19:29:43.678225131 +0200
+@@ -79,9 +79,9 @@
+ msgstr "_Informazioni sulla licenza"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+-"Nessuna licenza trovata. Esegui la notifica su http://bugzilla.redhat.com"
++"Nessuna licenza trovata. Esegui la notifica su https://github.com/EuroLinux/eurolinux-distro-bugs"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+ msgid "No license found"
+diff -uNr initial-setup-0.3.81.7/po/ja.po initial-setup-0.3.81.7p/po/ja.po
+--- initial-setup-0.3.81.7/po/ja.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/ja.po	2021-07-09 19:29:43.679225120 +0200
+@@ -79,8 +79,8 @@
+ msgstr "ライセンス情報(_L)"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
+-msgstr "ライセンスが見つかりません。http://bugzilla.redhat.com に報告してください。"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
++msgstr "ライセンスが見つかりません。https://github.com/EuroLinux/eurolinux-distro-bugs に報告してください。"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+ msgid "No license found"
+diff -uNr initial-setup-0.3.81.7/po/kk.po initial-setup-0.3.81.7p/po/kk.po
+--- initial-setup-0.3.81.7/po/kk.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/kk.po	2021-07-09 19:29:43.679225120 +0200
+@@ -79,9 +79,9 @@
+ msgstr "_Лицензия ақпараты"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+-"Лицензия табылмады. Бұл туралы http://bugzilla.redhat.com сайтында хабарлаңыз"
++"Лицензия табылмады. Бұл туралы https://github.com/EuroLinux/eurolinux-distro-bugs сайтында хабарлаңыз"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+ msgid "No license found"
+diff -uNr initial-setup-0.3.81.7/po/km.po initial-setup-0.3.81.7p/po/km.po
+--- initial-setup-0.3.81.7/po/km.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/km.po	2021-07-09 19:29:43.679225120 +0200
+@@ -70,7 +70,7 @@
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+diff -uNr initial-setup-0.3.81.7/po/kn.po initial-setup-0.3.81.7p/po/kn.po
+--- initial-setup-0.3.81.7/po/kn.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/kn.po	2021-07-09 19:29:43.679225120 +0200
+@@ -77,7 +77,7 @@
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+diff -uNr initial-setup-0.3.81.7/po/ko.po initial-setup-0.3.81.7p/po/ko.po
+--- initial-setup-0.3.81.7/po/ko.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/ko.po	2021-07-09 19:29:43.679225120 +0200
+@@ -79,8 +79,8 @@
+ msgstr "라이센스 정보(_L)"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
+-msgstr "라이센스를 찾을 수 없습니다. http://bugzilla.redhat.com에 보고해 주십시오."
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
++msgstr "라이센스를 찾을 수 없습니다. https://github.com/EuroLinux/eurolinux-distro-bugs에 보고해 주십시오."
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+ msgid "No license found"
+diff -uNr initial-setup-0.3.81.7/po/ml.po initial-setup-0.3.81.7p/po/ml.po
+--- initial-setup-0.3.81.7/po/ml.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/ml.po	2021-07-09 19:29:43.679225120 +0200
+@@ -75,7 +75,7 @@
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+diff -uNr initial-setup-0.3.81.7/po/mr.po initial-setup-0.3.81.7p/po/mr.po
+--- initial-setup-0.3.81.7/po/mr.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/mr.po	2021-07-09 19:29:43.680225110 +0200
+@@ -76,7 +76,7 @@
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+diff -uNr initial-setup-0.3.81.7/po/nb.po initial-setup-0.3.81.7p/po/nb.po
+--- initial-setup-0.3.81.7/po/nb.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/nb.po	2021-07-09 19:29:43.680225110 +0200
+@@ -75,7 +75,7 @@
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+diff -uNr initial-setup-0.3.81.7/po/nl.po initial-setup-0.3.81.7p/po/nl.po
+--- initial-setup-0.3.81.7/po/nl.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/nl.po	2021-07-09 19:29:43.680225110 +0200
+@@ -78,8 +78,8 @@
+ msgstr "_Licentie informatie"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
+-msgstr "Geen licentie gevonden. Rapporteer dit op http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
++msgstr "Geen licentie gevonden. Rapporteer dit op https://github.com/EuroLinux/eurolinux-distro-bugs"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+ msgid "No license found"
+diff -uNr initial-setup-0.3.81.7/po/or.po initial-setup-0.3.81.7p/po/or.po
+--- initial-setup-0.3.81.7/po/or.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/or.po	2021-07-09 19:29:43.680225110 +0200
+@@ -75,7 +75,7 @@
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+diff -uNr initial-setup-0.3.81.7/po/pa.po initial-setup-0.3.81.7p/po/pa.po
+--- initial-setup-0.3.81.7/po/pa.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/pa.po	2021-07-09 19:29:43.680225110 +0200
+@@ -77,7 +77,7 @@
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+diff -uNr initial-setup-0.3.81.7/po/pl.po initial-setup-0.3.81.7p/po/pl.po
+--- initial-setup-0.3.81.7/po/pl.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/pl.po	2021-07-09 19:29:43.680225110 +0200
+@@ -80,10 +80,10 @@
+ msgstr "_Informacje o licencji"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ "Nie odnaleziono licencji. Prosimy to zgłosić pod adresem "
+-"http://bugzilla.redhat.com"
++"https://github.com/EuroLinux/eurolinux-distro-bugs"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+ msgid "No license found"
+diff -uNr initial-setup-0.3.81.7/po/pt_BR.po initial-setup-0.3.81.7p/po/pt_BR.po
+--- initial-setup-0.3.81.7/po/pt_BR.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/pt_BR.po	2021-07-09 19:29:43.680225110 +0200
+@@ -80,10 +80,10 @@
+ msgstr "_Informação sobre a Licença"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ "Nenhuma licença encontrada. Por favor relate isto no "
+-"http://bugzilla.redhat.com"
++"https://github.com/EuroLinux/eurolinux-distro-bugs"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+ msgid "No license found"
+diff -uNr initial-setup-0.3.81.7/po/pt.po initial-setup-0.3.81.7p/po/pt.po
+--- initial-setup-0.3.81.7/po/pt.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/pt.po	2021-07-09 19:29:43.681225100 +0200
+@@ -81,7 +81,7 @@
+ msgstr "Informação da _Licença"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ "Nenhuma licença encontrada. Por favor, reporte isto em http://bugzilla.redhat"
+ ".com"
+diff -uNr initial-setup-0.3.81.7/po/ro.po initial-setup-0.3.81.7p/po/ro.po
+--- initial-setup-0.3.81.7/po/ro.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/ro.po	2021-07-09 19:29:43.681225100 +0200
+@@ -70,7 +70,7 @@
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+diff -uNr initial-setup-0.3.81.7/po/ru.po initial-setup-0.3.81.7p/po/ru.po
+--- initial-setup-0.3.81.7/po/ru.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/ru.po	2021-07-09 19:29:43.681225100 +0200
+@@ -79,8 +79,8 @@
+ msgstr "_Информация о лицензии"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
+-msgstr "Лицензия не найдена. Сообщите об этом в http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
++msgstr "Лицензия не найдена. Сообщите об этом в https://github.com/EuroLinux/eurolinux-distro-bugs"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+ msgid "No license found"
+diff -uNr initial-setup-0.3.81.7/po/sk.po initial-setup-0.3.81.7p/po/sk.po
+--- initial-setup-0.3.81.7/po/sk.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/sk.po	2021-07-09 19:29:43.681225100 +0200
+@@ -73,8 +73,8 @@
+ msgstr "Informácie o _licencii"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
+-msgstr "Licencia nebola nájdená. Nahláste to na http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
++msgstr "Licencia nebola nájdená. Nahláste to na https://github.com/EuroLinux/eurolinux-distro-bugs"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+ msgid "No license found"
+diff -uNr initial-setup-0.3.81.7/po/sq.po initial-setup-0.3.81.7p/po/sq.po
+--- initial-setup-0.3.81.7/po/sq.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/sq.po	2021-07-09 19:29:43.681225100 +0200
+@@ -72,7 +72,7 @@
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+diff -uNr initial-setup-0.3.81.7/po/sr.po initial-setup-0.3.81.7p/po/sr.po
+--- initial-setup-0.3.81.7/po/sr.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/sr.po	2021-07-09 19:29:43.682225090 +0200
+@@ -75,7 +75,7 @@
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+diff -uNr initial-setup-0.3.81.7/po/sv.po initial-setup-0.3.81.7p/po/sv.po
+--- initial-setup-0.3.81.7/po/sv.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/sv.po	2021-07-09 19:29:43.682225090 +0200
+@@ -81,7 +81,7 @@
+ msgstr "_Licensinformation"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ "Ingen licensinformation hittades. Rapportera gärna detta på http://bugzilla."
+ "redhat.com"
+diff -uNr initial-setup-0.3.81.7/po/ta.po initial-setup-0.3.81.7p/po/ta.po
+--- initial-setup-0.3.81.7/po/ta.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/ta.po	2021-07-09 19:29:43.682225090 +0200
+@@ -76,7 +76,7 @@
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+diff -uNr initial-setup-0.3.81.7/po/te.po initial-setup-0.3.81.7p/po/te.po
+--- initial-setup-0.3.81.7/po/te.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/te.po	2021-07-09 19:29:43.682225090 +0200
+@@ -76,7 +76,7 @@
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+diff -uNr initial-setup-0.3.81.7/po/th.po initial-setup-0.3.81.7p/po/th.po
+--- initial-setup-0.3.81.7/po/th.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/th.po	2021-07-09 19:29:43.682225090 +0200
+@@ -70,7 +70,7 @@
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+diff -uNr initial-setup-0.3.81.7/po/tr.po initial-setup-0.3.81.7p/po/tr.po
+--- initial-setup-0.3.81.7/po/tr.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/tr.po	2021-07-09 19:29:43.682225090 +0200
+@@ -76,9 +76,9 @@
+ msgstr "_Lisans Bilgisi"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+-"Lisans bulunamadı. Lütfen bunu http://bugzilla.redhat.com adresinden bildirin"
++"Lisans bulunamadı. Lütfen bunu https://github.com/EuroLinux/eurolinux-distro-bugs adresinden bildirin"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+ msgid "No license found"
+diff -uNr initial-setup-0.3.81.7/po/uk.po initial-setup-0.3.81.7p/po/uk.po
+--- initial-setup-0.3.81.7/po/uk.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/uk.po	2021-07-09 19:29:43.682225090 +0200
+@@ -78,10 +78,10 @@
+ msgstr "_Дані щодо ліцензування"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
+ msgstr ""
+ "Не знайдено ліцензійної угоди. Будь ласка, повідомте про це за допомогою "
+-"сайта http://bugzilla.redhat.com"
++"сайта https://github.com/EuroLinux/eurolinux-distro-bugs"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+ msgid "No license found"
+diff -uNr initial-setup-0.3.81.7/po/zh_CN.po initial-setup-0.3.81.7p/po/zh_CN.po
+--- initial-setup-0.3.81.7/po/zh_CN.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/zh_CN.po	2021-07-09 19:29:43.683225080 +0200
+@@ -80,8 +80,8 @@
+ msgstr "许可信息(_L)"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
+-msgstr "未找到许可。请汇报此问题至 http://bugzilla.redhat.com"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
++msgstr "未找到许可。请汇报此问题至 https://github.com/EuroLinux/eurolinux-distro-bugs"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+ msgid "No license found"
+diff -uNr initial-setup-0.3.81.7/po/zh_TW.po initial-setup-0.3.81.7p/po/zh_TW.po
+--- initial-setup-0.3.81.7/po/zh_TW.po	2020-11-24 22:29:36.000000000 +0100
++++ initial-setup-0.3.81.7p/po/zh_TW.po	2021-07-09 19:29:43.683225080 +0200
+@@ -79,8 +79,8 @@
+ msgstr "授權資訊(_L)"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:50
+-msgid "No license found. Please report this at http://bugzilla.redhat.com"
+-msgstr "找不到授權文件。請在 http://bugzilla.redhat.com 回報這個問題"
++msgid "No license found. Please report this at https://github.com/EuroLinux/eurolinux-distro-bugs"
++msgstr "找不到授權文件。請在 https://github.com/EuroLinux/eurolinux-distro-bugs 回報這個問題"
+ 
+ #: ../initial_setup/gui/spokes/eula.py:89
+ msgid "No license found"
