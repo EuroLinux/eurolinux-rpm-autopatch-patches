@@ -1,0 +1,12 @@
+--- rhel/ipa.spec	2022-02-24 20:04:00.000000000 +0100
++++ el/ipa.spec	2022-08-24 14:45:30.165416771 +0200
+@@ -977,7 +977,8 @@
+            %{enable_server_option} \
+            %{with_ipatests_option} \
+            %{with_ipa_join_xml_option} \
+-           %{linter_options}
++           %{linter_options} \
++           --with-ipaplatform=rhel
+ 
+ # run build in default dir
+ # -Onone is workaround for https://bugzilla.redhat.com/show_bug.cgi?id=1398405

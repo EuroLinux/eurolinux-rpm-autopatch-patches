@@ -4,7 +4,7 @@ This repository contains patches used by the
 [https://github.com/EuroLinux/python-rpmpatch](https://github.com/EuroLinux/python-rpmpatch).
 
 
-The repository structurse is as follow:
+The repository structure is as follows:
 
 Root level for each version of the EuroLinux
 ```
@@ -14,8 +14,8 @@ Root level for each version of the EuroLinux
 ├── el9
 ```
 
-Then each branded/changed package has it directory in which there are files,
-patches and '.ini' file for package. For example firefox for EuroLinux 9:
+Then each branded/changed package has its directory in which there are files,
+patches and '.ini' file for the package. For example firefox for EuroLinux 9:
 ```
 ├── el9
 │   └── firefox
@@ -27,7 +27,7 @@ patches and '.ini' file for package. For example firefox for EuroLinux 9:
 
 ## How to use
 
-- Clone repository wherever You want. In example below repository was cloned
+- Clone repository wherever You want. In the example below repository was cloned
   into the `/tmp/` directory
 - set `--config` in for the `./rpmpatch/patchsrpm.py` to the one that you want
   to use. Example:
