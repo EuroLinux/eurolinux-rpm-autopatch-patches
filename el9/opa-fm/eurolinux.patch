@@ -1,0 +1,188 @@
+From 82d0384111f62fc3e6bcd470c8b3632bb2b6b289 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Tomasz=20Podsiad=C5=82y?= <tp@euro-linux.com>
+Date: Fri, 4 Feb 2022 12:20:44 +0100
+Subject: [PATCH 1/5] MakeTools/funcs-ext.sh
+
+---
+ MakeTools/funcs-ext.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/MakeTools/funcs-ext.sh b/MakeTools/funcs-ext.sh
+index e0d584e..1a6a611 100755
+--- a/MakeTools/funcs-ext.sh
++++ b/MakeTools/funcs-ext.sh
+@@ -729,7 +729,7 @@ function os_vendor()
+                 rval=redhat
+                 ;;
+             *)
+-                rval=""
++                rval=redhat
+                 ;;
+         esac
+     elif [ `uname -s` == "Darwin" ]
+-- 
+2.31.1
+
+
+From 8e5accc7dbb8a6ccaf421535cb740e5ddf4e78da Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Tomasz=20Podsiad=C5=82y?= <tp@euro-linux.com>
+Date: Fri, 4 Feb 2022 12:21:06 +0100
+Subject: [PATCH 2/5] CommonInstall/util_init.pl
+
+---
+ CommonInstall/util_init.pl | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/CommonInstall/util_init.pl b/CommonInstall/util_init.pl
+index 7cbd342..1225c65 100755
+--- a/CommonInstall/util_init.pl
++++ b/CommonInstall/util_init.pl
+@@ -217,6 +217,13 @@ sub os_vendor_version($)
+ 		$rval="ES".$rval;
+ 		if ( -e "/etc/redhat-release" ) {
+ 			if (!system("grep -qi centos /etc/redhat-release")) {
++				$rval = `cat /etc/redhat-release | cut -d' ' -f4`;
++				$rval =~ m/(\d+).(\d+)/;
++				if ($2 eq "0") {
++					$rval="ES".$1;
++				} else {
++					$rval="ES".$1.$2;
++				} elsif (!system("grep -qi eurolinux /etc/redhat-release")) {
+ 				$rval = `cat /etc/redhat-release | cut -d' ' -f4`;
+ 				$rval =~ m/(\d+).(\d+)/;
+ 				if ($2 eq "0") {
+@@ -251,6 +258,12 @@ sub os_vendor_version($)
+ 			$rval = `cat /etc/redhat-release`;
+ 			$rval =~ m/(\d+).(\d+)/;
+ 			$rval="ES".$1.$2;
++		} elsif (!system("grep -qi eurolinux /etc/redhat-release")) {
++			# Find a number of the form "#.#" and output the portion
++			# to the left of the decimal point.
++			$rval = `cat /etc/redhat-release`;
++			$rval =~ m/(\d+).(\d+)/;
++			$rval="ES".$1.$2;
+ 		} elsif (!system("grep -qi Scientific /etc/redhat-release")) {
+ 			# Find a number of the form "#.#" and output the portion
+ 			# to the left of the decimal point.
+@@ -304,6 +317,8 @@ sub determine_os_version()
+ 		$CUR_DISTRO_VENDOR = "redhat";
+ 	} elsif ( -s "/etc/centos-release" ) {
+ 		$CUR_DISTRO_VENDOR = "redhat";
++	} elsif ( -s "/etc/el-release" ) {
++		$CUR_DISTRO_VENDOR = "redhat";
+ 	} elsif ( -s "/etc/UnitedLinux-release" ) {
+ 		$CUR_DISTRO_VENDOR = "UnitedLinux";
+ 		$NETWORK_CONF_DIR = "/etc/sysconfig/network";
+@@ -321,12 +336,14 @@ sub determine_os_version()
+ 		my %distroVendor = (
+ 			"rhel" => "redhat",
+ 			"centos" => "redhat",
++			"eurolinux" => "redhat",
+ 			"sles" => "SuSE",
+ 			"sle_hpc" => "SuSE"
+ 		);
+ 		my %network_conf_dir  = (
+ 			"rhel" => $NETWORK_CONF_DIR,
+ 			"centos" => $NETWORK_CONF_DIR,
++			"eurolinux" => $NETWORK_CONF_DIR,
+ 			"sles" => "/etc/sysconfig/network",
+ 			"sle_hpc" => "/etc/sysconfig/network"
+ 		);
+@@ -354,6 +371,8 @@ sub determine_os_version()
+ 			Abort "Please contact your support representative...\n";
+ 		} elsif ($CUR_DISTRO_VENDOR eq "SuSE") {
+ 			$NETWORK_CONF_DIR = "/etc/sysconfig/network";
++		} elsif ($CUR_DISTRO_VENDOR eq "eurolinux") {
++			$CUR_DISTRO_VENDOR = "redhat";
+ 		} elsif ($CUR_DISTRO_VENDOR eq "centos") {
+ 			$CUR_DISTRO_VENDOR = "redhat";
+ 		}
+-- 
+2.31.1
+
+
+From a0f5df4d7b0f08c3510ec4edf0262c03cc956f15 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Tomasz=20Podsiad=C5=82y?= <tp@euro-linux.com>
+Date: Fri, 4 Feb 2022 12:24:04 +0100
+Subject: [PATCH 3/5] MakeTools/funcs-ext.sh again
+
+---
+ MakeTools/funcs-ext.sh | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/MakeTools/funcs-ext.sh b/MakeTools/funcs-ext.sh
+index 1a6a611..94f1643 100755
+--- a/MakeTools/funcs-ext.sh
++++ b/MakeTools/funcs-ext.sh
+@@ -725,6 +725,9 @@ function os_vendor()
+             centos)
+                 rval=redhat
+                 ;;
++            eurolinux)
++                rval=redhat
++                ;;
+             fedora)
+                 rval=redhat
+                 ;;
+@@ -754,6 +757,9 @@ function os_vendor()
+ 				rval=UnitedLinux
+ 			fi
+ 		elif [ $rval = 'centos' ]
++		then
++			rval=redhat
++		elif [ $rval = 'eurolinux' ]
+ 		then
+ 			rval=redhat
+ 		elif [ $rval != 'os' ]
+@@ -830,6 +836,10 @@ function os_vendor_version()
+ 		then
+ 			# CentOS 
+ 			rval="ES"`cat /etc/redhat-release | sed -r 's/^.+([[:digit:]])\.([[:digit:]]).+$/\1\2/'`
++		elif grep -qi eurolinux /etc/redhat-release
++		then
++			# EuroLinux
++			rval="ES"`cat /etc/redhat-release | sed -r 's/^.+([[:digit:]])\.([[:digit:]]).+$/\1\2/'`
+ 		elif grep -qi scientific /etc/redhat-release
+ 		then
+ 			# Scientific Linux.
+-- 
+2.31.1
+
+
+From 219fc4924a8963340adb865575abe63a53e13bd7 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Tomasz=20Podsiad=C5=82y?= <tp@euro-linux.com>
+Date: Fri, 4 Feb 2022 12:28:54 +0100
+Subject: [PATCH 5/5] Esm/get_id_and_versionid.sh
+
+---
+ Esm/get_id_and_versionid.sh | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/Esm/get_id_and_versionid.sh b/Esm/get_id_and_versionid.sh
+index e3ad998..1ee1313 100755
+--- a/Esm/get_id_and_versionid.sh
++++ b/Esm/get_id_and_versionid.sh
+@@ -27,6 +27,9 @@ else
+ 				    rval=UnitedLinux
+ 			    fi
+ 			elif [ $rval = 'centos' ]
++			then
++				rval=redhat
++			elif [ $rval = 'eurolinux' ]
+ 			then
+ 				rval=redhat
+ 			elif [ $rval != 'os' ]
+@@ -67,6 +70,10 @@ else
+ 		then
+ 			# CentOS 
+ 			rval=`cat /etc/redhat-release | sed -r 's/^.+([[:digit:]])\.([[:digit:]]).+$/\1.\2/'`
++		elif grep -qi eurolinux /etc/redhat-release
++		then
++			# EuroLinux
++			rval=`cat /etc/redhat-release | sed -r 's/^.+([[:digit:]])\.([[:digit:]]).+$/\1.\2/'`
+ 		elif grep -qi scientific /etc/redhat-release
+ 		then
+ 			# Scientific Linux.
+-- 
+2.31.1
+
