@@ -1,0 +1,20 @@
+--- /home/Alex/workspace/EuroLinux/python-rpmpatch/srpms/rhel/redhat-rpm-config.spec	2022-02-18 11:48:58.000000000 +0100
++++ /home/Alex/workspace/EuroLinux/python-rpmpatch/srpms/el/redhat-rpm-config.spec	2022-08-25 15:25:54.106339456 +0200
+@@ -4,7 +4,7 @@
+ # 2) When making changes, update version by +1, leave release alone.
+ #
+ 
+-Summary: Red Hat specific rpm configuration files
++Summary: EuroLinux specific rpm configuration files
+ Name: redhat-rpm-config
+ Version: 194
+ Release: 1%{?dist}
+@@ -131,7 +131,7 @@
+ %global rrcdir /usr/lib/rpm/redhat
+ 
+ %description
+-Red Hat specific rpm configuration files.
++EuroLinux specific rpm configuration files.
+ 
+ %prep
+ # Not strictly necessary but allows working on file names instead

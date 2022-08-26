@@ -1,0 +1,53 @@
+From 8e9ee9799ececdf202779c824b13d066c6202699 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Tomasz=20Podsiad=C5=82y?= <tp@euro-linux.com>
+Date: Wed, 2 Feb 2022 10:22:37 +0100
+Subject: [PATCH] eurolinux patches
+
+---
+ azurelinuxagent/common/osutil/factory.py | 2 +-
+ azurelinuxagent/pa/rdma/factory.py       | 2 +-
+ setup.py                                 | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/azurelinuxagent/common/osutil/factory.py b/azurelinuxagent/common/osutil/factory.py
+index b212c38..80af3e7 100644
+--- a/azurelinuxagent/common/osutil/factory.py
++++ b/azurelinuxagent/common/osutil/factory.py
+@@ -98,7 +98,7 @@ def _get_osutil(distro_name, distro_code_name, distro_version, distro_full_name)
+ 
+         return DebianOSBaseUtil()
+ 
+-    if distro_name in ("redhat", "rhel", "centos", "oracle"):
++    if distro_name in ("redhat", "rhel", "centos", "oracle", "eurolinux"):
+         if Version(distro_version) < Version("7"):
+             return Redhat6xOSUtil()
+ 
+diff --git a/azurelinuxagent/pa/rdma/factory.py b/azurelinuxagent/pa/rdma/factory.py
+index d86d8b8..86fc664 100644
+--- a/azurelinuxagent/pa/rdma/factory.py
++++ b/azurelinuxagent/pa/rdma/factory.py
+@@ -38,7 +38,7 @@ def get_rdma_handler(
+     ):
+         return SUSERDMAHandler()
+ 
+-    if distro_full_name == 'CentOS Linux' or distro_full_name == 'CentOS' or distro_full_name == 'Red Hat Enterprise Linux Server':
++    if distro_full_name == 'CentOS Linux' or distro_full_name == 'CentOS' or distro_full_name == 'EuroLinux' or distro_full_name == 'Red Hat Enterprise Linux Server':
+         return CentOSRDMAHandler(distro_version)
+ 
+     if distro_full_name == 'Ubuntu':
+diff --git a/setup.py b/setup.py
+index c258e4b..287c4ac 100755
+--- a/setup.py
++++ b/setup.py
+@@ -97,7 +97,7 @@ def get_data_files(name, version, fullname):  # pylint: disable=R0912
+     agent_bin_path = osutil.get_agent_bin_path()
+ 
+     set_bin_files(data_files, dest=agent_bin_path)
+-    if name == 'redhat' or name == 'centos':  # pylint: disable=R1714
++    if name == 'redhat' or name == 'centos' or name == 'eurolinux':  # pylint: disable=R1714
+         set_conf_files(data_files)
+         set_logrotate_files(data_files)
+         set_udev_files(data_files)
+-- 
+2.31.1
+
