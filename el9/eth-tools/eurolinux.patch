@@ -1,0 +1,198 @@
+From e580819cd86fe1ab23a35f6011e6f66d40d04028 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Tomasz=20Podsiad=C5=82y?= <tp@euro-linux.com>
+Date: Thu, 3 Feb 2022 15:41:18 +0100
+Subject: [PATCH 1/4] CommonInstall/util_init.pl
+
+---
+ CommonInstall/util_init.pl | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/CommonInstall/util_init.pl b/CommonInstall/util_init.pl
+index 6edad66..c6e5480 100755
+--- a/CommonInstall/util_init.pl
++++ b/CommonInstall/util_init.pl
+@@ -212,6 +212,13 @@ sub os_vendor_version($)
+ 		$rval="ES".$rval;
+ 		if ( -e "/etc/redhat-release" ) {
+ 			if (!system("grep -qi centos /etc/redhat-release") || !system("grep -qi rocky /etc/redhat-release")) {
++				$rval = `cat /etc/redhat-release | cut -d' ' -f4`;
++				$rval =~ m/(\d+).(\d+)/;
++				if ($2 eq "0") {
++					$rval="ES".$1;
++				} else {
++					$rval="ES".$1.$2;
++				} elsif (!system("grep -qi eurolinux /etc/redhat-release")) {
+ 				$rval = `cat /etc/redhat-release | cut -d' ' -f4`;
+ 				$rval =~ m/(\d+).(\d+)/;
+ 				if ($2 eq "0") {
+@@ -252,6 +259,12 @@ sub os_vendor_version($)
+ 			$rval = `cat /etc/redhat-release`;
+ 			$rval =~ m/(\d+).(\d+)/;
+ 			$rval="ES".$1.$2;
++		} elsif (!system("grep -qi eurolinux /etc/redhat-release")) {
++			# Find a number of the form "#.#" and output the portion
++			# to the left of the decimal point.
++			$rval = `cat /etc/redhat-release`;
++			$rval =~ m/(\d+).(\d+)/;
++			$rval="ES".$1.$2;
+ 		} elsif (!system("grep -qi Scientific /etc/redhat-release")) {
+ 			# Find a number of the form "#.#" and output the portion
+ 			# to the left of the decimal point.
+@@ -305,6 +318,8 @@ sub determine_os_version()
+ 		$CUR_DISTRO_VENDOR = "redhat";
+ 	} elsif ( -s "/etc/centos-release" ) {
+ 		$CUR_DISTRO_VENDOR = "redhat";
++	} elsif ( -s "/etc/el-release" ) {
++		$CUR_DISTRO_VENDOR = "redhat";
+ 	} elsif ( -s "/etc/rocky-release" ) {
+ 		$CUR_DISTRO_VENDOR = "redhat";
+ 	} elsif ( -s "/etc/UnitedLinux-release" ) {
+@@ -324,6 +339,7 @@ sub determine_os_version()
+ 		my %distroVendor = (
+ 			"rhel" => "redhat",
+ 			"centos" => "redhat",
++			"eurolinux" => "redhat",
+ 			"rocky" => "redhat",
+ 			"sles" => "SuSE",
+ 			"sle_hpc" => "SuSE"
+@@ -331,6 +347,7 @@ sub determine_os_version()
+ 		my %network_conf_dir  = (
+ 			"rhel" => $NETWORK_CONF_DIR,
+ 			"centos" => $NETWORK_CONF_DIR,
++			"eurolinux" => $NETWORK_CONF_DIR,
+ 			"rocky" => $NETWORK_CONF_DIR,
+ 			"sles" => "/etc/sysconfig/network",
+ 			"sle_hpc" => "/etc/sysconfig/network"
+@@ -361,6 +378,8 @@ sub determine_os_version()
+ 			$NETWORK_CONF_DIR = "/etc/sysconfig/network";
+ 		} elsif ($CUR_DISTRO_VENDOR eq "centos") {
+ 			$CUR_DISTRO_VENDOR = "redhat";
++		} elsif ($CUR_DISTRO_VENDOR eq "eurolinux") {
++			$CUR_DISTRO_VENDOR = "redhat";
+ 		} elsif ($CUR_DISTRO_VENDOR eq "rocky") {
+ 			$CUR_DISTRO_VENDOR = "redhat";
+ 		}
+-- 
+2.31.1
+
+
+From 3f37c6210426a32997bcecb764a8e9112e4138ef Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Tomasz=20Podsiad=C5=82y?= <tp@euro-linux.com>
+Date: Thu, 3 Feb 2022 15:47:18 +0100
+Subject: [PATCH 2/4] get_id_and_versionid.sh
+
+---
+ get_id_and_versionid.sh | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/get_id_and_versionid.sh b/get_id_and_versionid.sh
+index 6e5511f..ce95d23 100755
+--- a/get_id_and_versionid.sh
++++ b/get_id_and_versionid.sh
+@@ -27,6 +27,9 @@ else
+ 				    rval=UnitedLinux
+ 			    fi
+ 			elif [ $rval = 'centos' ]
++			then
++				rval=redhat
++			elif [ $rval = 'eurolinux' ]
+ 			then
+ 				rval=redhat
+ 			elif [ $rval = 'rocky' ]
+@@ -70,6 +73,10 @@ else
+ 		then
+ 			# CentOS 
+ 			rval=`cat /etc/redhat-release | sed -r 's/^.+([[:digit:]])\.([[:digit:]]).+$/\1.\2/'`
++		elif grep -qi eurolinux /etc/redhat-release
++		then
++			# EuroLinux
++			rval=`cat /etc/redhat-release | sed -r 's/^.+([[:digit:]])\.([[:digit:]]).+$/\1.\2/'`
+ 		elif grep -qi rocky /etc/redhat-release
+ 		then
+ 			# Rocky Linux
+-- 
+2.31.1
+
+
+From 8dd64511748b074ad5cbc417d482ed7b7dc314ab Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Tomasz=20Podsiad=C5=82y?= <tp@euro-linux.com>
+Date: Thu, 3 Feb 2022 15:50:25 +0100
+Subject: [PATCH 3/4] MakeTools/funcs-ext.sh
+
+---
+ MakeTools/funcs-ext.sh | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+
+diff --git a/MakeTools/funcs-ext.sh b/MakeTools/funcs-ext.sh
+index ccdc23d..7d628eb 100755
+--- a/MakeTools/funcs-ext.sh
++++ b/MakeTools/funcs-ext.sh
+@@ -725,6 +725,9 @@ function os_vendor()
+             centos)
+                 rval=redhat
+                 ;;
++            eurolinux)
++                rval=redhat
++                ;;
+             rocky)
+                 rval=redhat
+                 ;;
+@@ -732,7 +735,7 @@ function os_vendor()
+                 rval=redhat
+                 ;;
+             *)
+-                rval=""
++                rval=redhat
+                 ;;
+         esac
+     elif [ `uname -s` == "Darwin" ]
+@@ -757,6 +760,9 @@ function os_vendor()
+ 				rval=UnitedLinux
+ 			fi
+ 		elif [ $rval = 'centos' ]
++		then
++			rval=redhat
++		elif [ $rval = 'eurolinux' ]
+ 		then
+ 			rval=redhat
+ 		elif [ $rval = 'rocky' ]
+@@ -836,6 +842,10 @@ function os_vendor_version()
+ 		then
+ 			# CentOS 
+ 			rval="ES"`cat /etc/redhat-release | sed -r 's/^.+([[:digit:]])\.([[:digit:]]).+$/\1\2/'`
++		elif grep -qi eurolinux /etc/redhat-release
++		then
++			# EuroLinux
++			rval="ES"`cat /etc/redhat-release | sed -r 's/^.+([[:digit:]])\.([[:digit:]]).+$/\1\2/'`
+ 		elif grep -qi rocky /etc/redhat-release
+ 		then
+ 			# Rocky Linux
+-- 
+2.31.1
+
+
+From b881e5fd1980a4847960a415d3907bf789499413 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Tomasz=20Podsiad=C5=82y?= <tp@euro-linux.com>
+Date: Thu, 3 Feb 2022 15:51:32 +0100
+Subject: [PATCH 4/4] update_eth_spec.sh
+
+---
+ update_eth_spec.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/update_eth_spec.sh b/update_eth_spec.sh
+index 61cf0a7..6bfb17c 100755
+--- a/update_eth_spec.sh
++++ b/update_eth_spec.sh
+@@ -48,7 +48,7 @@ fi
+ 
+ source ./OpenIb_Host/ff_filegroups.sh
+ 
+-if [ "$id" = "rhel" -o "$id" = "centos" -o "$id" = "rocky" ]
++if [ "$id" = "rhel" -o "$id" = "centos" -o "$id" = "eurolinux" -o "$id" = "rocky" ]
+ then
+ 	# __RPM_REQ_BASIC -
+ 	sed -i "s/__RPM_REQ_BASIC1/expect%{?_isa}, tcl%{?_isa}, libibverbs-utils%{?_isa}, librdmacm-utils%{?_isa}, net-snmp-utils%{?_isa}/g" eth-tools.spec
+-- 
+2.31.1
+
