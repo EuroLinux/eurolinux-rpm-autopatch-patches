@@ -1,0 +1,89 @@
+From 41f9ab4188f581d3fecd525576920f4e32568dc6 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Tomasz=20Podsiad=C5=82y?= <tp@euro-linux.com>
+Date: Wed, 16 Mar 2022 08:08:41 +0000
+Subject: [PATCH] eurolinux patches
+
+---
+ configure.c                        | 6 +++---
+ configure.ccrash-8.0.0_build.patch | 6 +++---
+ help.c                             | 2 +-
+ 3 files changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/configure.c b/configure.c
+index 1c24fdc..1828d8e 100644
+--- a/configure.c
++++ b/configure.c
+@@ -198,7 +198,7 @@ struct supported_gdb_version {
+ } supported_gdb_versions[SUPPORTED_GDB_VERSIONS] = {
+ 	{
+ 	    "GDB=gdb-5.3post-0.20021129.36rh",
+-	    "Red Hat Linux (5.3post-0.20021129.36rh)",
++	    "EuroLinux (5.3post-0.20021129.36rh)",
+ 	    "GDB_FILES=${GDB_5.3post-0.20021129.36rh_FILES}",	   
+ 	    "GDB_OFILES=${GDB_5.3post-0.20021129.36rh_OFILES}",
+ 	    "GDB_PATCH_FILES=",
+@@ -1384,7 +1384,7 @@ make_spec_file(struct supported_gdb_version *sp)
+ 	printf("%%description\n");
+ 	printf("The core analysis suite is a self-contained tool that can be used to\n");
+ 	printf("investigate either live systems, kernel core dumps created from the\n");
+-	printf("netdump, diskdump and kdump facilities from Red Hat Linux, the mcore kernel patch\n");
++	printf("netdump, diskdump and kdump facilities from EuroLinux, the mcore kernel patch\n");
+ 	printf("offered by Mission Critical Linux, or the LKCD kernel patch.\n");
+ 	printf("\n");
+ 	printf("%%package devel\n");
+@@ -1395,7 +1395,7 @@ make_spec_file(struct supported_gdb_version *sp)
+ 	printf("%%description devel\n");
+ 	printf("The core analysis suite is a self-contained tool that can be used to\n");
+ 	printf("investigate either live systems, kernel core dumps created from the\n");
+-	printf("netdump, diskdump and kdump packages from Red Hat Linux, the mcore kernel patch\n");
++	printf("netdump, diskdump and kdump packages from EuroLinux, the mcore kernel patch\n");
+ 	printf("offered by Mission Critical Linux, or the LKCD kernel patch.\n");
+ 	printf("\n");
+ 	printf("%%package extensions\n");
+diff --git a/configure.ccrash-8.0.0_build.patch b/configure.ccrash-8.0.0_build.patch
+index 5188851..3d876d2 100644
+--- a/configure.ccrash-8.0.0_build.patch
++++ b/configure.ccrash-8.0.0_build.patch
+@@ -198,7 +198,7 @@ struct supported_gdb_version {
+ } supported_gdb_versions[SUPPORTED_GDB_VERSIONS] = {
+ 	{
+ 	    "GDB=gdb-5.3post-0.20021129.36rh",
+-	    "Red Hat Linux (5.3post-0.20021129.36rh)",
++	    "EuroLinux (5.3post-0.20021129.36rh)",
+ 	    "GDB_FILES=${GDB_5.3post-0.20021129.36rh_FILES}",	   
+ 	    "GDB_OFILES=${GDB_5.3post-0.20021129.36rh_OFILES}",
+ 	    "GDB_PATCH_FILES=",
+@@ -1383,7 +1383,7 @@ make_spec_file(struct supported_gdb_version *sp)
+ 	printf("%%description\n");
+ 	printf("The core analysis suite is a self-contained tool that can be used to\n");
+ 	printf("investigate either live systems, kernel core dumps created from the\n");
+-	printf("netdump, diskdump and kdump facilities from Red Hat Linux, the mcore kernel patch\n");
++	printf("netdump, diskdump and kdump facilities from EuroLinux, the mcore kernel patch\n");
+ 	printf("offered by Mission Critical Linux, or the LKCD kernel patch.\n");
+ 	printf("\n");
+ 	printf("%%package devel\n");
+@@ -1394,7 +1394,7 @@ make_spec_file(struct supported_gdb_version *sp)
+ 	printf("%%description devel\n");
+ 	printf("The core analysis suite is a self-contained tool that can be used to\n");
+ 	printf("investigate either live systems, kernel core dumps created from the\n");
+-	printf("netdump, diskdump and kdump packages from Red Hat Linux, the mcore kernel patch\n");
++	printf("netdump, diskdump and kdump packages from EuroLinux, the mcore kernel patch\n");
+ 	printf("offered by Mission Critical Linux, or the LKCD kernel patch.\n");
+ 	printf("\n");
+ 	printf("%%package extensions\n");
+diff --git a/help.c b/help.c
+index 04a7eff..4794d96 100644
+--- a/help.c
++++ b/help.c
+@@ -9432,7 +9432,7 @@ README_ENTER_DIRECTORY,
+ "  uncompressed kernel name and the kernel dumpfile name.  ",
+ "",
+ "  If run on a live system, only the kernel name is required, because /dev/mem ",
+-"  will be used as the \"dumpfile\".  On Red Hat or Fedora kernels where the",
++"  will be used as the \"dumpfile\".  On EuroLinux or Fedora kernels where the",
+ "  /dev/mem device is restricted, the /dev/crash memory driver will be used.",
+ "  If neither /dev/mem or /dev/crash are available, then /proc/kcore will be",
+ "  be used as the live memory source.  If /proc/kcore is also restricted, then",
+-- 
+2.27.0
+

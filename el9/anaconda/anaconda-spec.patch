@@ -1,0 +1,16 @@
+--- /home/Alex/workspace/EuroLinux/python-rpmpatch/srpms/rhel/anaconda.spec	2022-03-17 18:45:13.000000000 +0100
++++ /home/Alex/workspace/EuroLinux/python-rpmpatch/srpms/el/anaconda.spec	2022-08-28 16:49:50.895668033 +0200
+@@ -299,6 +299,13 @@
+ %prep
+ %autosetup -p 1
+ 
++# Additonal debrand
++sed -e 's/RHEL/EuroLinux/' -i po/*.po
++sed -e 's/Red Hat Enterprise Linux/EuroLinux/' -i po/*.po
++
++# EuroLinux installation class/conf
++cp %{SOURCE1} data/product.d/
++
+ %build
+ # use actual build-time release number, not tarball creation time release number
+ %configure ANACONDA_RELEASE=%{release}
