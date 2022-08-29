@@ -1,0 +1,12 @@
+--- /home/Alex/workspace/EuroLinux/python-rpmpatch/srpms/rhel/chrony.spec	2021-08-17 10:11:30.000000000 +0200
++++ /home/Alex/workspace/EuroLinux/python-rpmpatch/srpms/el/chrony.spec	2022-08-29 13:12:01.582584940 +0200
+@@ -80,8 +80,7 @@
+ # - enable leapsectz to get TAI-UTC offset and leap seconds from tzdata
+ # - enable keyfile
+ # - use NTP servers from DHCP
+-sed -e 's|^\(pool \)\(pool.ntp.org\)|\12.%{vendorzone}\2|' \
+-    -e 's|#\(leapsectz\)|\1|' \
++sed -e 's|#\(leapsectz\)|\1|' \
+     -e 's|#\(keyfile\)|\1|' \
+     -e 's|^pool.*pool.ntp.org.*|&\n\n# Use NTP servers from DHCP.\nsourcedir /run/chrony-dhcp|' \
+         < examples/chrony.conf.example2 > chrony.conf
