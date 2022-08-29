@@ -9,13 +9,11 @@ Subject: [PATCH] eurolinux patches
  os/euro-linux.com/eurolinux-8.3.xml           |  94 ++++++++++++++
  os/euro-linux.com/eurolinux-8.4.xml           |  98 +++++++++++++++
  os/euro-linux.com/eurolinux-8.5.xml           |  98 +++++++++++++++
- os/euro-linux.com/eurolinux-8.6.xml           |  98 +++++++++++++++
  os/euro-linux.com/eurolinux-9.0.xml           | 117 ++++++++++++++++++
- 6 files changed, 519 insertions(+)
+ 6 files changed, 421 insertions(+)
  create mode 100644 os/euro-linux.com/eurolinux-8.3.xml
  create mode 100644 os/euro-linux.com/eurolinux-8.4.xml
  create mode 100644 os/euro-linux.com/eurolinux-8.5.xml
- create mode 100644 os/euro-linux.com/eurolinux-8.6.xml
  create mode 100644 os/euro-linux.com/eurolinux-9.0.xml
 
 diff --git a/install-script/redhat.com/rhel-kickstart-desktop.xml b/install-script/redhat.com/rhel-kickstart-desktop.xml
@@ -31,7 +29,7 @@ index 4524bd5..6b1a398 100644
 +              <xsl:call-template name="version"/>
 +              <xsl:text>/</xsl:text>
 +              <xsl:call-template name="arch"/>
-+              <xsl:text>/BaseOS/os/</xsl:text>
++              <xsl:text>/certify-BaseOS/os/</xsl:text>
 +            </xsl:when>
              <xsl:when test="os/distro = 'almalinux'">
                <xsl:text>http://repo.almalinux.org/almalinux/</xsl:text>
@@ -49,7 +47,7 @@ index 36b373a..48fa771 100644
 +              <xsl:call-template name="version"/>
 +              <xsl:text>/</xsl:text>
 +              <xsl:call-template name="arch"/>
-+              <xsl:text>/BaseOS/os/</xsl:text>
++              <xsl:text>/certify-BaseOS/os/</xsl:text>
 +            </xsl:when>
              <xsl:when test="os/distro = 'almalinux'">
                <xsl:text>http://repo.almalinux.org/almalinux/</xsl:text>
@@ -349,110 +347,6 @@ index 0000000..35178fc
 +        <cpu>1000000000</cpu>
 +        <ram>1610612736</ram>
 +        <storage>10737418240</storage>
-+      </minimum>
-+      <recommended>
-+        <cpu>1000000000</cpu>
-+        <ram>1610612736</ram>
-+        <storage>21474836480</storage>
-+      </recommended>
-+    </resources>
-+    <installer>
-+      <script id="http://redhat.com/rhel/kickstart/jeos"/>
-+      <script id="http://redhat.com/rhel/kickstart/desktop"/>
-+    </installer>
-+  </os>
-+</libosinfo>
-diff --git a/os/euro-linux.com/eurolinux-8.6.xml b/os/euro-linux.com/eurolinux-8.6.xml
-new file mode 100644
-index 0000000..35178fc
---- /dev/null
-+++ b/os/euro-linux.com/eurolinux-8.6.xml
-@@ -0,0 +1,98 @@
-+<?xml version="1.0"?>
-+<libosinfo version="0.0.1">
-+  <!-- Licensed under the GNU General Public License version 2 or later.
-+     See http://www.gnu.org/licenses/ for a copy of the license text -->
-+  <os id="EuroLinux 8.6">
-+    <short-id>eurolinux8.6</short-id>
-+    <name>EuroLinux 8.6</name>
-+    <version>8.6</version>
-+    <vendor>EuroLinux</vendor>
-+    <vendor xml:lang="pl">EuroLinux Sp. z o.o.</vendor>
-+    <family>linux</family>
-+    <distro>EuroLinux</distro>
-+    <codename>Tirana</codename>
-+    <upgrades id="EuroLinux 8.5"/>
-+    <derives-from id="EuroLinux 8.5"/>
-+    <clones id="http://redhat.com/rhel/8.6"/>
-+    <release-date>2021-11-26</release-date>
-+    <media arch="x86_64">
-+      <iso>
-+        <system-id>LINUX</system-id>
-+        <volume-id>EL-8.6-x86_64.*</volume-id>
-+      </iso>
-+      <kernel>isolinux/vmlinuz</kernel>
-+      <initrd>isolinux/initrd.img</initrd>
-+    </media>
-+    <media arch="aarch64">
-+      <iso>
-+        <system-id>LINUX</system-id>
-+        <volume-id>EL-8.6-aarch64.*</volume-id>
-+      </iso>
-+    </media>
-+    <tree arch="x86_64">
-+      <url>https://fbi.cdn.euro-linux.com/dist/eurolinux/server/8/x86_64/certify-BaseOS/os/</url>
-+      <treeinfo>
-+        <family>EuroLinux</family>
-+        <version>^8.6$</version>
-+        <arch>x86_64</arch>
-+      </treeinfo>
-+    </tree>
-+    <tree arch="aarch64">
-+      <url>https://fbi.cdn.euro-linux.com/dist/eurolinux/server/8/aarch64/certify-BaseOS/os/</url>
-+      <treeinfo>
-+        <family>EuroLinux</family>
-+        <version>^8.6$</version>
-+        <arch>aarch64</arch>
-+      </treeinfo>
-+    </tree>
-+    <resources arch="x86_64">
-+      <minimum>
-+        <cpu>1000000000</cpu>
-+        <ram>1610612736</ram>
-+        <storage>10737418.50</storage>
-+      </minimum>
-+      <recommended>
-+        <cpu>1000000000</cpu>
-+        <ram>1610612736</ram>
-+        <storage>21474836480</storage>
-+      </recommended>
-+      <maximum>
-+        <n-cpus>768</n-cpus>
-+        <ram>26388279066624</ram>
-+      </maximum>
-+      <network-install>
-+        <ram>3221225472</ram>
-+      </network-install>
-+    </resources>
-+    <resources arch="aarch64">
-+      <minimum>
-+        <ram>2147483648</ram>
-+        <storage>10737418.50</storage>
-+      </minimum>
-+      <recommended>
-+        <storage>21474836480</storage>
-+      </recommended>
-+      <maximum>
-+        <n-cpus>256</n-cpus>
-+        <ram>1649267441664</ram>
-+      </maximum>
-+    </resources>
-+    <resources arch="all">
-+      <minimum>
-+        <n-cpus>1</n-cpus>
-+        <cpu>1000000000</cpu>
-+        <ram>1610612736</ram>
-+        <storage>10737418.50</storage>
 +      </minimum>
 +      <recommended>
 +        <cpu>1000000000</cpu>

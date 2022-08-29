@@ -1,0 +1,24 @@
+From f6b64a276669cd1e9ff0e98db5009083a35f2ef1 Mon Sep 17 00:00:00 2001
+From: Alex baranowski <ab@euro-linux.com>
+Date: Mon, 6 Sep 2021 13:59:24 +0000
+Subject: [PATCH] Add EuroLinux detection
+
+---
+ m4/guestfs-appliance.m4 | 2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/m4/guestfs-appliance.m4 b/m4/guestfs-appliance.m4
+index 5a7af51..9481376 100644
+--- a/m4/guestfs-appliance.m4
++++ b/m4/guestfs-appliance.m4
+@@ -105,7 +105,7 @@
+             ( . /etc/os-release && echo $ID | tr '@<:@:lower:@:>@' '@<:@:upper:@:>@' ) >&AS_MESSAGE_LOG_FD
+             DISTRO="`. /etc/os-release && echo $ID | tr '@<:@:lower:@:>@' '@<:@:upper:@:>@'`"
+             AS_CASE([$DISTRO],
+-                    [FEDORA | RHEL | CENTOS | ALMALINUX | CLOUDLINUX],
++                    [FEDORA | RHEL | CENTOS | ALMALINUX | CLOUDLINUX | EUROLINUX],
+                         [DISTRO=REDHAT],
+                     [OPENSUSE* | SLED | SLES],[DISTRO=SUSE],
+                     [ARCH | MANJARO],[DISTRO=ARCHLINUX],
+-- 
+2.27.0
