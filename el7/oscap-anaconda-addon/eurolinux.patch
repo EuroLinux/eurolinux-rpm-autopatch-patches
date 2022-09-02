@@ -1,0 +1,11 @@
+--- oscap-anaconda-addon-0.7/org_fedora_oscap/common.py.orig  2015-12-29 10:05:41.607345935 -0600
++++ oscap-anaconda-addon-0.7/org_fedora_oscap/common.py 2015-12-29 10:05:50.954113151 -0600
+@@ -52,7 +52,7 @@ INSTALLATION_CONTENT_DIR = "/tmp/opensca
+ TARGET_CONTENT_DIR = "/root/openscap_data/"
+ 
+ SSG_DIR = "/usr/share/xml/scap/ssg/content/"
+-SSG_CONTENT = "ssg-sl7-ds.xml"
++SSG_CONTENT = "ssg-el7-ds.xml"
+ if constants.shortProductName != 'anaconda':
+     if constants.shortProductName == 'fedora':
+         SSG_CONTENT  = "ssg-fedora-ds.xml"
