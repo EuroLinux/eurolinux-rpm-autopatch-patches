@@ -32,5 +32,9 @@ patches and '.ini' file for the package. For example firefox for EuroLinux 9:
 - set `--config` in for the `./rpmpatch/patchsrpm.py` to the one that you want
   to use. Example:
   ```bash
-  ./rpmpatch/patchsrpm.py --config=/tmp/eurolinux-rpm-autopatch-patches/el9/ /PATH/TO/SRPM --keep_dist 
+  ./rpmpatch/patchsrpm.py --config=/tmp/eurolinux-rpm-autopatch-patches/el9/ /PATH/TO/SRPM --keep_dist
   ```
+
+Depending on the version the python-rpmpatch should use the main branch
+(EuroLinux 8 and EuroLinux 9) or the python2 branch (EuroLinux 6 and EuroLinux
+7).
