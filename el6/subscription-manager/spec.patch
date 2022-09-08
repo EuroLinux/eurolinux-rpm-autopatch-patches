@@ -1,0 +1,89 @@
+--- subscription-manager.spec.orig	2022-09-08 09:01:35.342824415 -0400
++++ subscription-manager.spec	2022-09-08 09:32:15.141401944 -0400
+@@ -187,7 +187,7 @@
+ 
+ %description
+ The Subscription Manager package provides programs and libraries to allow users
+-to manage subscriptions and yum repositories from the Red Hat entitlement
++to manage subscriptions and yum repositories from the EuroLinux Entitlement
+ platform.
+ 
+ 
+@@ -232,7 +232,7 @@
+ 
+ %description -n subscription-manager-gui
+ This package contains a GTK+ graphical interface for configuring and
+-registering a system with a Red Hat Entitlement platform and manage
++registering a system with a EuroLinux Entitlement platform and manage
+ subscriptions.
+ 
+ 
+@@ -257,7 +257,7 @@
+ 
+ %description -n dnf-plugin-subscription-manager
+ This package provides plugins to interact with repositories and subscriptions
+-from the Red Hat entitlement platform; contains subscription-manager and
++from the EuroLinux Entitlement platform; contains subscription-manager and
+ product-id plugins.
+ %endif
+ 
+@@ -308,7 +308,7 @@
+ 
+ 
+ %package -n subscription-manager-rhsm
+-Summary: A Python library to communicate with a Red Hat Unified Entitlement Platform
++Summary: A Python library to communicate with a EuroLinux Unified Entitlement Platform
+ Group: Development/Libraries
+ 
+ %if %use_m2crypto
+@@ -324,14 +324,14 @@
+ Obsoletes: python-rhsm <= 1.20.3-1
+ 
+ %description -n subscription-manager-rhsm
+-A small library for communicating with the REST interface of a Red Hat Unified
++A small library for communicating with the REST interface of a EuroLinux Unified
+ Entitlement Platform. This interface is used for the management of system
+ entitlements, certificates, and access to content.
+ 
+ 
+ %if %{use_python3}
+ %package -n python3-subscription-manager-rhsm
+-Summary: A Python library to communicate with a Red Hat Unified Entitlement Platform
++Summary: A Python library to communicate with a EuroLinux Unified Entitlement Platform
+ BuildRequires: python3-devel
+ BuildRequires: python3-setuptools
+ BuildRequires: python3-six
+@@ -349,21 +349,21 @@
+ %{?python_provide:%python_provide python3-python-rhsm}
+ 
+ %description -n python3-subscription-manager-rhsm
+-A small library for communicating with the REST interface of a Red Hat Unified
++A small library for communicating with the REST interface of a EuroLinux Unified
+ Entitlement Platform. This interface is used for the management of system
+ entitlements, certificates, and access to content.
+ %endif
+ 
+ 
+ %package -n subscription-manager-rhsm-certificates
+-Summary: Certificates required to communicate with a Red Hat Unified Entitlement Platform
++Summary: Certificates required to communicate with a EuroLinux Unified Entitlement Platform
+ Group: Development/Libraries
+ Provides: python-rhsm-certificates = %{version}-%{release}
+ Obsoletes: python-rhsm-certificates <= 1.20.3-1
+ 
+ %description -n subscription-manager-rhsm-certificates
+ This package contains certificates required for communicating with the REST interface
+-of a Red Hat Unified Entitlement Platform, used for the management of system entitlements
++of a EuroLinux Unified Entitlement Platform, used for the management of system entitlements
+ and to receive access to content.
+ 
+ %if %use_cockpit
+@@ -381,7 +381,7 @@
+ %endif
+ 
+ %prep
+-%setup -q
++%autosetup -p1
+ 
+ %build
+ make -f Makefile VERSION=%{version}-%{release} CFLAGS="%{optflags}" \
