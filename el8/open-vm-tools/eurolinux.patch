@@ -1,0 +1,108 @@
+diff -uNr a/open-vm-tools-11.3.5-18557794/lib/include/guest_os.h b/open-vm-tools-11.3.5-18557794-el/lib/include/guest_os.h
+--- a/open-vm-tools-11.3.5-18557794/lib/include/guest_os.h	2021-08-31 09:03:30.000000000 +0000
++++ b/open-vm-tools-11.3.5-18557794-el/lib/include/guest_os.h	2022-09-09 10:52:37.516202944 +0000
+@@ -200,6 +200,7 @@
+ #define ALL4XLINUX64          BS(OTHER4XLINUX_64), BS(PHOTON_64),       \
+                               BS(CENTOS8_64),      BS(CENTOS9_64),      \
+                               BS(ORACLE8_64),      BS(ORACLE9_64),      \
++                              BS(EUROLINUX8_64),   BS(EUROLINUX9_64),      \
+                               BS(CRXSYS1_64),      BS(CRXPOD1_64),      \
+                               BS(AMAZONLINUX2_64), BS(AMAZONLINUX3_64), \
+                               BS(LINUX_MINT_64)
+@@ -294,6 +295,7 @@
+ #define STR_OS_NOVELL             "nld9"
+ #define STR_OS_NOVELL_FULL        "Novell Linux Desktop 9"
+ #define STR_OS_ORACLE             "oraclelinux"
++#define STR_OS_EUROLINUX          "eurolinux"
+ #define STR_OS_OTHER_LINUX        "otherlinux"
+ #define STR_OS_OTHER_LINUX_FULL   "Other Linux"
+ #define STR_OS_OTHER              "other"
+diff -uNr a/open-vm-tools-11.3.5-18557794/lib/include/guest_os_tables.h b/open-vm-tools-11.3.5-18557794-el/lib/include/guest_os_tables.h
+--- a/open-vm-tools-11.3.5-18557794/lib/include/guest_os_tables.h	2021-08-31 09:03:30.000000000 +0000
++++ b/open-vm-tools-11.3.5-18557794-el/lib/include/guest_os_tables.h	2022-09-09 10:55:02.683152393 +0000
+@@ -147,6 +147,13 @@
+    GOT(GUEST_OS_ORACLE7_64)                                                \
+    GOT(GUEST_OS_ORACLE8_64)                                                \
+    GOT(GUEST_OS_ORACLE9_64)                                                \
++   GOT(GUEST_OS_EUROLINUX)                                                 \
++   GOT(GUEST_OS_EUROLINUX_64)                                              \
++   GOT(GUEST_OS_EUROLINUX6)                                                \
++   GOT(GUEST_OS_EUROLINUX6_64)                                             \
++   GOT(GUEST_OS_EUROLINUX7_64)                                             \
++   GOT(GUEST_OS_EUROLINUX8_64)                                             \
++   GOT(GUEST_OS_EUROLINUX9_64)                                             \
+    GOT(GUEST_OS_CENTOS)                                                    \
+    GOT(GUEST_OS_CENTOS_64)                                                 \
+    GOT(GUEST_OS_CENTOS6)                                                   \
+@@ -288,6 +295,13 @@
+    GOKM("oraclelinux7-64",                      oracleLinux7_64Guest,    TRUE) \
+    GOKM("oraclelinux8-64",                      oracleLinux8_64Guest,    TRUE) \
+    GOKM("oraclelinux9-64",                      oracleLinux9_64Guest,    TRUE) \
++   GOKM("eurolinux",                            euroLinuxGuest,        TRUE) \
++   GOKM("eurolinux-64",                       	euroLinux64Guest,      TRUE) \
++   GOKM("eurolinux6",                         	euroLinux6Guest,       TRUE) \
++   GOKM("eurolinux6-64",                      	euroLinux6_64Guest,    TRUE) \
++   GOKM("eurolinux7-64",                      	euroLinux7_64Guest,    TRUE) \
++   GOKM("eurolinux8-64",      	                euroLinux8_64Guest,    TRUE) \
++   GOKM("eurolinux9-64",       	                euroLinux9_64Guest,    TRUE) \
+    GOKM("suse",                                 suseGuest,               TRUE) \
+    GOKM("suse-64",                              suse64Guest,             TRUE) \
+    GOKM("sles",                                 slesGuest,               TRUE) \
+diff -uNr a/open-vm-tools-11.3.5-18557794/lib/misc/hostinfoPosix.c b/open-vm-tools-11.3.5-18557794-el/lib/misc/hostinfoPosix.c
+--- a/open-vm-tools-11.3.5-18557794/lib/misc/hostinfoPosix.c	2021-08-31 09:03:27.000000000 +0000
++++ b/open-vm-tools-11.3.5-18557794-el/lib/misc/hostinfoPosix.c	2022-09-09 11:08:00.827985464 +0000
+@@ -222,6 +222,7 @@
+    { "MkLinux",            "/etc/mklinux-release"       },
+    { "Novell",             "/etc/nld-release"           },
+    { "OracleLinux",        "/etc/oracle-release"        },
++   { "EuroLinux",          "/etc/el-release"        	},
+    { "Photon",             "/etc/lsb-release"           },
+    { "PLD",                "/etc/pld-release"           },
+    { "RedHat",             "/etc/redhat-release"        },
+@@ -1047,6 +1048,38 @@
+    return TRUE;
+ }
+ 
++/*
++ *-----------------------------------------------------------------------------
++ *
++ * HostinfoSetEuroLinuxShortName --
++ *
++ *      Set the short name for the EuroLinux distro.
++ *
++ * Return value:
++ *      TRUE    success
++ *
++ * Side effects:
++ *      None
++ *
++ *-----------------------------------------------------------------------------
++ */
++
++static Bool
++HostinfoSetEuroLinuxShortName(const ShortNameSet *entry, // IN: Unused
++                           int version,               // IN:
++                           const char *distroLower,   // IN: Unused
++                           char *distroShort,         // OUT:
++                           int distroShortSize)       // IN:
++{
++   if (version < 6) {
++      Str_Strcpy(distroShort, STR_OS_EUROLINUX, distroShortSize);
++   } else {
++      Str_Sprintf(distroShort, distroShortSize, "%s%s%d",
++                  HostinfoArchString(), STR_OS_EUROLINUX, version);
++   }
++
++   return TRUE;
++}
+ 
+ /*
+  *-----------------------------------------------------------------------------
+@@ -1278,6 +1311,7 @@
+ {"aurox",               STR_OS_AUROX,              HostinfoGenericSetShortName},
+ {"black cat",           STR_OS_BLACKCAT,           HostinfoGenericSetShortName},
+ {"centos",              NULL,                      HostinfoSetCentosShortName},
++{"eurolinux",           NULL,                      HostinfoSetEuroLinuxShortName},
+ {"cobalt",              STR_OS_COBALT,             HostinfoGenericSetShortName},
+ {"conectiva",           STR_OS_CONECTIVA,          HostinfoGenericSetShortName},
+ {"debian",              NULL,                      HostinfoSetDebianShortName},
