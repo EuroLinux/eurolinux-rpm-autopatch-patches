@@ -1,0 +1,41 @@
+diff -urN abrt-2.0.8.orig/src/daemon/abrt_event.conf abrt-2.0.8/src/daemon/abrt_event.conf
+--- abrt-2.0.8.orig/src/daemon/abrt_event.conf	2022-09-09 11:24:54.235256715 +0200
++++ abrt-2.0.8/src/daemon/abrt_event.conf	2022-09-09 11:27:27.101830660 +0200
+@@ -44,7 +44,7 @@
+ 
+ 
+ # Determine in which package/component the crash happened (if not yet done):
+-EVENT=post-create component= remote!=1
++#EVENT=post-create component= remote!=1
+         abrt-action-save-package-data
+ 
+ 
+@@ -56,23 +56,23 @@
+ # uid file is missing for problems visible to all users
+ # (oops scanner is often set up to not create it).
+ # Record username only if uid element is present:
+-EVENT=post-create
++#EVENT=post-create
+         if [ -f uid ]; then getent passwd "`cat uid`" | cut -d: -f1 >username; fi
+ 
+ 
+-EVENT=notify package!= uid!=
++#EVENT=notify package!= uid!=
+ 	dbus-send --system --type=signal /com/redhat/abrt com.redhat.abrt.Crash \
+ 	string:"`cat package`" string:"$DUMP_DIR" string:"`cat uid`"
+ 
+-EVENT=notify package!= uid=
++#EVENT=notify package!= uid=
+ 	dbus-send --system --type=signal /com/redhat/abrt com.redhat.abrt.Crash \
+ 	string:"`cat package`" string:"$DUMP_DIR"
+ 
+-EVENT=notify_dup package!= uid!=
++#EVENT=notify_dup package!= uid!=
+ 	dbus-send --system --type=signal /com/redhat/abrt com.redhat.abrt.Crash \
+ 	string:"`cat package`" string:"$DUMP_DIR" string:"`cat uid`"
+ 
+-EVENT=notify_dup package!= uid=
++#EVENT=notify_dup package!= uid=
+ 	dbus-send --system --type=signal /com/redhat/abrt com.redhat.abrt.Crash \
+ 	string:"`cat package`" string:"$DUMP_DIR"
+ 
