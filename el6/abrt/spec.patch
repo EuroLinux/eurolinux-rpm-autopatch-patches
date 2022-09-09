@@ -1,14 +1,5 @@
---- abrt.spec.orig	2022-09-09 11:18:54.682075419 +0200
-+++ abrt.spec	2022-09-09 11:23:06.280621298 +0200
-@@ -202,7 +202,7 @@
- Patch247: 0247-hooks-save-type-along-with-analyzer.patch
- #Patch248: 0248-spec-fix-requires-for-python-dbus.patch
- Patch249: 0249-cli-print-autoreporting-notification-to-stderr.patch
--Patch250: 0250-cli-list-show-a-hint-about-creating-a-case-in-RHTS.patch
-+#Patch250: 0250-cli-list-show-a-hint-about-creating-a-case-in-RHTS.patch
- Patch251: 0251-console-notofications-robustidize-the-implementation.patch
- Patch252: 0252-abrt-cli-make-status-help-message-more-precise.patch
- Patch253: 0253-abrt-gui-don-t-consider-ureported-problems-to-be-rep.patch
+--- abrt.spec.orig	2022-09-09 13:03:31.762610536 +0200
++++ abrt.spec	2022-09-09 13:03:54.408762960 +0200
 @@ -472,7 +472,7 @@
  Requires: libreport-cli
  Requires: abrt-addon-kerneloops
@@ -27,12 +18,3 @@
  Requires: sos
  #Requires: abrt-plugin-firefox
  %if 0%{?fedora}
-@@ -716,7 +716,7 @@
- %patch247 -p1
- #%patch248 -p1
- %patch249 -p1
--%patch250 -p1
-+#%patch250 -p1
- %patch251 -p1
- %patch252 -p1
- %patch253 -p1
