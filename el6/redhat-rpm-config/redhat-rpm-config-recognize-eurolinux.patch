@@ -1,0 +1,11 @@
+--- redhat-rpm-config-9.0.3/dist.sh	2008-05-06 18:08:20.000000000 -0500
++++ redhat-rpm-config-9.0.3/dist.sh.sl	2011-12-27 10:27:06.637191724 -0600
+@@ -25,7 +25,7 @@ function check_rhl {
+ }
+ 
+ function check_rhel {
+-    egrep -q "(Enterprise|Advanced)" $RELEASEFILE && echo $DISTNUM
++    egrep -q "(Enterprise|Advanced|EuroLinux)" $RELEASEFILE && echo $DISTNUM
+ }
+ 
+ function check_fedora {

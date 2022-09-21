@@ -1,0 +1,18 @@
+--- linuxdoc-tools.spec.orig	2022-09-09 12:31:01.148067680 +0200
++++ linuxdoc-tools.spec	2022-09-09 12:32:10.473554397 +0200
+@@ -1,4 +1,5 @@
+ %{!?tetex:%define tetex 1}
++%define installvendorlibdefine /usr/share/perl5
+ 
+ Summary: A text formatting package based on SGML
+ Name: linuxdoc-tools
+@@ -49,7 +50,8 @@
+ 
+ %install
+ rm -rf $RPM_BUILD_ROOT
+-eval `perl '-V:installvendorlib'`
++#eval `perl '-V:installvendorlib'`
++installvendorlib=%{installvendorlibdefine}
+ mkdir -p $RPM_BUILD_ROOT/$installvendorlib
+ make install DESTDIR=$RPM_BUILD_ROOT perl5libdir=$installvendorlib
+ mv $RPM_BUILD_ROOT%{_docdir}/%{name} $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
