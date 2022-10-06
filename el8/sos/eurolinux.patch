@@ -1,6 +1,6 @@
 diff -uNr sos-4.3/sos/policies/distros/redhat.py sos-4.3-p/sos/policies/distros/redhat.py
 --- sos-4.3/sos/policies/distros/redhat.py	2022-10-06 20:36:38.062699488 +0000
-+++ sos-4.3-p/sos/policies/distros/redhat.py	2022-10-06 20:42:55.398932080 +0000
++++ sos-4.3-p/sos/policies/distros/redhat.py	2022-10-06 20:59:57.325280255 +0000
 @@ -29,16 +29,16 @@
      REQUESTS_LOADED = False
  
@@ -23,6 +23,26 @@ diff -uNr sos-4.3/sos/policies/distros/redhat.py sos-4.3-p/sos/policies/distros/
      ]
      _tmp_dir = "/var/tmp"
      _in_container = False
+@@ -201,8 +201,8 @@
+ No changes will be made to system configuration.
+ """
+ 
+-RH_API_HOST = "https://api.access.redhat.com"
+-RH_SFTP_HOST = "sftp://sftp.access.redhat.com"
++RH_API_HOST = "https://"
++RH_SFTP_HOST = "sftp://"
+ 
+ 
+ class RHELPolicy(RedHatPolicy):
+@@ -233,7 +233,7 @@
+     the upload process for any sos report execution.
+     """
+     distro = RHEL_RELEASE_STR
+-    vendor = "Red Hat"
++    vendor = "EuroLinux"
+     msg = _("""\
+ This command will collect diagnostic and configuration \
+ information from this %(distro)s system and installed \
 @@ -290,7 +290,7 @@
              return
          if self.case_id and not self.get_upload_user():
@@ -99,3 +119,21 @@ diff -uNr sos-4.3/sos/policies/distros/redhat.py sos-4.3-p/sos/policies/distros/
  
      def dist_version(self):
          try:
+@@ -435,7 +384,7 @@
+ 
+ 
+ class RedHatAtomicPolicy(RHELPolicy):
+-    distro = "Red Hat Atomic Host"
++    distro = "EuroLinux Container Host"
+     msg = _("""\
+ This command will collect diagnostic and configuration \
+ information from this %(distro)s system.
+@@ -522,7 +471,7 @@
+     impact how sos report collections are performed.
+     """
+ 
+-    distro = "Red Hat CoreOS"
++    distro = "EuroLinux Container OS"
+     msg = _("""\
+ This command will collect diagnostic and configuration \
+ information from this %(distro)s system.
