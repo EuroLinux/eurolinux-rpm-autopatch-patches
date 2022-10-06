@@ -1,7 +1,7 @@
-diff -uNr sos-4.2/sos/policies/distros/redhat.py sos-4.2p/sos/policies/distros/redhat.py
---- sos-4.2/sos/policies/distros/redhat.py	2022-06-14 10:04:57.615767715 +0000
-+++ sos-4.2p/sos/policies/distros/redhat.py	2022-06-14 10:08:53.550114074 +0000
-@@ -28,16 +28,16 @@
+diff -uNr sos-4.3/sos/policies/distros/redhat.py sos-4.3-p/sos/policies/distros/redhat.py
+--- sos-4.3/sos/policies/distros/redhat.py	2022-10-06 20:36:38.062699488 +0000
++++ sos-4.3-p/sos/policies/distros/redhat.py	2022-10-06 20:42:55.398932080 +0000
+@@ -29,16 +29,16 @@
      REQUESTS_LOADED = False
  
  OS_RELEASE = "/etc/os-release"
@@ -23,25 +23,16 @@ diff -uNr sos-4.2/sos/policies/distros/redhat.py sos-4.2p/sos/policies/distros/r
      ]
      _tmp_dir = "/var/tmp"
      _in_container = False
-@@ -181,7 +181,7 @@
+@@ -290,7 +290,7 @@
+             return
+         if self.case_id and not self.get_upload_user():
+             self.upload_user = input(_(
+-                "Enter your Red Hat Customer Portal username for uploading ["
++                "Enter your EuroLinux Customer Portal for uploading ["
+                 "empty for anonymous SFTP]: ")
+             )
  
- class RHELPolicy(RedHatPolicy):
-     distro = RHEL_RELEASE_STR
--    vendor = "Red Hat"
-+    vendor = "EuroLinux"
-     msg = _("""\
- This command will collect diagnostic and configuration \
- information from this %(distro)s system and installed \
-@@ -260,7 +260,7 @@
- 
-     def get_upload_url_string(self):
-         if self.get_upload_url().startswith(RH_API_HOST):
--            return "Red Hat Customer Portal"
-+            return "EuroLinux Customer Portal"
-         elif self.get_upload_url().startswith(RH_SFTP_HOST):
-             return "Red Hat Secure FTP"
-         return self.upload_url
-@@ -279,64 +279,13 @@
+@@ -331,64 +331,13 @@
          generated anonymous login for the RH SFTP server if a username and
          password are not given
          """
