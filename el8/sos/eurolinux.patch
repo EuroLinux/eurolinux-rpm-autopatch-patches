@@ -1,7 +1,7 @@
-diff -uNr sos-4.3/sos/policies/distros/redhat.py sos-4.3-p/sos/policies/distros/redhat.py
---- sos-4.3/sos/policies/distros/redhat.py	2022-10-06 20:36:38.062699488 +0000
-+++ sos-4.3-p/sos/policies/distros/redhat.py	2022-10-06 20:59:57.325280255 +0000
-@@ -29,16 +29,16 @@
+diff -uNr sos-4.2/sos/policies/distros/redhat.py sos-4.2-p/sos/policies/distros/redhat.py
+--- sos-4.2/sos/policies/distros/redhat.py	2022-10-26 06:34:47.339440591 +0000
++++ sos-4.2-p/sos/policies/distros/redhat.py	2022-10-26 06:37:33.413766672 +0000
+@@ -28,16 +28,16 @@
      REQUESTS_LOADED = False
  
  OS_RELEASE = "/etc/os-release"
@@ -23,7 +23,7 @@ diff -uNr sos-4.3/sos/policies/distros/redhat.py sos-4.3-p/sos/policies/distros/
      ]
      _tmp_dir = "/var/tmp"
      _in_container = False
-@@ -201,8 +201,8 @@
+@@ -175,13 +175,13 @@
  No changes will be made to system configuration.
  """
  
@@ -34,25 +34,22 @@ diff -uNr sos-4.3/sos/policies/distros/redhat.py sos-4.3-p/sos/policies/distros/
  
  
  class RHELPolicy(RedHatPolicy):
-@@ -233,7 +233,7 @@
-     the upload process for any sos report execution.
-     """
      distro = RHEL_RELEASE_STR
 -    vendor = "Red Hat"
 +    vendor = "EuroLinux"
      msg = _("""\
  This command will collect diagnostic and configuration \
  information from this %(distro)s system and installed \
-@@ -290,7 +290,7 @@
+@@ -238,7 +238,7 @@
              return
          if self.case_id and not self.get_upload_user():
              self.upload_user = input(_(
 -                "Enter your Red Hat Customer Portal username for uploading ["
-+                "Enter your EuroLinux Customer Portal for uploading ["
++                "Enter your EuroLinux username for uploading ["
                  "empty for anonymous SFTP]: ")
              )
  
-@@ -331,64 +331,13 @@
+@@ -279,64 +279,13 @@
          generated anonymous login for the RH SFTP server if a username and
          password are not given
          """
@@ -115,11 +112,11 @@ diff -uNr sos-4.3/sos/policies/distros/redhat.py sos-4.3-p/sos/policies/distros/
 -                self.upload_url = RH_SFTP_HOST
 -                uploaded = super(RHELPolicy, self).upload_archive(archive)
 -        return uploaded
-+        return false
++        return False
  
      def dist_version(self):
          try:
-@@ -435,7 +384,7 @@
+@@ -383,7 +332,7 @@
  
  
  class RedHatAtomicPolicy(RHELPolicy):
@@ -128,10 +125,10 @@ diff -uNr sos-4.3/sos/policies/distros/redhat.py sos-4.3-p/sos/policies/distros/
      msg = _("""\
  This command will collect diagnostic and configuration \
  information from this %(distro)s system.
-@@ -522,7 +471,7 @@
-     impact how sos report collections are performed.
-     """
+@@ -450,7 +399,7 @@
  
+ 
+ class RedHatCoreOSPolicy(RHELPolicy):
 -    distro = "Red Hat CoreOS"
 +    distro = "EuroLinux Container OS"
      msg = _("""\
