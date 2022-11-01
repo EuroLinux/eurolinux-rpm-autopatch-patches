@@ -1,88 +1,27 @@
-From 0bb23a7307a61d949d0f83066f6cc2fd4eb6b7b3 Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Tomasz=20Podsiad=C5=82y?= <tp@euro-linux.com>
-Date: Mon, 14 Mar 2022 10:51:48 +0000
-Subject: [PATCH] eurolinux patches
+From 8802d401eac0b8a699488e2b0fb1ed1ef6c72dd1 Mon Sep 17 00:00:00 2001
+From: Alex Baranowski <ab@euro-linux.com>
+Date: Sun, 30 Oct 2022 19:44:11 +0100
+Subject: [PATCH] eurolinux patch
 
 ---
- README.md                                  |   2 +-
- docs/index.rst                             |   2 +-
- man/en/sos-report.1                        |   4 -
- sos/collector/clusters/ocp.py              |   2 +-
- sos/policies/distros/redhat.py             | 278 ++-------------------
- sos/presets/redhat/__init__.py             |   4 +-
- sos/report/plugins/boot.py                 |   1 +
- sos/report/plugins/foreman.py              |   4 +-
- sos/report/plugins/subscription_manager.py |  22 --
- sos/report/plugins/yum.py                  |   2 +-
- tests/sos_tests.py                         |   2 +-
- 11 files changed, 31 insertions(+), 292 deletions(-)
+ sos/policies/distros/redhat.py | 85 ++++++----------------------------
+ sos/presets/redhat/__init__.py |  4 +-
+ tests/sos_tests.py             |  2 +-
+ 3 files changed, 16 insertions(+), 75 deletions(-)
 
-diff --git a/README.md b/README.md
-index 431d08c..bd90dbc 100644
---- a/README.md
-+++ b/README.md
-@@ -108,7 +108,7 @@ To install locally (as root):
- 
- ### Pre-built Packaging
- 
--Fedora/RHEL users install via yum:
-+Fedora/EuroLinux users install via yum:
- 
- ```
- yum install sos
-diff --git a/docs/index.rst b/docs/index.rst
-index bb4904b..7e7978f 100644
---- a/docs/index.rst
-+++ b/docs/index.rst
-@@ -63,7 +63,7 @@ Manual Installation
- Pre-built Packaging
- ^^^^^^^^^^^^^^^^^^^
- 
--Fedora/RHEL users install via yum:
-+Fedora/EuroLinux users install via yum:
- 
- ``yum install sos``
- 
-diff --git a/man/en/sos-report.1 b/man/en/sos-report.1
-index e347739..77b9a43 100644
---- a/man/en/sos-report.1
-+++ b/man/en/sos-report.1
-@@ -437,10 +437,6 @@ Normally this is determined via the upload address, assuming that the protocol i
- of the address provided, e.g. 'https://example.com'. By using this option, sos will skip
- the protocol check and use the method defined for the specified PROTO.
- 
--For RHEL systems, setting this option to \fBsftp\fR will skip the initial attempt to
--upload to the Red Hat Customer Portal, and only attempt an upload to Red Hat's SFTP server,
--which is typically used as a fallback target.
--
- Valid values for PROTO are: 'auto' (default), 'https', 'ftp', 'sftp'.
- .TP
- .B \--experimental
-diff --git a/sos/collector/clusters/ocp.py b/sos/collector/clusters/ocp.py
-index f8b49ca..1840cc2 100644
---- a/sos/collector/clusters/ocp.py
-+++ b/sos/collector/clusters/ocp.py
-@@ -201,7 +201,7 @@ class ocp(Cluster):
-             can_oc = node.run_command("%s whoami" % _oc_cmd,
-                                       use_container=node.host.containerized,
-                                       # container is available only to root
--                                      # and if rhel, need to run sos as root
-+                                      # and if EuroLinux, need to run sos as root
-                                       # anyways which will run oc as root
-                                       need_root=True)
-             if can_oc['status'] == 0:
 diff --git a/sos/policies/distros/redhat.py b/sos/policies/distros/redhat.py
-index eb75e15..a11bb98 100644
+index 5831dd1..3d45b7a 100644
 --- a/sos/policies/distros/redhat.py
 +++ b/sos/policies/distros/redhat.py
-@@ -28,16 +28,14 @@ except ImportError:
+@@ -29,16 +29,16 @@ except ImportError:
      REQUESTS_LOADED = False
  
  OS_RELEASE = "/etc/os-release"
 -RHEL_RELEASE_STR = "Red Hat Enterprise Linux"
 -ATOMIC_RELEASE_STR = "Atomic"
--
 +RHEL_RELEASE_STR = "EuroLinux"
++ATOMIC_RELEASE_STR = "Container Host"
+ 
  
  class RedHatPolicy(LinuxPolicy):
 -    distro = "Red Hat"
@@ -95,87 +34,19 @@ index eb75e15..a11bb98 100644
 +        ('Distribution Website', 'https://euro-linux.com/'),
 +        ('Commercial Support', 'https://support.euro-linux.com/')
      ]
-     _redhat_release = '/etc/redhat-release'
      _tmp_dir = "/var/tmp"
-@@ -83,9 +81,10 @@ class RedHatPolicy(LinuxPolicy):
- 
-     @classmethod
-     def check(cls, remote=''):
--        """This method checks to see if we are running on Red Hat. It must be
-+        """This method checks to see if we are running on EuroLinux. It must be
-         overriden by concrete subclasses to return True when running on a
--        Fedora, RHEL or other Red Hat distribution or False otherwise.
-+        Fedora, EuroLinux RHEL or other Enterprise Linux distribution or
-+        False otherwise.
- 
-         If `remote` is provided, it should be the contents of a remote host's
-         os-release, or comparable, file to be used in place of the locally
-@@ -163,7 +162,7 @@ class RedHatPolicy(LinuxPolicy):
-         return opt_tmp_dir
- 
- 
--# Legal disclaimer text for Red Hat products
-+# Legal disclaimer text for EuroLinux products
- disclaimer_text = """
- Any information provided to %(vendor)s will be treated in \
- accordance with the published support policies at:\n
-@@ -176,13 +175,10 @@ organization before being passed to any third party.
- No changes will be made to system configuration.
- """
- 
--RH_API_HOST = "https://api.access.redhat.com"
--RH_SFTP_HOST = "sftp://sftp.access.redhat.com"
--
- 
- class RHELPolicy(RedHatPolicy):
+     _in_container = False
+@@ -233,7 +233,7 @@ class RHELPolicy(RedHatPolicy):
+     the upload process for any sos report execution.
+     """
      distro = RHEL_RELEASE_STR
 -    vendor = "Red Hat"
 +    vendor = "EuroLinux"
      msg = _("""\
  This command will collect diagnostic and configuration \
  information from this %(distro)s system and installed \
-@@ -192,7 +188,6 @@ An archive containing the collected information will be \
- generated in %(tmpdir)s and may be provided to a %(vendor)s \
- support representative.
- """ + disclaimer_text + "%(vendor_text)s\n")
--    _upload_url = RH_SFTP_HOST
-     _upload_method = 'post'
- 
-     def __init__(self, sysroot=None, init=None, probe_runtime=True,
-@@ -204,14 +199,14 @@ support representative.
- 
-     @classmethod
-     def check(cls, remote=''):
--        """Test to see if the running host is a RHEL installation.
-+        """Test to see if the running host is an EuroLinux installation.
- 
--            Checks for the presence of the "Red Hat Enterprise Linux"
-+            Checks for the presence of the "EuroLinux"
-             release string at the beginning of the NAME field in the
-             `/etc/os-release` file and returns ``True`` if it is
-             found, and ``False`` otherwise.
- 
--            :returns: ``True`` if the host is running RHEL or ``False``
-+            :returns: ``True`` if the host is running EuroLinux or ``False``
-                       otherwise.
-         """
- 
-@@ -231,113 +226,25 @@ support representative.
-         return False
- 
-     def prompt_for_upload_user(self):
--        if self.commons['cmdlineopts'].upload_user:
--            return
--        # Not using the default, so don't call this prompt for RHCP
--        if self.commons['cmdlineopts'].upload_url:
--            super(RHELPolicy, self).prompt_for_upload_user()
--            return
--        if self.case_id and not self.get_upload_user():
--            self.upload_user = input(_(
--                "Enter your Red Hat Customer Portal username for uploading ["
--                "empty for anonymous SFTP]: ")
--            )
-+        return
+@@ -295,19 +295,9 @@ support representative.
+             )
  
      def get_upload_url(self):
 -        if self.upload_url:
@@ -187,37 +58,18 @@ index eb75e15..a11bb98 100644
 -        else:
 -            rh_case_api = "/support/v1/cases/%s/attachments"
 -            return RH_API_HOST + rh_case_api % self.case_id
-+        return
++        return False
  
      def _get_upload_headers(self):
 -        if self.get_upload_url().startswith(RH_API_HOST):
 -            return {'isPrivate': 'false', 'cache-control': 'no-cache'}
--        return {}
-+        return
+         return {}
  
      def get_upload_url_string(self):
--        if self.get_upload_url().startswith(RH_API_HOST):
--            return "Red Hat Customer Portal"
--        elif self.get_upload_url().startswith(RH_SFTP_HOST):
--            return "Red Hat Secure FTP"
--        return self.upload_url
-+        return "EuroLinux Customer Portal"
- 
-     def _get_sftp_upload_name(self):
--        """The RH SFTP server will only automatically connect file uploads to
--        cases if the filename _starts_ with the case number
--        """
--        fname = self.upload_archive_name.split('/')[-1]
--        if self.case_id:
--            return "%s_%s" % (self.case_id, fname)
--        return fname
-+        return
- 
-     def upload_sftp(self):
--        """Override the base upload_sftp to allow for setting an on-demand
--        generated anonymous login for the RH SFTP server if a username and
--        password are not given
--        """
+@@ -331,68 +321,17 @@ support representative.
+         generated anonymous login for the RH SFTP server if a username and
+         password are not given
+         """
 -        if RH_SFTP_HOST.split('//')[1] not in self.get_upload_url():
 -            return super(RHELPolicy, self).upload_sftp()
 -
@@ -257,12 +109,12 @@ index eb75e15..a11bb98 100644
 -            return super(RHELPolicy, self).upload_sftp(user=_user,
 -                                                       password=_token)
 -        raise Exception("Could not retrieve valid or anonymous credentials")
-+        return
++        return False
  
      def upload_archive(self, archive):
--        """Override the base upload_archive to provide for automatic failover
--        from RHCP failures to the public RH dropbox
--        """
+         """Override the base upload_archive to provide for automatic failover
+         from RHCP failures to the public RH dropbox
+         """
 -        try:
 -            if not self.get_upload_user() or not self.get_upload_password():
 -                self.upload_url = RH_SFTP_HOST
@@ -277,167 +129,26 @@ index eb75e15..a11bb98 100644
 -                self.upload_url = RH_SFTP_HOST
 -                uploaded = super(RHELPolicy, self).upload_archive(archive)
 -        return uploaded
-+        return
++        return False
  
      def dist_version(self):
          try:
-@@ -373,153 +280,10 @@ support representative.
-                 self.pkg_by_name("vdsm") is not None:
-             return self.find_preset(RHV)
- 
--        # Vanilla RHEL is default
-+        # Vanilla EuroLinux is default
-         return self.find_preset(RHEL)
- 
- 
--class CentOsPolicy(RHELPolicy):
--    distro = "CentOS"
--    vendor = "CentOS"
--    vendor_urls = [('Community Website', 'https://www.centos.org/')]
--
--
--class RedHatAtomicPolicy(RHELPolicy):
--    distro = "Red Hat Atomic Host"
--    msg = _("""\
--This command will collect diagnostic and configuration \
--information from this %(distro)s system.
--
--An archive containing the collected information will be \
--generated in %(tmpdir)s and may be provided to a %(vendor)s \
--support representative.
--""" + disclaimer_text + "%(vendor_text)s\n")
--
--    containerzed = True
--    container_runtime = 'docker'
--    container_image = 'registry.access.redhat.com/rhel7/support-tools'
--    sos_path_strip = '/host'
--    container_version_command = 'rpm -q sos'
--
--    def __init__(self, sysroot=None, init=None, probe_runtime=True,
--                 remote_exec=None):
--        super(RedHatAtomicPolicy, self).__init__(sysroot=sysroot, init=init,
--                                                 probe_runtime=probe_runtime,
--                                                 remote_exec=remote_exec)
--        self.register_presets(ATOMIC_PRESETS)
--
--    @classmethod
--    def check(cls, remote=''):
--
--        if remote:
--            return cls.distro in remote
--
--        atomic = False
--        if ENV_HOST_SYSROOT not in os.environ:
--            return atomic
--        host_release = os.environ[ENV_HOST_SYSROOT] + cls._redhat_release
--        if not os.path.exists(host_release):
--            return False
--        try:
--            for line in open(host_release, "r").read().splitlines():
--                atomic |= ATOMIC_RELEASE_STR in line
--        except IOError:
--            pass
--        return atomic
--
--    def probe_preset(self):
--        if self.pkg_by_name('atomic-openshift'):
--            return self.find_preset(RHOCP)
--
--        return self.find_preset(ATOMIC)
--
--    def create_sos_container(self, image=None, auth=None, force_pull=False):
--        _cmd = ("{runtime} run -di --name {name} --privileged --ipc=host"
--                " --net=host --pid=host -e HOST=/host -e NAME={name} -e "
--                "IMAGE={image} {pull} -v /run:/run -v /var/log:/var/log -v "
--                "/etc/machine-id:/etc/machine-id -v "
--                "/etc/localtime:/etc/localtime -v /:/host {auth} {image}")
--        _image = image or self.container_image
--        _pull = '--pull=always' if force_pull else ''
--        return _cmd.format(runtime=self.container_runtime,
--                           name=self.sos_container_name,
--                           image=_image,
--                           pull=_pull,
--                           auth=auth or '')
--
--    def set_cleanup_cmd(self):
--        return 'docker rm --force sos-collector-tmp'
--
--
--class RedHatCoreOSPolicy(RHELPolicy):
--    distro = "Red Hat CoreOS"
--    msg = _("""\
--This command will collect diagnostic and configuration \
--information from this %(distro)s system.
--
--An archive containing the collected information will be \
--generated in %(tmpdir)s and may be provided to a %(vendor)s \
--support representative.
--""" + disclaimer_text + "%(vendor_text)s\n")
--
--    containerized = True
--    container_runtime = 'podman'
--    container_image = 'registry.redhat.io/rhel8/support-tools'
--    sos_path_strip = '/host'
--    container_version_command = 'rpm -q sos'
--    container_authfile = '/var/lib/kubelet/config.json'
--
--    def __init__(self, sysroot=None, init=None, probe_runtime=True,
--                 remote_exec=None):
--        super(RedHatCoreOSPolicy, self).__init__(sysroot=sysroot, init=init,
--                                                 probe_runtime=probe_runtime,
--                                                 remote_exec=remote_exec)
--
--    @classmethod
--    def check(cls, remote=''):
--
--        if remote:
--            return 'CoreOS' in remote
--
--        coreos = False
--        if ENV_HOST_SYSROOT not in os.environ:
--            return coreos
--        host_release = os.environ[ENV_HOST_SYSROOT] + cls._redhat_release
--        try:
--            for line in open(host_release, 'r').read().splitlines():
--                coreos |= 'Red Hat Enterprise Linux CoreOS' in line
--        except IOError:
--            pass
--        return coreos
--
--    def probe_preset(self):
--        # As of the creation of this policy, RHCOS is only available for
--        # RH OCP environments.
--        return self.find_preset(RHOCP)
--
--    def create_sos_container(self, image=None, auth=None, force_pull=False):
--        _cmd = ("{runtime} run -di --name {name} --privileged --ipc=host"
--                " --net=host --pid=host -e HOST=/host -e NAME={name} -e "
--                "IMAGE={image} {pull} -v /run:/run -v /var/log:/var/log -v "
--                "/etc/machine-id:/etc/machine-id -v "
--                "/etc/localtime:/etc/localtime -v /:/host {auth} {image}")
--        _image = image or self.container_image
--        _pull = '--pull=always' if force_pull else ''
--        return _cmd.format(runtime=self.container_runtime,
--                           name=self.sos_container_name,
--                           image=_image,
--                           pull=_pull,
--                           auth=auth or '')
--
--    def set_cleanup_cmd(self):
--        return 'podman rm --force %s' % self.sos_container_name
--
--
--class CentOsAtomicPolicy(RedHatAtomicPolicy):
--    distro = "CentOS Atomic Host"
--    vendor = "CentOS"
--    vendor_urls = [('Community Website', 'https://www.centos.org/')]
--
--
- class FedoraPolicy(RedHatPolicy):
- 
-     distro = "Fedora"
+-            rr = self.package_manager.all_pkgs_by_name_regex("redhat-release*")
++            rr = self.package_manager.all_pkgs_by_name_regex("el-release*")
+             pkgname = self.pkgs[rr[0]]["version"]
+             if pkgname[0] == "4":
+                 return 4
+@@ -404,6 +343,8 @@ support representative.
+                 return 7
+             elif pkgname[0] == "8":
+                 return 8
++            elif pkgname[0] == "9":
++                return 9
+         except Exception:
+             pass
+         return False
 diff --git a/sos/presets/redhat/__init__.py b/sos/presets/redhat/__init__.py
-index 865c9b6..4482428 100644
+index 0b9f6f1..12bb187 100644
 --- a/sos/presets/redhat/__init__.py
 +++ b/sos/presets/redhat/__init__.py
 @@ -12,7 +12,7 @@ from sos.options import SoSOptions
@@ -458,88 +169,8 @@ index 865c9b6..4482428 100644
  RHEL_DESC = RHEL_RELEASE_STR
  
  RHOSP = "rhosp"
-diff --git a/sos/report/plugins/boot.py b/sos/report/plugins/boot.py
-index 0fd7cbc..843557e 100644
---- a/sos/report/plugins/boot.py
-+++ b/sos/report/plugins/boot.py
-@@ -28,6 +28,7 @@ class Boot(Plugin, IndependentPlugin):
-             "/etc/milo.conf",
-             "/etc/silo.conf",
-             "/boot/efi/efi/redhat/elilo.conf",
-+            "/boot/efi/efi/eurolinux/elilo.conf",
-             "/etc/yaboot.conf",
-             "/boot/yaboot.conf"
-         ])
-diff --git a/sos/report/plugins/foreman.py b/sos/report/plugins/foreman.py
-index 053554d..69418be 100644
---- a/sos/report/plugins/foreman.py
-+++ b/sos/report/plugins/foreman.py
-@@ -138,7 +138,7 @@ class Foreman(Plugin):
-         # Puma stats & status, i.e. foreman-puma-stats, then
-         # pumactl stats -S /usr/share/foreman/tmp/puma.state
-         # and optionally also gc-stats
--        # if on RHEL with Software Collections, wrap the commands accordingly
-+        # if on EuroLinux with Software Collections, wrap the commands accordingly
-         if self.get_option('puma-gc'):
-             self.add_cmd_output(self.pumactl % 'gc-stats',
-                                 suggest_filename='pumactl_gc-stats')
-@@ -317,7 +317,7 @@ class RedHatForeman(Foreman, RedHatPlugin):
-         self.add_file_tags({
-             '/usr/share/foreman/.ssh/ssh_config': 'ssh_foreman_config',
-         })
--        # if we are on RHEL7 with scl, wrap some Puma commands by
-+        # if we are on EuroLinux 7 with scl, wrap some Puma commands by
-         # scl enable tfm 'command'
-         if self.policy.dist_version() == 7 and is_executable('scl'):
-             self.pumactl = "scl enable tfm '%s'" % self.pumactl
-diff --git a/sos/report/plugins/subscription_manager.py b/sos/report/plugins/subscription_manager.py
-index b1d281e..413f4f5 100644
---- a/sos/report/plugins/subscription_manager.py
-+++ b/sos/report/plugins/subscription_manager.py
-@@ -75,28 +75,6 @@ class SubscriptionManager(Plugin, RedHatPlugin):
-         self.add_cmd_output(["rct cat-cert %s" % cert for cert in certs],
-                             tags='subscription_manager_installed_product_ids')
- 
--        # try curl to the RHSM server for potential certificate/proxy issue
--        curlcmd = "curl -vv --cacert /etc/rhsm/ca/redhat-uep.pem " \
--                  "https://subscription.rhsm.redhat.com:443/subscription"
--        env = None  # for no_proxy
--        try:
--            from rhsm.config import get_config_parser
--            config = get_config_parser()
--            proxy = self.get_proxy_string(config)
--            server_url = self.get_server_url(config)
--            curlcmd = "curl -vv %s --cacert %s %s" % \
--                      (server_url,
--                       config.get('rhsm', 'repo_ca_cert'),
--                       proxy)
--            # honour os.environ no_proxy, if set
--            no_proxy = config.get('server', 'no_proxy')
--            if no_proxy:
--                env = {'NO_PROXY': no_proxy}
--        except (ModuleNotFoundError, ImportError, NoOptionError,
--                NoSectionError):
--            pass
--        self.add_cmd_output(curlcmd, env=env, timeout=30)
--
-     def postproc(self):
-         passwdreg = r"(proxy_password(\s)*=(\s)*)(\S+)\n"
-         repl = r"\1********\n"
-diff --git a/sos/report/plugins/yum.py b/sos/report/plugins/yum.py
-index 33508f3..dd72d13 100644
---- a/sos/report/plugins/yum.py
-+++ b/sos/report/plugins/yum.py
-@@ -110,7 +110,7 @@ class Yum(Plugin, RedHatPlugin):
-             self.add_cmd_output("yum list")
- 
-         if self.get_option("yumdebug") and self.is_installed('yum-utils'):
--            # RHEL6+ alternative for this whole function:
-+            # EuroLinux 6+ alternative for this whole function:
-             # self.add_cmd_output("yum-debug-dump '%s'"
-             # % os.path.join(self.commons['dstroot'],"yum-debug-dump"))
-             r = self.exec_cmd("yum-debug-dump")
 diff --git a/tests/sos_tests.py b/tests/sos_tests.py
-index 5d253f5..dd2ca4d 100644
+index b7f7243..88cd0cd 100644
 --- a/tests/sos_tests.py
 +++ b/tests/sos_tests.py
 @@ -27,7 +27,7 @@ SOS_PLUGIN_DIR = os.path.realpath(os.path.join(SOS_REPO_ROOT, 'sos/report/plugin
@@ -547,10 +178,10 @@ index 5d253f5..dd2ca4d 100644
  SOS_BIN = os.path.realpath(os.path.join(SOS_TEST_DIR, '../bin/sos'))
  
 -RH_DIST = ['rhel', 'centos', 'fedora']
-+RH_DIST = ['eurolinux', 'rhel', 'centos', 'fedora']
++RH_DIST = ['rhel', 'centos', 'fedora', 'eurolinux']
  UBUNTU_DIST = ['Ubuntu', 'debian']
  
  def skipIf(cond, message=None):
 -- 
-2.27.0
+2.31.1
 
