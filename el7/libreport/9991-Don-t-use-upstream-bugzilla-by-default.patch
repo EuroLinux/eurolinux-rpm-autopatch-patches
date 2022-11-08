@@ -1,0 +1,23 @@
+From d8ee3da058f0b74c3fe766e0f5c8b489986b92f0 Mon Sep 17 00:00:00 2001
+From: Pat Riehecky <riehecky@fnal.gov>
+Date: Tue, 8 Jul 2014 13:46:55 -0500
+Subject: [LIBREPORT PATCH 9991/9992] Don't use upstream bugzilla by default
+
+---
+ src/plugins/bugzilla.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/plugins/bugzilla.conf b/src/plugins/bugzilla.conf
+index 29c44b3..ca5e94d 100644
+--- a/src/plugins/bugzilla.conf
++++ b/src/plugins/bugzilla.conf
+@@ -1,5 +1,5 @@
+ # Bugzilla URL
+-BugzillaURL = https://bugzilla.redhat.com/
++BugzillaURL = https://bugzilla.example.com/
+ # yes means that ssl certificates will be checked
+ SSLVerify = yes
+ # your login has to exist, if you don have any, please create one
+-- 
+1.8.3.1
+
