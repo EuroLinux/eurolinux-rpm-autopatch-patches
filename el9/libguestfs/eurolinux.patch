@@ -1,24 +1,12 @@
-From f6b64a276669cd1e9ff0e98db5009083a35f2ef1 Mon Sep 17 00:00:00 2001
-From: Alex baranowski <ab@euro-linux.com>
-Date: Mon, 6 Sep 2021 13:59:24 +0000
-Subject: [PATCH] Add EuroLinux detection
-
----
- m4/guestfs-appliance.m4 | 2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
-
-diff --git a/m4/guestfs-appliance.m4 b/m4/guestfs-appliance.m4
-index 5a7af51..9481376 100644
---- a/m4/guestfs-appliance.m4
-+++ b/m4/guestfs-appliance.m4
-@@ -105,7 +105,7 @@
-             ( . /etc/os-release && echo $ID | tr '@<:@:lower:@:>@' '@<:@:upper:@:>@' ) >&AS_MESSAGE_LOG_FD
-             DISTRO="`. /etc/os-release && echo $ID | tr '@<:@:lower:@:>@' '@<:@:upper:@:>@'`"
+diff '--color=auto' -ur a/m4/guestfs-appliance.m4 b/m4/guestfs-appliance.m4
+--- a/m4/guestfs-appliance.m4	2022-05-26 15:56:51.388808404 +0200
++++ b/m4/guestfs-appliance.m4	2022-11-21 16:36:12.202126045 +0100
+@@ -113,7 +113,7 @@
+                   fi ) | tr '@<:@:lower:@:>@' '@<:@:upper:@:>@'
+             )"
              AS_CASE([$DISTRO],
--                    [FEDORA | RHEL | CENTOS | ALMALINUX | CLOUDLINUX],
-+                    [FEDORA | RHEL | CENTOS | ALMALINUX | CLOUDLINUX | EUROLINUX],
+-                    [FEDORA | RHEL | CENTOS | ALMALINUX | CLOUDLINUX | ROCKY],
++                    [FEDORA | RHEL | CENTOS | ALMALINUX | CLOUDLINUX | ROCKY | EUROLINUX],
                          [DISTRO=REDHAT],
                      [OPENSUSE* | SLED | SLES],[DISTRO=SUSE],
-                     [ARCH | MANJARO],[DISTRO=ARCHLINUX],
--- 
-2.27.0
+                     [ARCH | MANJARO | ARTIX],[DISTRO=ARCHLINUX],
