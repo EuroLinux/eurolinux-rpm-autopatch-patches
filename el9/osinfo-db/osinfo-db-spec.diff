@@ -1,18 +1,18 @@
---- ../rhel/osinfo-db.spec	2021-12-16 11:33:00.000000000 +0100
-+++ osinfo-db.spec	2022-08-24 12:02:25.415289636 +0200
-@@ -10,6 +10,8 @@
- URL: http://libosinfo.org/
+--- osinfo-db.spec	2022-11-22 15:34:15.794427473 +0100
++++ osinfo-db.spec_EL	2022-11-22 15:41:01.872423463 +0100
+@@ -16,6 +16,8 @@
  BuildRequires: intltool
+ BuildRequires: git-core
  BuildRequires: osinfo-db-tools
 +# EuroLinux patch requires git
 +BuildRequires: git
  BuildArch: noarch
  Requires: hwdata
  
-@@ -20,6 +22,11 @@
+@@ -33,6 +35,11 @@
  
  %install
- osinfo-db-import  --root %{buildroot} --dir %{_datadir}/osinfo %{SOURCE0}
+ osinfo-db-import  --root %{buildroot} --dir %{_datadir}/osinfo %{PatchedSource}
 +
 +cd %{buildroot}/%{_datadir}/osinfo
 +git apply %{SOURCE100}
@@ -21,4 +21,3 @@
  %if 0%{?rhel}
  # Remove the upstream virtio-win / spice-guest-tools drivers
  find %{buildroot}/%{_datadir}/osinfo/os/microsoft.com/ -name "win-*.d" -type d -exec rm -rf {} +
-
