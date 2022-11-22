@@ -6,7 +6,7 @@ diff '--color=auto' -ur dnf-4.12.0/dnf/const.py.in dnf-4.12.0_EL/dnf/const.py.in
  
  BUGTRACKER_COMPONENT=NAME.lower()
 -BUGTRACKER='https://bugzilla.redhat.com/enter_bug.cgi?product=Fedora&component=%s' % BUGTRACKER_COMPONENT
-+BUGTRACKER='https://github.com/EuroLinux/eurolinux-distro-bugs-and-rfc' % BUGTRACKER_COMPONENT
++BUGTRACKER='https://github.com/EuroLinux/eurolinux-distro-bugs-and-rfc'
 diff '--color=auto' -ur dnf-4.12.0/doc/conf.py.in dnf-4.12.0_EL/doc/conf.py.in
 --- dnf-4.12.0/doc/conf.py.in	2022-04-27 11:46:45.000000000 +0200
 +++ dnf-4.12.0_EL/doc/conf.py.in	2022-10-25 10:18:16.447045554 +0200
