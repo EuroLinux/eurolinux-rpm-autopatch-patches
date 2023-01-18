@@ -1,0 +1,20 @@
+--- kernel.spec.orig	2023-01-18 09:19:29.294999593 +0100
++++ kernel.spec	2023-01-18 09:19:54.947000024 +0100
+@@ -732,14 +732,14 @@
+ %endif
+ 
+ %package -n kernel-abi-whitelists
+-Summary: The Red Hat Enterprise Linux kernel ABI symbol whitelists
++Summary: The EuroLinux kernel ABI symbol whitelists
+ Group: System Environment/Kernel
+ AutoReqProv: no
+ Obsoletes: kabi-whitelists
+ Provides: kabi-whitelists
+ %description -n kernel-abi-whitelists
+-The kABI package contains information pertaining to the Red Hat Enterprise
+-Linux kernel ABI, including lists of kernel symbols that are needed by
++The kABI package contains information pertaining to the EuroLinux 
++kernel ABI, including lists of kernel symbols that are needed by
+ external Linux kernel modules, and a yum plugin to aid enforcement.
+ 
+ #
