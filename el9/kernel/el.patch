@@ -1,0 +1,53 @@
+--- kernel.spec	2022-12-20 11:49:00.000000000 +0100
++++ kernel-el.spec	2023-01-26 04:52:32.606063756 +0100
+@@ -533,6 +533,15 @@
+ %define kernel_prereq  coreutils, systemd >= 203-2, /usr/bin/kernel-install
+ %define initrd_prereq  dracut >= 027
+ 
++# EuroLinux override
++# Normaly this should be done in rpmmacros, but because the packages must be rebuildable with beast
++# we have to change this here
++
++%define with_doc 1 
++%global signkernel 0
++%global signmodules 0
++
++# End of EuroLinux override
+ 
+ Name: kernel
+ License: GPLv2 and Redistributable, no modification permitted
+@@ -1045,11 +1054,11 @@
+ %endif
+ 
+ %package -n kernel-abi-stablelists
+-Summary: The Red Hat Enterprise Linux kernel ABI symbol stablelists
++Summary: The EuroLinux kernel ABI symbol stablelists
+ AutoReqProv: no
+ %description -n kernel-abi-stablelists
+-The kABI package contains information pertaining to the Red Hat Enterprise
+-Linux kernel ABI, including lists of kernel symbols that are needed by
++The kABI package contains information pertaining to the EuroLinux
++kernel ABI, including lists of kernel symbols that are needed by
+ external Linux kernel modules, and a yum plugin to aid enforcement.
+ 
+ %if %{with_kabidw_base}
+@@ -1058,8 +1067,8 @@
+ Group: System Environment/Kernel
+ AutoReqProv: no
+ %description kernel-kabidw-base-internal
+-The package contains data describing the current ABI of the Red Hat Enterprise
+-Linux kernel, suitable for the kabi-dw tool.
++The package contains data describing the current ABI of the EuroLinux
++kernel, suitable for the kabi-dw tool.
+ %endif
+ 
+ #
+@@ -1453,7 +1462,7 @@
+ # Adjust FIPS module name for RHEL
+ %if 0%{?rhel}
+ for i in *.config; do
+-  sed -i 's/CONFIG_CRYPTO_FIPS_NAME=.*/CONFIG_CRYPTO_FIPS_NAME="Red Hat Enterprise Linux %{rhel} - Kernel Cryptographic API"/' $i
++  sed -i 's/CONFIG_CRYPTO_FIPS_NAME=.*/CONFIG_CRYPTO_FIPS_NAME="EuroLinux %{rhel} - Kernel Cryptographic API"/' $i
+ done
+ %endif
+ 
