@@ -1,22 +1,20 @@
---- /home/Alex/rpmbuild/SPECS/scap-security-guide.spec	2022-08-23 11:42:03.000000000 +0200
-+++ scap-security-guide.spec	2022-08-23 11:40:49.607904845 +0200
-@@ -131,17 +131,12 @@
+--- scap-security-guide.spec.orig	2023-03-06 11:45:31.102878385 +0100
++++ scap-security-guide.spec	2023-03-06 11:46:48.404373238 +0100
+@@ -84,6 +84,7 @@
  -DSSG_PRODUCT_DEFAULT:BOOLEAN=FALSE \
  -DSSG_PRODUCT_RHEL7:BOOLEAN=TRUE \
  -DSSG_PRODUCT_RHEL8:BOOLEAN=TRUE \
 +-DSSG_PRODUCT_EUROLINUX8:BOOLEAN=TRUE \
  -DSSG_PRODUCT_FIREFOX:BOOLEAN=TRUE \
  -DSSG_PRODUCT_JRE:BOOLEAN=TRUE \
--%if %{defined centos}
- -DSSG_CENTOS_DERIVATIVES_ENABLED:BOOL=ON \
--%else
---DSSG_CENTOS_DERIVATIVES_ENABLED:BOOL=OFF \
--%endif
+ %if %{defined centos}
+@@ -91,8 +92,8 @@
+ %else
+ -DSSG_CENTOS_DERIVATIVES_ENABLED:BOOL=OFF \
+ %endif
 --DSSG_SCIENTIFIC_LINUX_DERIVATIVES_ENABLED:BOOL=OFF \
--%if ( %{defined rhel} && (! %{defined centos}) )
+ %if ( %{defined rhel} && (! %{defined centos}) )
 +-DSSG_SCIENTIFIC_LINUX_DERIVATIVES_ENABLED:BOOL=ON \
  -DSSG_ANSIBLE_PLAYBOOKS_PER_RULE_ENABLED:BOOL=ON \
--%endif
+ %endif
  ../
- %cmake_build
- 
