@@ -28917,7 +28917,7 @@ index 000000000..3e4fe227b
 +    To ensure that the GPG key is installed, run:
 +    <pre>$ rpm -q --queryformat "%{SUMMARY}\n" gpg-pubkey</pre>
 +    The command should return the string below:
-+    <pre>gpg(EuroLinux &lt;packager@eurolinux.org&gt;</pre>
++    <pre>gpg(EuroLinux 8 GPG RPM sign key &lt;support@euro-linux.com&gt;)</pre>
 diff --git a/linux_os/guide/system/software/updating/ensure_gpgcheck_globally_activated/bash/shared.sh b/linux_os/guide/system/software/updating/ensure_gpgcheck_globally_activated/bash/shared.sh
 index 2bf91c8ca..b5f520737 100644
 --- a/linux_os/guide/system/software/updating/ensure_gpgcheck_globally_activated/bash/shared.sh
@@ -34700,7 +34700,7 @@ index 000000000..91af880dd
 +    </criteria>
 +  </definition>
 +
-+  <linux:rpminfo_test check="all" check_existence="at_least_one_exists" comment="eurolinux-release is version 8" id="test_eurolinux8_system" version="1">
++  <linux:rpminfo_test check="all" check_existence="at_least_one_exists" comment="el-release is version 8" id="test_eurolinux8_system" version="1">
 +    <linux:object object_ref="obj_eurolinux8_system" />
 +    <linux:state state_ref="state_eurolinux8_system" />
 +  </linux:rpminfo_test>
@@ -34708,7 +34708,7 @@ index 000000000..91af880dd
 +    <linux:version operation="pattern match">^8.*$</linux:version>
 +  </linux:rpminfo_state>
 +  <linux:rpminfo_object id="obj_eurolinux8_system" version="1">
-+    <linux:name>eurolinux-release</linux:name>
++    <linux:name>el-release</linux:name>
 +  </linux:rpminfo_object>
 +
 +</def-group>
