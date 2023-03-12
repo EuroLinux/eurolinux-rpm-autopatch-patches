@@ -1,0 +1,125 @@
+diff --git a/kernel.spec b/kernel.spec
+index 8dd6555..c74d24d 100644
+--- a/kernel.spec
++++ b/kernel.spec
+@@ -323,6 +323,18 @@
+ %define kernel_prereq  coreutils, systemd >= 203-2, /usr/bin/kernel-install
+ %define initrd_prereq  dracut >= 027
+ 
++# EuroLinux override
++# Normaly this should be done in rpmmacros, but because the packages must be rebuildable with beast
++# we have to change this here
++
++%define with_doc 1
++%define with_kabichk 1
++%define with_kernel_abi_whitelists 1
++%global signkernel 0
++%global signmodules 0
++
++# End of EuroLinux override
++
+ 
+ Name: kernel%{?variant}
+ Group: System Environment/Kernel
+@@ -546,8 +558,8 @@ Patch999999: linux-kernel-test.patch
+ BuildRoot: %{_tmppath}/%{name}-%{KVERREL}-root
+ 
+ %description
+-This is the package which provides the Linux %{name} for Red Hat Enterprise
+-Linux. It is based on upstream Linux at version %{version} and maintains kABI
++This is the package which provides the Linux %{name} for EuroLinux.
++It is based on upstream Linux at version %{version} and maintains kABI
+ compatibility of a set of approved symbols, however it is heavily modified with
+ backports and fixes pulled from newer upstream Linux %{name} releases. This means
+ this is not a %{version} kernel anymore: it includes several components which come
+@@ -555,7 +567,7 @@ from newer upstream linux versions, while maintaining a well tested and stable
+ core. Some of the components/backports that may be pulled in are: changes like
+ updates to the core kernel (eg.: scheduler, cgroups, memory management, security
+ fixes and features), updates to block layer, supported filesystems, major driver
+-updates for supported hardware in Red Hat Enterprise Linux, enhancements for
++updates for supported hardware in EuroLinux, enhancements for
+ enterprise customers, etc.
+ 
+ #
+@@ -799,15 +811,15 @@ kernel-gcov includes the gcov graph and source files for gcov coverage collectio
+ %endif
+ 
+ %package -n %{name}-abi-stablelists
+-Summary: The Red Hat Enterprise Linux kernel ABI symbol stablelists
++Summary: The EuroLinux kernel ABI symbol whitelists
+ Group: System Environment/Kernel
+ AutoReqProv: no
+ Obsoletes: %{name}-abi-whitelists < %{rpmversion}-%{pkg_release}
+ Provides: %{name}-abi-whitelists
+ %description -n %{name}-abi-stablelists
+-The kABI package contains information pertaining to the Red Hat Enterprise
+-Linux kernel ABI, including lists of kernel symbols that are needed by
+-external Linux kernel modules, and a yum plugin to aid enforcement.
++The kABI package contains information pertaining to the EuroLinux kernel ABI,
++including lists of kernel symbols that are needed by external Linux kernel
++modules, and a yum plugin to aid enforcement.
+ 
+ %if %{with_kabidw_base}
+ %package kernel-kabidw-base-internal
+@@ -815,8 +827,8 @@ Summary: The baseline dataset for kABI verification using DWARF data
+ Group: System Environment/Kernel
+ AutoReqProv: no
+ %description kernel-kabidw-base-internal
+-The package contains data describing the current ABI of the Red Hat Enterprise
+-Linux kernel, suitable for the kabi-dw tool.
++The package contains data describing the current ABI of the EuroLinux
++kernel, suitable for the kabi-dw tool.
+ %endif
+ 
+ #
+@@ -1060,9 +1072,9 @@ ApplyPatch()
+     exit 1
+   fi
+   if ! grep -E "^Patch[0-9]+: $patch\$" %{_specdir}/${RPM_PACKAGE_NAME%%%%%{?variant}}.spec ; then
+-    if [ "${patch:0:8}" != "patch-4." ] ; then
++    if [ "${patch:0:9}" != "patch-4." ] ; then
+       echo "ERROR: Patch  $patch  not listed as a source patch in specfile"
+-      exit 1
++      #exit 1
+     fi
+   fi 2>/dev/null
+   case "$patch" in
+@@ -1092,6 +1104,9 @@ mv linux-%{rpmversion}-%{pkgrelease} linux-%{KVERREL}
+ 
+ cd linux-%{KVERREL}
+ 
++ApplyOptionalPatch debrand-single-cpu.patch
++#ApplyOptionalPatch debrand-rh_taint.patch
++ApplyOptionalPatch debrand-rh-i686-cpu.patch
+ ApplyOptionalPatch linux-kernel-test.patch
+ 
+ # END OF PATCH APPLICATIONS
+@@ -1739,17 +1754,17 @@ BuildKernel() {
+ 
+     # Red Hat UEFI Secure Boot CA cert, which can be used to authenticate the kernel
+     mkdir -p $RPM_BUILD_ROOT%{_datadir}/doc/kernel-keys/$KernelVer
+-    %ifarch x86_64 aarch64
+-        install -m 0644 %{secureboot_ca_0} $RPM_BUILD_ROOT%{_datadir}/doc/kernel-keys/$KernelVer/kernel-signing-ca-20200609.cer
+-        install -m 0644 %{secureboot_ca_1} $RPM_BUILD_ROOT%{_datadir}/doc/kernel-keys/$KernelVer/kernel-signing-ca-20140212.cer
+-        ln -s kernel-signing-ca-20200609.cer $RPM_BUILD_ROOT%{_datadir}/doc/kernel-keys/$KernelVer/kernel-signing-ca.cer
+-    %else
+-        %ifarch ppc64le
+-            install -m 0644 %{secureboot_ca_2} $RPM_BUILD_ROOT%{_datadir}/doc/kernel-keys/$KernelVer/kernel-signing-ca.cer
+-        %else
+-            install -m 0644 %{secureboot_ca_0} $RPM_BUILD_ROOT%{_datadir}/doc/kernel-keys/$KernelVer/kernel-signing-ca.cer
+-        %endif
+-    %endif
++#    %ifarch x86_64 aarch64
++#        install -m 0644 %{secureboot_ca_0} $RPM_BUILD_ROOT%{_datadir}/doc/kernel-keys/$KernelVer/kernel-signing-ca-20200609.cer
++#        install -m 0644 %{secureboot_ca_1} $RPM_BUILD_ROOT%{_datadir}/doc/kernel-keys/$KernelVer/kernel-signing-ca-20140212.cer
++#        ln -s kernel-signing-ca-20200609.cer $RPM_BUILD_ROOT%{_datadir}/doc/kernel-keys/$KernelVer/kernel-signing-ca.cer
++#    %else
++#        %ifarch ppc64le
++#            install -m 0644 %{secureboot_ca_2} $RPM_BUILD_ROOT%{_datadir}/doc/kernel-keys/$KernelVer/kernel-signing-ca.cer
++#        %else
++#            install -m 0644 %{secureboot_ca_0} $RPM_BUILD_ROOT%{_datadir}/doc/kernel-keys/$KernelVer/kernel-signing-ca.cer
++#        %endif
++#    %endif
+     %ifarch s390x ppc64le
+     if [ $DoModules -eq 1 ]; then
+ 	if [ -x /usr/bin/rpm-sign ]; then
