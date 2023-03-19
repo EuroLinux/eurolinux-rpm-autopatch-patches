@@ -1,26 +1,13 @@
-From 8802d401eac0b8a699488e2b0fb1ed1ef6c72dd1 Mon Sep 17 00:00:00 2001
-From: Alex Baranowski <ab@euro-linux.com>
-Date: Sun, 30 Oct 2022 19:44:11 +0100
-Subject: [PATCH] eurolinux patch
-
----
- sos/policies/distros/redhat.py | 85 ++++++----------------------------
- sos/presets/redhat/__init__.py |  4 +-
- tests/sos_tests.py             |  2 +-
- 3 files changed, 16 insertions(+), 75 deletions(-)
-
-diff --git a/sos/policies/distros/redhat.py b/sos/policies/distros/redhat.py
-index 5831dd1..3d45b7a 100644
---- a/sos/policies/distros/redhat.py
-+++ b/sos/policies/distros/redhat.py
-@@ -29,16 +29,16 @@ except ImportError:
+diff -uNr sos-4.5.0/sos/policies/distros/redhat.py sos-4.5.0p/sos/policies/distros/redhat.py
+--- sos-4.5.0/sos/policies/distros/redhat.py	2023-02-01 14:56:36.000000000 +0000
++++ sos-4.5.0p/sos/policies/distros/redhat.py	2023-03-19 19:21:47.558011768 +0000
+@@ -29,16 +29,16 @@
      REQUESTS_LOADED = False
  
  OS_RELEASE = "/etc/os-release"
 -RHEL_RELEASE_STR = "Red Hat Enterprise Linux"
--ATOMIC_RELEASE_STR = "Atomic"
 +RHEL_RELEASE_STR = "EuroLinux"
-+ATOMIC_RELEASE_STR = "Container Host"
+ ATOMIC_RELEASE_STR = "Atomic"
  
  
  class RedHatPolicy(LinuxPolicy):
@@ -36,7 +23,18 @@ index 5831dd1..3d45b7a 100644
      ]
      _tmp_dir = "/var/tmp"
      _in_container = False
-@@ -233,7 +233,7 @@ class RHELPolicy(RedHatPolicy):
+@@ -179,8 +179,8 @@
+ No changes will be made to system configuration.
+ """
+ 
+-RH_API_HOST = "https://api.access.redhat.com"
+-RH_SFTP_HOST = "sftp://sftp.access.redhat.com"
++RH_API_HOST = "https://"
++RH_SFTP_HOST = "sftp://"
+ 
+ 
+ class RHELPolicy(RedHatPolicy):
+@@ -211,7 +211,7 @@
      the upload process for any sos report execution.
      """
      distro = RHEL_RELEASE_STR
@@ -45,31 +43,24 @@ index 5831dd1..3d45b7a 100644
      msg = _("""\
  This command will collect diagnostic and configuration \
  information from this %(distro)s system and installed \
-@@ -295,19 +295,9 @@ support representative.
-             )
+@@ -269,7 +269,8 @@
+         if not self.get_upload_user():
+             if self.case_id:
+                 self.upload_user = input(_(
+-                    "Enter your Red Hat Customer Portal username for "
++                    # this won't happen
++                    "Enter your EuroLinux username for "
+                     "uploading [empty for anonymous SFTP]: ")
+                 )
+             else:   # no case id provided => failover to SFTP
+@@ -315,71 +316,10 @@
+         return fname
  
-     def get_upload_url(self):
--        if self.upload_url:
--            return self.upload_url
--        elif self.commons['cmdlineopts'].upload_url:
--            return self.commons['cmdlineopts'].upload_url
--        elif self.commons['cmdlineopts'].upload_protocol == 'sftp':
--            return RH_SFTP_HOST
--        else:
--            rh_case_api = "/support/v1/cases/%s/attachments"
--            return RH_API_HOST + rh_case_api % self.case_id
-+        return False
- 
-     def _get_upload_headers(self):
--        if self.get_upload_url().startswith(RH_API_HOST):
--            return {'isPrivate': 'false', 'cache-control': 'no-cache'}
-         return {}
- 
-     def get_upload_url_string(self):
-@@ -331,68 +321,17 @@ support representative.
-         generated anonymous login for the RH SFTP server if a username and
-         password are not given
-         """
+     def upload_sftp(self):
+-        """Override the base upload_sftp to allow for setting an on-demand
+-        generated anonymous login for the RH SFTP server if a username and
+-        password are not given
+-        """
 -        if RH_SFTP_HOST.split('//')[1] not in self.get_upload_url():
 -            return super(RHELPolicy, self).upload_sftp()
 -
@@ -89,8 +80,10 @@ index 5831dd1..3d45b7a 100644
 -                _user = self.get_upload_user()
 -                _token = json.loads(ret.text)['token']
 -            else:
--                print("Unable to retrieve Red Hat auth token using provided "
--                      "credentials. Will try anonymous.")
+-                self.ui_log.error(
+-                    "Unable to retrieve Red Hat auth token using provided "
+-                    "credentials. Will try anonymous."
+-                )
 -        # we either do not have a username or password/token, or both
 -        if not _token:
 -            adata = {"isAnonymous": True}
@@ -99,11 +92,9 @@ index 5831dd1..3d45b7a 100644
 -                resp = json.loads(anon.text)
 -                _user = resp['username']
 -                _token = resp['token']
--                print(
--                    "User '%s'"  # lgtm [py/clear-text-logging-sensitive-data]
--                    "used for anonymous upload. Please inform your support "
--                    "engineer so they may retrieve the data."
--                    % _user
+-                self.ui_log.info(
+-                    _(f"User {_user} used for anonymous upload. Please inform "
+-                      f"your support engineer so they may retrieve the data.")
 -                )
 -        if _user and _token:
 -            return super(RHELPolicy, self).upload_sftp(user=_user,
@@ -112,11 +103,12 @@ index 5831dd1..3d45b7a 100644
 +        return False
  
      def upload_archive(self, archive):
-         """Override the base upload_archive to provide for automatic failover
-         from RHCP failures to the public RH dropbox
-         """
+-        """Override the base upload_archive to provide for automatic failover
+-        from RHCP failures to the public RH dropbox
+-        """
 -        try:
--            if not self.get_upload_user() or not self.get_upload_password():
+-            if self.upload_url and self.upload_url.startswith(RH_API_HOST) and\
+-              (not self.get_upload_user() or not self.get_upload_password()):
 -                self.upload_url = RH_SFTP_HOST
 -            uploaded = super(RHELPolicy, self).upload_archive(archive)
 -        except Exception:
@@ -124,8 +116,10 @@ index 5831dd1..3d45b7a 100644
 -            if not self.upload_url.startswith(RH_API_HOST):
 -                raise
 -            else:
--                print("Upload to Red Hat Customer Portal failed. Trying %s"
--                      % RH_SFTP_HOST)
+-                self.ui_log.error(
+-                    _(f"Upload to Red Hat Customer Portal failed. Trying "
+-                      f"{RH_SFTP_HOST}")
+-                )
 -                self.upload_url = RH_SFTP_HOST
 -                uploaded = super(RHELPolicy, self).upload_archive(archive)
 -        return uploaded
@@ -133,55 +127,21 @@ index 5831dd1..3d45b7a 100644
  
      def dist_version(self):
          try:
--            rr = self.package_manager.all_pkgs_by_name_regex("redhat-release*")
-+            rr = self.package_manager.all_pkgs_by_name_regex("el-release*")
-             pkgname = self.pkgs[rr[0]]["version"]
-             if pkgname[0] == "4":
-                 return 4
-@@ -404,6 +343,8 @@ support representative.
-                 return 7
-             elif pkgname[0] == "8":
-                 return 8
-+            elif pkgname[0] == "9":
-+                return 9
-         except Exception:
-             pass
-         return False
-diff --git a/sos/presets/redhat/__init__.py b/sos/presets/redhat/__init__.py
-index 0b9f6f1..12bb187 100644
---- a/sos/presets/redhat/__init__.py
-+++ b/sos/presets/redhat/__init__.py
-@@ -12,7 +12,7 @@ from sos.options import SoSOptions
- from sos.presets import PresetDefaults
+@@ -420,7 +360,7 @@
  
  
--RHEL_RELEASE_STR = "Red Hat Enterprise Linux"
-+RHEL_RELEASE_STR = "EuroLinux"
+ class RedHatAtomicPolicy(RHELPolicy):
+-    distro = "Red Hat Atomic Host"
++    distro = "EuroLinux Container Host"
+     msg = _("""\
+ This command will collect diagnostic and configuration \
+ information from this %(distro)s system.
+@@ -507,7 +447,7 @@
+     impact how sos report collections are performed.
+     """
  
- _opts_verify = SoSOptions(verify=True)
- _opts_all_logs = SoSOptions(all_logs=True)
-@@ -24,7 +24,7 @@ _cb_plugopts = ['boot.all-images=on', 'rpm.rpmva=on', 'rpm.rpmdb=on']
- RHV = "rhv"
- RHV_DESC = "Red Hat Virtualization"
- 
--RHEL = "rhel"
-+RHEL = "eurolinux"
- RHEL_DESC = RHEL_RELEASE_STR
- 
- RHOSP = "rhosp"
-diff --git a/tests/sos_tests.py b/tests/sos_tests.py
-index b7f7243..88cd0cd 100644
---- a/tests/sos_tests.py
-+++ b/tests/sos_tests.py
-@@ -27,7 +27,7 @@ SOS_PLUGIN_DIR = os.path.realpath(os.path.join(SOS_REPO_ROOT, 'sos/report/plugin
- SOS_TEST_DATA_DIR = os.path.realpath(os.path.join(SOS_TEST_DIR, 'test_data'))
- SOS_BIN = os.path.realpath(os.path.join(SOS_TEST_DIR, '../bin/sos'))
- 
--RH_DIST = ['rhel', 'centos', 'fedora']
-+RH_DIST = ['rhel', 'centos', 'fedora', 'eurolinux']
- UBUNTU_DIST = ['Ubuntu', 'debian']
- 
- def skipIf(cond, message=None):
--- 
-2.31.1
-
+-    distro = "Red Hat CoreOS"
++    distro = "EuroLinux Container OS"
+     msg = _("""\
+ This command will collect diagnostic and configuration \
+ information from this %(distro)s system.
