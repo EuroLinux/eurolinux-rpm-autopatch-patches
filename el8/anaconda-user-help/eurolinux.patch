@@ -1,67 +1,84 @@
-diff -uNr anaconda-user-help-8.3.3/rhel/anaconda-help-anchors.json anaconda-user-help-8.3.3-patched/rhel/anaconda-help-anchors.json
---- anaconda-user-help-8.3.3/rhel/anaconda-help-anchors.json	2021-05-18 08:58:54.006777904 +0200
-+++ anaconda-user-help-8.3.3-patched/rhel/anaconda-help-anchors.json	2021-05-18 09:01:18.409895679 +0200
-@@ -33,7 +33,7 @@
- "connect-to-red-hat_configuring-software-settings",
+diff -urN anaconda-user-help-8.8.3/rhel/anaconda-help-anchors.json anaconda-user-help-8.8.3-patched/rhel/anaconda-help-anchors.json
+--- anaconda-user-help-8.8.3/rhel/anaconda-help-anchors.json	2023-02-14 20:32:44.000000000 +0100
++++ anaconda-user-help-8.8.3-patched/rhel/anaconda-help-anchors.json	2023-04-11 18:00:23.264885728 +0200
+@@ -3,10 +3,10 @@
+ "This file contains a list mapping anaconda's help_id to anchor in the docs for the online help. This is in the JSON format as a hash table or dictionary. Look at the next pair of values to see the structural elements: Double quotes enclosing the strings, a colon separating them, and a comma to separe from the next pair. Finally the last pair is special in that it does not have the ending comma. This very comment is also another part of the dictionary and follows the same rules.",
  
- "ProgressHub":
--"installation-complete_installing-RHEL",
-+"installation-complete_installing-euroLinux",
+ "_comment2":
+-"Please note that at this moment a known issue of yelp causes links to open at chapter start, even if they are nested deeper. This means that the links in yelp open elsewhere than wanted. https://bugzilla.redhat.com/show_bug.cgi?id=1636437 But we still want to point to the right place, as with this amount of levels the help opens close by, at a ToC listing the wanted thing.",
++"Please note that at this moment a known issue of yelp causes links to open at chapter start, even if they are nested deeper. This means that the links in yelp open elsewhere than wanted. But we still want to point to the right place, as with this amount of levels the help opens close by, at a ToC listing the wanted thing.",
  
+ "WelcomeSpoke":
+-"installing-rhel-using-anaconda_graphical-installation",
++"installing-eurolinux-using-anaconda_graphical-installation",
+ 
+ "SummaryHub":
+ "graphical-installation_graphical-installation",
+@@ -29,9 +29,6 @@
+ "SoftwareSelectionSpoke":
+ "configuring-software-selection_configuring-software-settings",
+ 
+-"SubscriptionSpoke":
+-"connect-to-red-hat_configuring-system-settings",
+-
  "RootPasswordSpoke":
  "configuring-a-root-password_graphical-installation",
-diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-help-8.3.3-patched/rhel/en-US/anaconda-help.xml
---- anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml	2021-05-18 08:52:14.535218446 +0200
-+++ anaconda-user-help-8.3.3-patched/rhel/en-US/anaconda-help.xml	2021-05-18 09:12:07.952887001 +0200
+ 
+diff -urN anaconda-user-help-8.8.3/rhel/en-US/anaconda-help.xml anaconda-user-help-8.8.3-patched/rhel/en-US/anaconda-help.xml
+--- anaconda-user-help-8.8.3/rhel/en-US/anaconda-help.xml	2023-02-14 14:50:05.000000000 +0100
++++ anaconda-user-help-8.8.3-patched/rhel/en-US/anaconda-help.xml	2023-04-11 18:01:12.013164354 +0200
 @@ -2,11 +2,11 @@
  <info>
  <title>Customizing your installation</title>
- <date>2020-09-04</date>
+ <date>2023-01-24</date>
 -<orgname>Red&#160;Hat</orgname>
 +<orgname>EuroLinux</orgname>
  </info>
  <preface>
  <title/>
--<simpara>When installing Red&#160;Hat Enterprise&#160;Linux, you can customize location, software, and system settings and parameters, using the <emphasis role="strong">Installation Summary</emphasis> window.</simpara>
-+<simpara>When installing EuroLinux, you can customize location, software, and system settings and parameters, using the <emphasis role="strong">Installation Summary</emphasis> window.</simpara>
+-<simpara role="_abstract">When installing Red&#160;Hat Enterprise&#160;Linux, you can customize location, software, and system settings and parameters, using the <emphasis role="strong">Installation Summary</emphasis> window.</simpara>
++<simpara role="_abstract">When installing EuroLinux, you can customize location, software, and system settings and parameters, using the <emphasis role="strong">Installation Summary</emphasis> window.</simpara>
  <simpara>The <emphasis role="strong">Installation Summary</emphasis> window contains the following categories:</simpara>
- <itemizedlist>
+ <variablelist>
+ <varlistentry>
+@@ -18,7 +18,7 @@
+ <varlistentry>
+ <term>SOFTWARE</term>
  <listitem>
-@@ -16,7 +16,7 @@
- <simpara><emphasis role="strong">SOFTWARE</emphasis>: You can configure Installation Source and Software Selection.</simpara>
+-<simpara>You can configure Connect to Red Hat, Installation Source, and Software Selection.</simpara>
++<simpara>You can configure Installation Source, and Software Selection.</simpara>
  </listitem>
- <listitem>
--<simpara><emphasis role="strong">SYSTEM</emphasis>: You can configure Installation Destination, Connect to Red Hat, KDUMP, Network and Host Name, and Security Policy.</simpara>
-+<simpara><emphasis role="strong">SYSTEM</emphasis>: You can configure Installation Destination, KDUMP, Network and Host Name, and Security Policy.</simpara>
- </listitem>
- <listitem>
- <simpara><emphasis role="strong">USER SETTINGS</emphasis>: You can configure a root password to log in to the administrator account that is used for system administration tasks, and create a user account to login to the system.</simpara>
-@@ -40,7 +40,7 @@
- <row>
- <entry align="left" valign="top"><simpara><emphasis role="strong">Warning symbol type 1</emphasis></simpara></entry>
- <entry align="left" valign="top"><simpara>Yellow triangle with an exclamation mark and red text</simpara></entry>
--<entry align="left" valign="top"><simpara>Requires attention before installation. For example, Network &amp; Host Name requires attention before you can register and download from the Content Delivery Network (CDN).</simpara></entry>
-+<entry align="left" valign="top"><simpara>Requires attention before installation.</simpara></entry>
- </row>
- <row>
- <entry align="left" valign="top"><simpara><emphasis role="strong">Warning symbol type 2</emphasis></simpara></entry>
-@@ -53,12 +53,12 @@
+ </varlistentry>
+ <varlistentry>
+@@ -61,42 +61,42 @@
  <note>
- <simpara>A warning message is displayed at the bottom of the <emphasis role="strong">Installation Summary</emphasis> window and the <emphasis role="strong">Begin Installation</emphasis> button is disabled  until you configure all of the required categories.</simpara>
+ <simpara>A warning message is displayed at the bottom of the <emphasis role="strong">Installation Summary</emphasis> window and the <emphasis role="strong">Begin Installation</emphasis> button is disabled until you configure all of the required categories.</simpara>
  </note>
 -<simpara>This section contains information about customizing your Red&#160;Hat Enterprise&#160;Linux installation using the Graphical User Interface (GUI). The GUI is the preferred method of installing Red&#160;Hat Enterprise&#160;Linux when you boot the system from a CD, DVD, or USB flash drive, or from a network using PXE.</simpara>
-+<simpara>This section contains information about customizing your EuroLinux installation using the Graphical User Interface (GUI). The GUI is the preferred method of installing EuroLInux when you boot the system from a CD, DVD, or USB flash drive, or from a network using PXE.</simpara>
++<simpara>This section contains information about customizing your EuroLinux installation using the Graphical User Interface (GUI). The GUI is the preferred method of installing EuroLinux when you boot the system from a CD, DVD, or USB flash drive, or from a network using PXE.</simpara>
  <note>
--<simpara>There may be some variance between the online help and the content that is published on the Customer Portal. For the latest updates, see the installation content on the Customer Portal.</simpara>
-+<simpara>There may be some variance between the online help and the content that is published on the EuroLinux Knowledge Base.</simpara>
+ <simpara>There may be some variance between the online help and the content that is published on the Customer Portal. For the latest updates, see the installation content on the Customer Portal.</simpara>
  </note>
  </preface>
 -<chapter xml:id="installing-rhel-using-anaconda_graphical-installation">
 +<chapter xml:id="installing-eurolinux-using-anaconda_graphical-installation">
  <title>Configuring language and location settings</title>
- <simpara>The installation program uses the language that you selected during installation.</simpara>
+ <simpara role="_abstract">The installation program uses the language that you selected during installation.</simpara>
  <orderedlist numeration="arabic">
-@@ -76,18 +76,18 @@
+ <title>Prerequisites</title>
+ <listitem>
+-<simpara>You created installation media. See <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_a_standard_rhel_8_installation/index#making-an-installation-cd-or-dvd_assembly_creating-a-bootable-installation-medium">Creating a bootable DVD or CD</link></simpara>
++<simpara>You created installation media.</simpara>
+ </listitem>
+ <listitem>
+-<simpara>You specified an installation source if you are using the Boot ISO image file. See <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_a_standard_rhel_8_installation/index#prepare-installation-source_installing-RHEL">Preparing an installation source</link></simpara>
++<simpara>You specified an installation source if you are using the Boot ISO image file.</simpara>
+ </listitem>
+ <listitem>
+-<simpara>You booted the installation. See <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_a_standard_rhel_8_installation/index#booting-the-installer_installing-RHEL">Booting the installer</link></simpara>
++<simpara>You booted the installation.</simpara>
+ </listitem>
+ </orderedlist>
  <orderedlist numeration="arabic">
  <title>Procedure</title>
  <listitem>
@@ -76,53 +93,71 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
 +<simpara>From the right-hand pane of the <emphasis role="strong">Welcome to EuroLinux</emphasis> window, select a location specific to your region.</simpara>
  </listitem>
  <listitem>
- <simpara>Click <guibutton>Continue</guibutton> to proceed to the <xref linkend="graphical-installation_graphical-installation"/> window.</simpara>
- <important>
--<simpara>If you are installing a pre-release version of Red&#160;Hat Enterprise&#160;Linux, a warning message is displayed about the pre-release status of the installation media. Click <guibutton>I want to proceed</guibutton> to continue with the installation, or <guibutton>I want to exit</guibutton> to quit the installation and reboot the system.</simpara>
-+<simpara>If you are installing a pre-release version of EuroLinux, a warning message is displayed about the pre-release status of the installation media. Click <guibutton>I want to proceed</guibutton> to continue with the installation, or <guibutton>I want to exit</guibutton> to quit the installation and reboot the system.</simpara>
- </important>
+ <simpara>Click <guibutton>Continue</guibutton> to proceed to the <link linkend="graphical-installation_graphical-installation">Graphical installations</link> window.</simpara>
  </listitem>
- </orderedlist>
-@@ -105,13 +105,13 @@
- <section xml:id="_configuring_keyboard_language_and_time_and_date_settings">
- <title>Configuring keyboard, language, and time and date settings</title>
- <note>
--<simpara>Keyboard, Language, and Time and Date Settings are configured by default as part of <xref linkend="installing-rhel-using-anaconda_graphical-installation"/>.
-+<simpara>Keyboard, Language, and Time and Date Settings are configured by default as part of <xref linkend="installing-eurolinux-using-anaconda_graphical-installation"/>.
- To change any of the settings, complete the following steps, otherwise proceed to <xref linkend="configuring-software-settings_graphical-installation"/>.</simpara>
- </note>
- <orderedlist numeration="arabic">
- <title>Procedure: Configuring keyboard settings</title>
  <listitem>
--<simpara>From the <emphasis role="strong">Installation Summary</emphasis> window, click <emphasis role="strong">Keyboard</emphasis>. The default layout depends on the option selected in <xref linkend="installing-rhel-using-anaconda_graphical-installation"/>.</simpara>
-+<simpara>From the <emphasis role="strong">Installation Summary</emphasis> window, click <emphasis role="strong">Keyboard</emphasis>. The default layout depends on the option selected in <xref linkend="installing-eurolinux-using-anaconda_graphical-installation"/>.</simpara>
+-<simpara>If you are installing a pre-release version of Red&#160;Hat Enterprise&#160;Linux, a warning message is displayed about the pre-release status of the installation media.</simpara>
++<simpara>If you are installing a pre-release version of EuroLinux, a warning message is displayed about the pre-release status of the installation media.</simpara>
  <orderedlist numeration="loweralpha">
  <listitem>
+ <simpara>To continue with the installation, click <guibutton>I want to proceed</guibutton>, or</simpara>
+@@ -107,12 +107,6 @@
+ </orderedlist>
+ </listitem>
+ </orderedlist>
+-<itemizedlist role="_additional-resources">
+-<title>Additional resources</title>
+-<listitem>
+-<simpara><link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_a_standard_rhel_8_installation/index#configuring-localization-settings_graphical-installation">Configuring localization settings</link></simpara>
+-</listitem>
+-</itemizedlist>
+ </chapter>
+ <chapter xml:id="configuring-localization-settings_graphical-installation">
+ <title>Configuring localization options</title>
+@@ -122,8 +116,8 @@
+ </important>
+ <note>
+ <title>Configuring keyboard, language, and time and date settings</title>
+-<simpara>Keyboard, Language, and Time and Date Settings are configured by default as part of <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_a_standard_rhel_8_installation/index#installing-rhel-using-anaconda_graphical-installation">Installing RHEL using Anaconda</link>.
+-To change any of the settings, complete the following steps, otherwise proceed to <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_a_standard_rhel_8_installation/index#configuring-software-settings_graphical-installation">Configuring software settings</link>.</simpara>
++<simpara>Keyboard, Language, and Time and Date Settings are configured by default.
++To change any of the settings, complete the following steps.</simpara>
+ </note>
+ <orderedlist numeration="arabic">
+ <title>Procedure</title>
+@@ -131,7 +125,7 @@
+ <simpara>Configure keyboard settings:</simpara>
+ <orderedlist numeration="loweralpha">
+ <listitem>
+-<simpara>From the <emphasis role="strong">Installation Summary</emphasis> window, click <emphasis role="strong">Keyboard</emphasis>. The default layout depends on the option selected in <link linkend="installing-rhel-using-anaconda_graphical-installation">Installing RHEL using Anaconda</link>.</simpara>
++<simpara>From the <emphasis role="strong">Installation Summary</emphasis> window, click <emphasis role="strong">Keyboard</emphasis>. The default layout depends on the option selected in <link linkend="installing-eurolinux-using-anaconda_graphical-installation">Installing EuroLinux using Anaconda</link>.</simpara>
+ </listitem>
+ <listitem>
  <simpara>Click <guibutton>+</guibutton> to open the <emphasis role="strong">Add a Keyboard Layout</emphasis> window and change to a different layout.</simpara>
-@@ -156,8 +156,8 @@
+@@ -176,8 +170,8 @@
  <listitem>
  <simpara>From the <emphasis role="strong">Installation Summary</emphasis> window, click <emphasis role="strong">Time &amp; Date</emphasis>. The <emphasis role="strong">Time &amp; Date</emphasis> window opens.</simpara>
  <note>
--<simpara>The <emphasis role="strong">Time &amp; Date</emphasis> settings are configured by default based on the settings you selected in <xref linkend="installing-rhel-using-anaconda_graphical-installation"/>.</simpara>
+-<simpara>The <emphasis role="strong">Time &amp; Date</emphasis> settings are configured by default based on the settings you selected in <link linkend="installing-rhel-using-anaconda_graphical-installation">Installing RHEL using Anaconda</link>.</simpara>
 -<simpara>The list of cities and regions come from the Time Zone Database (<literal role="package">tzdata</literal>) public domain that is maintained by the Internet Assigned Numbers Authority (IANA). Red&#160;Hat can not add cities or regions to this database. You can find more information at the <link xl:href="http://www.iana.org/time-zones">IANA official website</link>.</simpara>
-+<simpara>The <emphasis role="strong">Time &amp; Date</emphasis> settings are configured by default based on the settings you selected in <xref linkend="installing-eurolinux-using-anaconda_graphical-installation"/>.</simpara>
++<simpara>The <emphasis role="strong">Time &amp; Date</emphasis> settings are configured by default based on the settings you selected in <link linkend="installing-eurolinux-using-anaconda_graphical-installation">Installing EuroLinux using Anaconda</link>.</simpara>
 +<simpara>The list of cities and regions come from the Time Zone Database (<literal role="package">tzdata</literal>) public domain that is maintained by the Internet Assigned Numbers Authority (IANA). EuroLinux can not add cities or regions to this database. You can find more information at the <link xl:href="http://www.iana.org/time-zones">IANA official website</link>.</simpara>
  </note>
- <orderedlist numeration="loweralpha">
+ </listitem>
  <listitem>
-@@ -191,9 +191,9 @@
+@@ -210,9 +204,9 @@
  <simpara>This section contains information about configuring Installation Destination, KDUMP, Network and Host Name, and Security Policy.</simpara>
  <section xml:id="configuring-system-settings_configuring-system-settings">
  <title>Configuring installation destination</title>
--<simpara>Use the <emphasis role="strong">Installation Destination</emphasis> window to configure the storage options, for example, the disks that you want to use as the installation target for your Red&#160;Hat Enterprise&#160;Linux installation. You must select at least one disk.</simpara>
-+<simpara>Use the <emphasis role="strong">Installation Destination</emphasis> window to configure the storage options, for example, the disks that you want to use as the installation target for your EuroLinux installation. You must select at least one disk.</simpara>
+-<simpara role="_abstract">Use the <emphasis role="strong">Installation Destination</emphasis> window to configure the storage options, for example, the disks that you want to use as the installation target for your Red&#160;Hat Enterprise&#160;Linux installation. You must select at least one disk.</simpara>
++<simpara role="_abstract">Use the <emphasis role="strong">Installation Destination</emphasis> window to configure the storage options, for example, the disks that you want to use as the installation target for your EuroLinux installation. You must select at least one disk.</simpara>
  <warning>
 -<simpara>Back up your data if you plan to use a disk that already contains data. For example, if you want to shrink an existing Microsoft Windows partition and install Red&#160;Hat Enterprise&#160;Linux as a second system, or if you are upgrading a previous release of Red&#160;Hat Enterprise&#160;Linux. Manipulating partitions always carries a risk. For example, if the process is interrupted or fails for any reason data on the disk can be lost.</simpara>
 +<simpara>Back up your data if you plan to use a disk that already contains data. For example, if you want to shrink an existing Microsoft Windows partition and install EuroLinux as a second system, or if you are upgrading a previous release of EuroLinux. Manipulating partitions always carries a risk. For example, if the process is interrupted or fails for any reason data on the disk can be lost.</simpara>
  </warning>
  <important>
  <itemizedlist>
-@@ -203,10 +203,10 @@
+@@ -222,10 +216,10 @@
  If you choose to partition your system automatically, you should manually edit your <literal>/boot</literal> partition.</simpara>
  </listitem>
  <listitem>
@@ -135,7 +170,7 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
  </listitem>
  </itemizedlist>
  </important>
-@@ -222,7 +222,7 @@
+@@ -241,7 +235,7 @@
  <listitem>
  <simpara>From the <emphasis role="strong">Local Standard Disks</emphasis> section, select the storage device that you require; a white check mark indicates your selection. Disks without a white check mark are not used during the installation process; they are ignored if you choose automatic partitioning, and they are not available in manual partitioning.</simpara>
  <note>
@@ -144,7 +179,12 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
  </note>
  </listitem>
  <listitem>
-@@ -252,7 +252,7 @@
+@@ -268,11 +262,11 @@
+ <simpara>Optional: Under <emphasis role="strong">Storage Configuration</emphasis>, select the <emphasis role="strong">Automatic</emphasis> radio button.</simpara>
+ <important>
+ <simpara>Automatic partitioning is the <emphasis role="strong">recommended</emphasis> method of partitioning your storage.</simpara>
+-<simpara>You can also configure custom partitioning, for more details see <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_a_standard_rhel_8_installation/index#manual-partitioning_graphical-installation">Configuring manual partitioning</link></simpara>
++<simpara>You can also configure custom partitioning.</simpara>
  </important>
  </listitem>
  <listitem>
@@ -153,16 +193,24 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
  </listitem>
  <listitem>
  <simpara>Optional: Select <emphasis role="strong">Encrypt my data</emphasis> to encrypt all partitions except the ones needed to boot the system (such as <literal>/boot</literal>) using <emphasis>Linux Unified Key Setup</emphasis> (LUKS). Encrypting your hard drive is recommended.</simpara>
-@@ -266,7 +266,7 @@
+@@ -286,7 +280,7 @@
  <listitem>
  <simpara>Click <guibutton>Save Passphrase</guibutton> to complete disk encryption.</simpara>
  <warning>
--<simpara>If you lose the LUKS passphrase, any encrypted partitions and their data is completely inaccessible. There is no way to recover a lost passphrase. However, if you perform a Kickstart installation, you can save encryption passphrases and create backup encryption passphrases during the installation. See the <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_an_advanced_rhel_installation/index/"><emphasis>Performing an advanced RHEL installation</emphasis></link> document for information.</simpara>
-+<simpara>If you lose the LUKS passphrase, any encrypted partitions and their data is completely inaccessible. There is no way to recover a lost passphrase. However, if you perform a Kickstart installation, you can save encryption passphrases and then create a backup encryption passphrases during the installation.</simpara>
+-<simpara>If you lose the LUKS passphrase, any encrypted partitions and their data is completely inaccessible. There is no way to recover a lost passphrase. However, if you perform a Kickstart installation, you can save encryption passphrases and create backup encryption passphrases during the installation. See the <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_an_advanced_rhel_8_installation/index/"><emphasis>Performing an advanced RHEL 8 installation</emphasis></link> document for information.</simpara>
++<simpara>If you lose the LUKS passphrase, any encrypted partitions and their data is completely inaccessible. There is no way to recover a lost passphrase. However, if you perform a Kickstart installation, you can save encryption passphrases and create backup encryption passphrases during the installation.</simpara>
  </warning>
  </listitem>
  </orderedlist>
-@@ -283,7 +283,7 @@
+@@ -295,7 +289,6 @@
+ </listitem>
+ <listitem>
+ <simpara>Optional: Click the <emphasis role="strong">Full disk summary and bootloader</emphasis> link in the lower left-hand side of the window to select which storage device contains the boot loader.</simpara>
+-<simpara>For more information, see <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_a_standard_rhel_8_installation/index#boot-loader-installation_configuring-system-settings">Boot loader installation</link>.</simpara>
+ <note>
+ <simpara>In most cases it is sufficient to leave the boot loader in the default location. Some configurations, for example, systems that require chain loading from another boot loader require the boot drive to be specified manually.</simpara>
+ </note>
+@@ -304,7 +297,7 @@
  <simpara>Click <guibutton>Done</guibutton>.</simpara>
  <orderedlist numeration="loweralpha">
  <listitem>
@@ -171,7 +219,7 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
  <warning>
  <simpara>If you <emphasis role="strong">delete</emphasis> a partition, all data on that partition is lost. If you want to preserve your data, use the <emphasis role="strong">Shrink</emphasis> option, not the <emphasis role="strong">Delete</emphasis> option.</simpara>
  </warning>
-@@ -294,7 +294,7 @@
+@@ -315,11 +308,11 @@
  <listitem>
  <simpara>To reclaim space, select a disk or partition, and click either the <guibutton>Delete</guibutton> button to delete that partition, or all partitions on a selected disk, or click <guibutton>Shrink</guibutton> to use free space on a partition while preserving the existing data.</simpara>
  <note>
@@ -180,12 +228,17 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
  </note>
  </listitem>
  <listitem>
-@@ -308,13 +308,13 @@
- </important>
+-<simpara>Click <guibutton>Reclaim space</guibutton> to apply the changes and return to <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_a_standard_rhel_8_installation/index#graphical-installation_graphical-installation">Graphical installations</link>.</simpara>
++<simpara>Click <guibutton>Reclaim space</guibutton> to apply the changes and return.</simpara>
+ </listitem>
+ </orderedlist>
+ </listitem>
+@@ -336,13 +329,13 @@
+ </section>
  <section xml:id="boot-loader-installation_configuring-system-settings">
  <title>Configuring boot loader</title>
--<simpara>Red&#160;Hat Enterprise&#160;Linux uses GRand Unified Bootloader version 2 (<emphasis role="strong"><phrase role="application">GRUB2</phrase></emphasis>) as the boot loader for AMD64 and Intel 64, IBM Power Systems, and ARM. For IBM&#160;Z, the <emphasis role="strong">zipl</emphasis> boot loader is used.</simpara>
-+<simpara>EuroLinux uses GRand Unified Bootloader version 2 (<emphasis role="strong"><phrase role="application">GRUB2</phrase></emphasis>) as the boot loader for AMD64 and Intel 64, IBM Power Systems, and ARM. For IBM&#160;Z, the <emphasis role="strong">zipl</emphasis> boot loader is used.</simpara>
+-<simpara role="_abstract">Red&#160;Hat Enterprise&#160;Linux uses GRand Unified Bootloader version 2 (<emphasis role="strong"><phrase role="application">GRUB2</phrase></emphasis>) as the boot loader for AMD64 and Intel 64, IBM Power Systems, and ARM. For 64-bit IBM&#160;Z, the <emphasis role="strong">zipl</emphasis> boot loader is used.</simpara>
++<simpara role="_abstract">EuroLinux uses GRand Unified Bootloader version 2 (<emphasis role="strong"><phrase role="application">GRUB2</phrase></emphasis>) as the boot loader for AMD64 and Intel 64, and ARM.</simpara>
  <simpara>The boot loader is the first program that runs when the system starts and is responsible for loading and transferring control to an operating system. <emphasis role="strong"><phrase role="application">GRUB2</phrase></emphasis> can boot any compatible operating system (including Microsoft Windows) and can also use chain loading to transfer control to other boot loaders for unsupported operating systems.</simpara>
  <warning>
  <simpara>Installing <emphasis role="strong"><phrase role="application">GRUB2</phrase></emphasis> may overwrite your existing boot loader.</simpara>
@@ -197,16 +250,61 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
  <orderedlist numeration="arabic">
  <title>Procedure</title>
  <listitem>
-@@ -398,7 +398,7 @@
+@@ -381,14 +374,14 @@
+ </orderedlist>
+ </listitem>
+ <listitem>
+-<simpara>Click <guibutton>Done</guibutton> to apply the settings and return to <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_a_standard_rhel_8_installation/index#graphical-installation_graphical-installation">Graphical installations</link>.</simpara>
++<simpara>Click <guibutton>Done</guibutton> to apply the settings and return.</simpara>
+ </listitem>
+ </orderedlist>
+ <note>
+-<simpara>The amount of memory that you reserve is determined by your system architecture (AMD64 and Intel&#160;64 have different requirements than IBM Power) as well as the total amount of system memory. In most cases, automatic reservation is satisfactory.</simpara>
++<simpara>The amount of memory that you reserve is determined by your system architecture as well as the total amount of system memory. In most cases, automatic reservation is satisfactory.</simpara>
+ </note>
+ <important>
+-<simpara>Additional settings, such as the location where kernel crash dumps will be saved, can only be configured after the installation using either the <emphasis role="strong"><phrase role="application">system-config-kdump</phrase></emphasis> graphical interface, or manually in the <literal>/etc/kdump.conf</literal> configuration file.</simpara>
++<simpara>Additional settings, such as the location where kernel crash dumps will be saved, can only be configured after the installation manually in the <literal>/etc/kdump.conf</literal> configuration file.</simpara>
+ </important>
+ </section>
+ <section xml:id="network-hostname_configuring-system-settings">
+@@ -407,7 +400,7 @@
  <note>
  <itemizedlist>
  <listitem>
 -<simpara>There are several types of network device naming standards used to identify network devices with persistent names, for example, <literal>em1</literal> and <literal>wl3sp0</literal>. For information about these standards, see the <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_and_managing_networking/index/"><emphasis>Configuring and managing networking</emphasis></link> document.</simpara>
 +<simpara>There are several types of network device naming standards used to identify network devices with persistent names, for example, <literal>em1</literal> and <literal>wl3sp0</literal>.</simpara>
  </listitem>
+ </itemizedlist>
+ </note>
+@@ -435,7 +428,7 @@
+ <simpara>The host name can either be a fully qualified domain name (FQDN) in the format <literal><emphasis>hostname.domainname</emphasis></literal>, or a short host name without the domain. Many networks have a Dynamic Host Configuration Protocol (DHCP) service that automatically supplies connected systems with a domain name. To allow the DHCP service to assign the domain name to this system, specify only the short host name.</simpara>
+ </listitem>
  <listitem>
- <simpara>The host name can be either a fully-qualified domain name (FQDN) in the format <emphasis>hostname.domainname</emphasis>, or a short host name with no domain name. Many networks have a Dynamic Host Configuration Protocol (DHCP) service that automatically supplies connected systems with a domain name. To allow the DHCP service to assign the domain name to this machine, specify only the short host name. The value <literal>localhost.localdomain</literal> means that no specific static host name for the target system is configured, and the actual host name of the installed system is configured during the processing of the network configuration, for example, by <literal>NetworkManager</literal> using DHCP or DNS.</simpara>
-@@ -479,7 +479,7 @@
+-<simpara>When using static IP and host name configuration, it depends on the planned system use case whether to use a short name or FQDN. Red&#160;Hat Identity Management configures FQDN during provisioning but some 3rd party software products may require short name. In either case, to ensure availability of both forms in all situations, add an entry for the host in <literal>/etc/hosts`</literal> in the format <literal>IP FQDN short-alias</literal>.</simpara>
++<simpara>When using static IP and host name configuration, it depends on the planned system use case whether to use a short name or FQDN. EuroLinux Identity Management configures FQDN during provisioning but some 3rd party software products may require short name. In either case, to ensure availability of both forms in all situations, add an entry for the host in <literal>/etc/hosts`</literal> in the format <literal>IP FQDN short-alias</literal>.</simpara>
+ </listitem>
+ <listitem>
+ <simpara>The value <literal>localhost</literal> means that no specific static host name for the target system is configured, and the actual host name of the installed system is configured during the processing of the network configuration, for example, by NetworkManager using DHCP or DNS.</simpara>
+@@ -483,7 +476,6 @@
+ </listitem>
+ <listitem>
+ <simpara>Select the interface type and click <guibutton>Add</guibutton>. An editing interface dialog box opens, allowing you to edit any available settings for your chosen interface type.</simpara>
+-<simpara>For more information see <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_a_standard_rhel_8_installation/index#editing-network-interface-configuration_network-hostname">Editing network interface</link>.</simpara>
+ </listitem>
+ <listitem>
+ <simpara>Click <guibutton>Save</guibutton> to confirm the virtual interface settings and return to the <emphasis role="strong">Network &amp; Host name</emphasis> window.</simpara>
+@@ -496,9 +488,6 @@
+ <section xml:id="editing-network-interface-configuration_network-hostname">
+ <title>Editing network interface configuration</title>
+ <simpara role="_abstract">This section contains information about the most important settings for a typical wired connection used during installation. Configuration of other types of networks is broadly similar, although the specific configuration parameters might be different.</simpara>
+-<note>
+-<simpara>On 64-bit IBM&#160;Z, you cannot add a new connection as the network subchannels need to be grouped and set online beforehand, and this is currently done only in the booting phase.</simpara>
+-</note>
+ <orderedlist numeration="arabic">
+ <title>Procedure</title>
+ <listitem>
+@@ -523,7 +512,7 @@
  <important>
  <itemizedlist>
  <listitem>
@@ -215,54 +313,29 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
  </listitem>
  <listitem>
  <simpara>You can enable or disable all users on the system from connecting to this network using the <emphasis role="strong">All users may connect to this network</emphasis> option. If you disable this option, only <literal role="systemitem">root</literal> will be able to connect to this network.</simpara>
-@@ -551,21 +551,13 @@
+@@ -595,377 +584,16 @@
  </listitem>
  </orderedlist>
  </section>
--<section xml:id="additional-resources_network-hostname">
+-<section xml:id="_additional_resources" role="_additional-resources">
 -<title>Additional resources</title>
 -<itemizedlist>
 -<listitem>
--<simpara>To learn more about network configuration after installation, see the <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_and_managing_networking/index/"><emphasis>Configuring and managing networking</emphasis></link> document.</simpara>
+-<simpara><link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_and_managing_networking/index/"><emphasis>Configuring and managing networking</emphasis></link></simpara>
 -</listitem>
 -</itemizedlist>
 -</section>
- </section>
- <section xml:id="security-policy_configuring-system-settings">
- <title>Configuring Security Policy</title>
--<simpara>This section contains information about the Red&#160;Hat Enterprise&#160;Linux 8.3 Beta security policy and how to configure it for use on your system.</simpara>
-+<simpara>This section contains information about the EuroLinux 8 security policy and how to configure it for use on your system.</simpara>
- <section xml:id="about-security-policy_security-policy">
- <title>About security policy</title>
--<simpara>The Red&#160;Hat Enterprise&#160;Linux security policy adheres to restrictions and recommendations (compliance policies) defined by the Security Content Automation Protocol (SCAP) standard. The packages are automatically installed. However, by default, no policies are enforced and therefore no checks are performed during or after installation unless specifically configured.</simpara>
-+<simpara>The EuroLinux security policy adheres to restrictions and recommendations (compliance policies) defined by the Security Content Automation Protocol (SCAP) standard. The packages are automatically installed. However, by default, no policies are enforced and therefore no checks are performed during or after installation unless specifically configured.</simpara>
- <simpara>Applying a security policy is not a mandatory feature of the installation program. If you apply a security policy to the system, it is installed using restrictions and recommendations defined in the profile that you selected. The <emphasis role="strong"><phrase role="package">openscap-scanner</phrase></emphasis> package is added to your package selection, providing a preinstalled tool for compliance and vulnerability scanning. After the installation finishes, the system is automatically scanned to verify compliance. The results of this scan are saved to the <literal>/root/openscap_data</literal> directory on the installed system. You can also load additional profiles from an HTTP, HTTPS, or FTP server.</simpara>
- </section>
- <section xml:id="configuring-security-policy_security-policy">
-@@ -619,366 +611,17 @@
- <listitem>
- <simpara><literal role="literal">scap-security-guide(8)</literal> - The manual page for the <literal role="literal">scap-security-guide</literal> project contains information about SCAP security profiles, including examples on how to utilize the provided benchmarks using the OpenSCAP utility.</simpara>
- </listitem>
--<listitem>
--<simpara>Red&#160;Hat Enterprise&#160;Linux security compliance information is available in the <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/security_hardening/index/"><emphasis>Security hardening</emphasis></link> document.</simpara>
--</listitem>
- </itemizedlist>
- </section>
- </section>
- </chapter>
- <chapter xml:id="configuring-software-settings_graphical-installation">
--<title>Configuring software options</title>
--<simpara>This section contains information about configuring Red Hat Content Delivery Network (CDN), your installation source and software selection settings, and activating a repository.</simpara>
--<section xml:id="connect-to-red-hat_configuring-software-settings">
+-</section>
+-<section xml:id="connect-to-red-hat_configuring-system-settings">
 -<title>Configuring Connect to Red Hat</title>
 -<simpara>The Red Hat Content Delivery Network (CDN), available from cdn.redhat.com, is a geographically distributed series of static web servers that contain content and errata that is consumed by systems. The content can be consumed directly, such as using a system registered to Red Hat Subscription Management. The CDN is protected by x.509 certificate authentication to ensure that only valid users have access. When a system is registered to Red Hat Subscription Management, the attached subscriptions govern which subset of the CDN the system can access.</simpara>
 -<simpara>Registering and installing RHEL from the CDN provides the following benefits:</simpara>
 -<itemizedlist>
 -<listitem>
--<simpara>The CDN installation method supports the Boot ISO and the Binary DVD ISO image files. However, the use of the smaller Boot ISO image file is recommended as it consumes less space than the larger Binary DVD ISO image file.</simpara>
+-<simpara>The CDN installation method supports the Boot ISO and the DVD ISO image files. However, the use of the smaller Boot ISO image file is recommended as it consumes less space than the larger DVD ISO image file.</simpara>
 -</listitem>
 -<listitem>
--<simpara>The CDN uses the latest packages resulting in a fully up-to-date system right after installation. There is no requirement to install package updates immediately after installation as is often the case when using the Binary DVD ISO image file.</simpara>
+-<simpara>The CDN uses the latest packages resulting in a fully up-to-date system right after installation. There is no requirement to install package updates immediately after installation as is often the case when using the DVD ISO image file.</simpara>
 -</listitem>
 -<listitem>
 -<simpara>Integrated support for connecting to Red Hat Insights and enabling System Purpose.</simpara>
@@ -270,7 +343,7 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
 -</itemizedlist>
 -<section xml:id="system_purposes-adoc_connect-to-red-hat">
 -<title>Introduction to System Purpose</title>
--<simpara>System Purpose is an optional but recommended feature of the Red&#160;Hat Enterprise&#160;Linux installation. You use System Purpose to record the intended use of a Red&#160;Hat Enterprise&#160;Linux 8 system, and ensure that the entitlement server auto-attaches the most appropriate subscription to your system.</simpara>
+-<simpara role="_abstract">System Purpose is an optional but recommended feature of the Red&#160;Hat Enterprise&#160;Linux installation. You use System Purpose to record the intended use of a Red&#160;Hat Enterprise&#160;Linux 8 system, and ensure that the entitlement server auto-attaches the most appropriate subscription to your system.</simpara>
 -<simpara>Benefits include:</simpara>
 -<itemizedlist>
 -<listitem>
@@ -289,13 +362,13 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
 -<simpara>During image creation</simpara>
 -</listitem>
 -<listitem>
--<simpara>During a GUI installation when using <emphasis role="strong">Connect to Red Hat</emphasis> to register your system and attach your Red Hat subscription</simpara>
+-<simpara>During a GUI installation when using the <emphasis role="strong">Connect to Red Hat</emphasis> screen to register your system and attach your Red Hat subscription</simpara>
 -</listitem>
 -<listitem>
 -<simpara>During a Kickstart installation when using Kickstart automation scripts</simpara>
 -</listitem>
 -<listitem>
--<simpara>After installation using the <emphasis role="strong">syspurpose</emphasis> command-line (CLI) tool</simpara>
+-<simpara>After installation using the <literal>subscription-manager syspurpose</literal> command-line (CLI) tool</simpara>
 -</listitem>
 -</itemizedlist>
 -<simpara>To record the intended purpose of your system, you can configure the following components of System Purpose. The selected values are used by the entitlement server upon registration to attach the most suitable subscription for your system.</simpara>
@@ -343,22 +416,22 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
 -</itemizedlist>
 -</listitem>
 -</itemizedlist>
--<itemizedlist>
+-<itemizedlist role="_additional-resources">
 -<title>Additional resources</title>
 -<listitem>
--<simpara>For more information about Image Builder, see the <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/composing_a_customized_rhel_system_image/index/"><emphasis>Composing a customized RHEL system image</emphasis></link> document.</simpara>
+-<simpara><link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/composing_a_customized_rhel_system_image/index/">Composing a customized RHEL system image</link></simpara>
 -</listitem>
 -<listitem>
--<simpara>For more information about Kickstart, see the <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_an_advanced_rhel_installation/index/"><emphasis>Performing an advanced RHEL installation</emphasis></link> document.</simpara>
+-<simpara><link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_an_advanced_rhel_8_installation/index/">Performing an advanced RHEL 8 installation</link></simpara>
 -</listitem>
 -<listitem>
--<simpara>For more information about Subscription Manager, see the <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_subscription_management/1/html-single/rhsm/index/"><emphasis>Using and Configuring Red Hat Subscription Manager</emphasis></link> document.</simpara>
+-<simpara><link xl:href="https://access.redhat.com/documentation/en-us/red_hat_subscription_management/1/html-single/rhsm/index/">Using and Configuring Red Hat Subscription Manager</link></simpara>
 -</listitem>
 -</itemizedlist>
 -</section>
 -<section xml:id="configuring-connect-to-redhat_connect-to-red-hat">
 -<title>Configuring Connect to Red Hat options</title>
--<simpara>Use the following procedure to configure the Connect to Red Hat options in the GUI.</simpara>
+-<simpara role="_abstract">Use the following procedure to configure the Connect to Red Hat options in the GUI.</simpara>
 -<note>
 -<simpara>You can register to the CDN using either your Red Hat account or your activation key details.</simpara>
 -</note>
@@ -381,7 +454,7 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
 -</orderedlist>
 -</listitem>
 -<listitem>
--<simpara>Select the <emphasis role="strong">Set System Purpose</emphasis> check box. System Purpose enables the entitlement server to determine and automatically attach the most appropriate subscription to satisfy the intended use of your RHEL 8 system.</simpara>
+-<simpara>Select the <emphasis role="strong">Set System Purpose</emphasis> check box. System Purpose enables the entitlement server to determine and automatically attach the most appropriate subscription to satisfy the intended use of Red&#160;Hat Enterprise&#160;Linux 8 system.</simpara>
 -<orderedlist numeration="loweralpha">
 -<listitem>
 -<simpara>Select the required <emphasis role="strong">Role</emphasis>, <emphasis role="strong">SLA</emphasis>, and <emphasis role="strong">Usage</emphasis> from the corresponding drop-down lists.</simpara>
@@ -401,11 +474,11 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
 -<simpara>Select the <emphasis role="strong">Use HTTP proxy</emphasis> check box if your network environment only allows external Internet access or access to content servers through an HTTP proxy. Clear the <emphasis role="strong">Use HTTP proxy</emphasis> check box if an HTTP proxy is not used.</simpara>
 -</listitem>
 -<listitem>
--<simpara>If you are running Satellite Server or performing internal testing, select the <emphasis role="strong">Custom server URL</emphasis> and  <emphasis role="strong">Custom base URL</emphasis> check boxes and enter the required details.</simpara>
+-<simpara>If you are running Satellite Server or performing internal testing, select the <emphasis role="strong">Custom Server URL</emphasis> and  <emphasis role="strong">Custom base URL</emphasis> check boxes and enter the required details.</simpara>
 -<important>
 -<itemizedlist>
 -<listitem>
--<simpara>The <emphasis role="strong">Custom server URL</emphasis> field does not require the HTTP protocol, for example <literal>nameofhost.com</literal>. However, the <emphasis role="strong">Custom base URL</emphasis> field requires the HTTP protocol.</simpara>
+-<simpara>The <emphasis role="strong">Custom Server URL</emphasis> field does not require the HTTP protocol, for example <literal>nameofhost.com</literal>. However, the <emphasis role="strong">Custom base URL</emphasis> field requires the HTTP protocol.</simpara>
 -</listitem>
 -<listitem>
 -<simpara>To change the <emphasis role="strong">Custom base URL</emphasis> after registration, you must unregister, provide the new details, and then re-register.</simpara>
@@ -433,12 +506,12 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
 -</section>
 -<section xml:id="how-the-default-installation-repo-works-in-cdn_connect-to-red-hat">
 -<title>Installation source repository after system registration</title>
--<simpara>The installation source repository used after system registration is dependent on how the system was booted.</simpara>
+-<simpara role="_abstract">The installation source repository used after system registration is dependent on how the system was booted.</simpara>
 -<variablelist>
 -<varlistentry>
--<term>System booted from the Boot ISO or the Binary DVD ISO image file</term>
+-<term>System booted from the Boot ISO or the DVD ISO image file</term>
 -<listitem>
--<simpara>If you booted the RHEL installation using either the <literal>Boot ISO</literal> or the <literal>Binary DVD ISO</literal> image file with the default boot parameters, the installation program automatically switches the installation source repository to the CDN after registration.</simpara>
+-<simpara>If you booted the RHEL installation using either the <literal>Boot ISO</literal> or the <literal>DVD ISO</literal> image file with the default boot parameters, the installation program automatically switches the installation source repository to the CDN after registration.</simpara>
 -</listitem>
 -</varlistentry>
 -<varlistentry>
@@ -461,14 +534,14 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
 -</section>
 -<section xml:id="verifying-registration-from-cdn-using-gui_connect-to-red-hat">
 -<title>Verifying your system registration from the CDN</title>
--<simpara>Use this procedure to verify that your system is registered to the CDN using the GUI.</simpara>
+-<simpara role="_abstract">Use this procedure to verify that your system is registered to the CDN using the GUI.</simpara>
 -<warning>
 -<simpara>You can only verify your registration from the CDN if you have <emphasis role="strong">not</emphasis> clicked the <emphasis role="strong">Begin Installation</emphasis> button from the <emphasis role="strong">Installation Summary</emphasis> window. Once the <emphasis role="strong">Begin Installation</emphasis> button is clicked, you cannot return to the Installation Summary window to verify your registration.</simpara>
 -</warning>
 -<itemizedlist>
 -<title>Prerequisite</title>
 -<listitem>
--<simpara>You have completed the registration process as documented in the <xref linkend="register-and-install-from-cdn-using-gui_register-and-install-from-cdn"/> and <emphasis>Registered</emphasis> is displayed under <emphasis role="strong">Connect to Red Hat</emphasis> on the <emphasis role="strong">Installation Summary</emphasis> window.</simpara>
+-<simpara>You have completed the registration process as documented in the <link linkend="register-and-install-from-cdn-using-gui_register-and-install-from-cdn">Register and install from CDN using GUI</link> and <emphasis>Registered</emphasis> is displayed under <emphasis role="strong">Connect to Red Hat</emphasis> on the <emphasis role="strong">Installation Summary</emphasis> window.</simpara>
 -</listitem>
 -</itemizedlist>
 -<orderedlist numeration="arabic">
@@ -500,7 +573,7 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
 -<varlistentry>
 -<term>Number of subscriptions</term>
 -<listitem>
--<simpara>The number of subscriptions attached are displayed.</simpara>
+-<simpara>The number of subscriptions attached are displayed. Note: In the simple content access mode, no subscription being listed is a valid behavior.</simpara>
 -</listitem>
 -</varlistentry>
 -</variablelist>
@@ -509,10 +582,16 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
 -<simpara>Verify that the registration summary matches the details that were entered.</simpara>
 -</listitem>
 -</orderedlist>
+-<itemizedlist role="_additional-resources">
+-<title>Additional resources</title>
+-<listitem>
+-<simpara><link xl:href="https://access.redhat.com/articles/simple-content-access">Simple Content Access</link></simpara>
+-</listitem>
+-</itemizedlist>
 -</section>
 -<section xml:id="unregistering-your-system-from-cdn-using-gui_connect-to-red-hat">
 -<title>Unregistering your system from the CDN</title>
--<simpara>Use this procedure to unregister your system from the CDN using the GUI.</simpara>
+-<simpara role="_abstract">Use this procedure to unregister your system from the CDN using the GUI.</simpara>
 -<warning>
 -<itemizedlist>
 -<listitem>
@@ -534,7 +613,7 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
 -<itemizedlist>
 -<title>Prerequisite</title>
 -<listitem>
--<simpara>You have completed the registration process as documented in the <xref linkend="register-and-install-from-cdn-using-gui_register-and-install-from-cdn"/> and <emphasis>Registered</emphasis> is displayed under <emphasis role="strong">Connect to Red Hat</emphasis> on the <emphasis role="strong">Installation Summary</emphasis> window.</simpara>
+-<simpara>You have completed the registration process as documented in the <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_a_standard_rhel_8_installation/index#register-and-install-from-cdn-using-gui_register-and-install-from-cdn">Registering and installing RHEL from the CDN</link> and <emphasis>Registered</emphasis> is displayed under <emphasis role="strong">Connect to Red Hat</emphasis> on the <emphasis role="strong">Installation Summary</emphasis> window.</simpara>
 -</listitem>
 -</itemizedlist>
 -<orderedlist numeration="arabic">
@@ -566,7 +645,7 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
 -<varlistentry>
 -<term>Number of subscriptions</term>
 -<listitem>
--<simpara>The number of subscriptions attached are displayed.</simpara>
+-<simpara>The number of subscriptions attached are displayed. Note: In the simple content access mode, no subscription being listed is a valid behavior.</simpara>
 -</listitem>
 -</varlistentry>
 -</variablelist>
@@ -584,10 +663,12 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
 -<note>
 -<simpara>After unregistering, it is possible to register your system again. Click <emphasis role="strong">Connect to Red Hat</emphasis>. The previously entered details are populated. Edit the original details, or update the fields based on the account, purpose, and connection. Click <guibutton>Register</guibutton> to complete.</simpara>
 -</note>
--<itemizedlist xml:id="related-information-connect-to-red-hat">
--<title>Related information</title>
+-</section>
+-<section xml:id="related-information-connect-to-red-hat" role="_additional-resources">
+-<title>Additional resources</title>
+-<itemizedlist>
 -<listitem>
--<simpara>For information about Red Hat Insights, see the <link xl:href="https://access.redhat.com/documentation/or-in/red_hat_insights/1.0/"><emphasis>Red Hat Insights product documentation</emphasis></link>.</simpara>
+-<simpara>For information about Red Hat Insights, see the <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_insights/"><emphasis>Red Hat Insights product documentation</emphasis></link>.</simpara>
 -</listitem>
 -<listitem>
 -<simpara>For information about Activation Keys, see the <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_subscription_management/1/html/using_red_hat_subscription_management/activation_keys_con"><emphasis>Understanding Activation Keys</emphasis></link> chapter of the <emphasis>Using Red Hat Subscription Management</emphasis> document.</simpara>
@@ -597,28 +678,64 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
 -</listitem>
 -</itemizedlist>
 -</section>
--</section>
-+<simpara>This section contains information about configuring your installation source, software selection settings and activating repositories.</simpara>
+ </section>
+ <section xml:id="security-policy_configuring-system-settings">
+ <title>Installing System Aligned with a Security Policy</title>
+-<simpara>This section contains information about applying Red&#160;Hat Enterprise&#160;Linux 8 security policy during installation and how to configure it for use on your system before the first boot.</simpara>
++<simpara>This section contains information about applying EuroLinux 8 security policy during installation and how to configure it for use on your system before the first boot.</simpara>
+ <section xml:id="about-security-policy_security-policy">
+ <title>About security policy</title>
+-<simpara role="_abstract">The Red&#160;Hat Enterprise&#160;Linux includes OpenSCAP suite to enable automated configuration of the system in alignment with a particular security policy. The policy is implemented using the Security Content Automation Protocol (SCAP) standard. The packages are available in the AppStream repository. However, by default, the installation and post-installation process does not enforce any policies and therefore does not involve any checks unless specifically configured.</simpara>
++<simpara role="_abstract">The EuroLinux includes OpenSCAP suite to enable automated configuration of the system in alignment with a particular security policy. The policy is implemented using the Security Content Automation Protocol (SCAP) standard. The packages are available in the AppStream repository. However, by default, the installation and post-installation process does not enforce any policies and therefore does not involve any checks unless specifically configured.</simpara>
+ <simpara>Applying a security policy is not a mandatory feature of the installation program. If you apply a security policy to the system, it is installed using restrictions and recommendations defined in the profile that you selected. The <literal role="package">openscap-scanner</literal> and <literal role="package">scap-security-guide</literal> packages are added to your package selection, providing a preinstalled tool for compliance and vulnerability scanning.</simpara>
+ <simpara>When you select a security policy, the Anaconda GUI installer requires the configuration to adhere to the policy&#8217;s requirements. There might be conflicting package selections, as well as separate partitions defined. Only after all the requirements are met, you can start the installation.</simpara>
+-<simpara>At the end of the installation process, the selected OPenSCAP security policy automatically hardens the system and scans it to verify compliance, saving the scan results to the <literal>/root/openscap_data</literal> directory on the installed system.</simpara>
++<simpara>At the end of the installation process, the selected OpenSCAP security policy automatically hardens the system and scans it to verify compliance, saving the scan results to the <literal>/root/openscap_data</literal> directory on the installed system.</simpara>
+ <note>
+ <simpara>By default, the installer uses the content of the <literal>scap-security-guide</literal> package bundled in the installation image. You can also load external content from an HTTP, HTTPS, or FTP server.</simpara>
+ </note>
+@@ -1018,9 +646,6 @@
+ <listitem>
+ <simpara><literal role="literal">scap-security-guide(8)</literal> - The manual page for the <literal role="literal">scap-security-guide</literal> project contains information about SCAP security profiles, including examples on how to utilize the provided benchmarks using the OpenSCAP utility.</simpara>
+ </listitem>
+-<listitem>
+-<simpara>Red&#160;Hat Enterprise&#160;Linux security compliance information is available in the <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/security_hardening/index/"><emphasis>Security hardening</emphasis></link> document.</simpara>
+-</listitem>
+ </itemizedlist>
+ </section>
+ </section>
+@@ -1030,17 +655,17 @@
+ <simpara>This section contains information about configuring your installation source and software selection settings, and activating a repository.</simpara>
  <section xml:id="configuring-installation-source_configuring-software-settings">
  <title>Configuring installation source</title>
--<simpara>Complete the steps in this procedure to configure an installation source from either auto-detected installation media, Red Hat CDN, or the network.</simpara>
-+<simpara>Complete the steps in this procedure to configure an installation source from either auto-detected installation media, EuroLinux CDN, or the network.</simpara>
+-<simpara role="_abstract">Complete the steps in this procedure to configure an installation source from either auto-detected installation media, Red Hat CDN, or the network.</simpara>
++<simpara role="_abstract">Complete the steps in this procedure to configure an installation source from either auto-detected installation media or the network.</simpara>
  <note>
 -<simpara>When the <emphasis role="strong">Installation Summary</emphasis> window first opens, the installation program attempts to configure an installation source based on the type of media that was used to boot the system. The full Red&#160;Hat Enterprise&#160;Linux Server DVD configures the source as local media.</simpara>
 +<simpara>When the <emphasis role="strong">Installation Summary</emphasis> window first opens, the installation program attempts to configure an installation source based on the type of media that was used to boot the system. The full EuroLinux Server DVD configures the source as local media.</simpara>
  </note>
  <itemizedlist>
  <title>Prerequisites</title>
-@@ -1011,7 +654,7 @@
+ <listitem>
+-<simpara>You have downloaded the full installation image. <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_a_standard_rhel_8_installation/index#downloading-beta-installation-images_installing-RHEL">Downloading a RHEL installation ISO image</link></simpara>
++<simpara>You have downloaded the full installation image.</simpara>
+ </listitem>
+ <listitem>
+-<simpara>You have created a bootable physical media. <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_a_standard_rhel_8_installation/index#making-an-installation-cd-or-dvd_assembly_creating-a-bootable-installation-medium">Creating a bootable CD or DVD</link></simpara>
++<simpara>You have created a bootable physical media.</simpara>
+ </listitem>
+ <listitem>
+ <simpara>The <emphasis role="strong">Installation Summary</emphasis> window is open.</simpara>
+@@ -1065,7 +690,7 @@
  <simpara><emphasis role="strong">No additional configuration is necessary as the BaseOS and AppStream repositories are installed as part of the full installation image.</emphasis></simpara>
  </listitem>
  <listitem>
--<simpara><emphasis role="strong">Do not disable the AppStream repository check box if you want a full Red&#160;Hat Enterprise&#160;Linux&#160;8 installation.</emphasis></simpara>
-+<simpara><emphasis role="strong">Do not disable the AppStream repository check box if you want a full EuroLinux&#160;8 installation.</emphasis></simpara>
+-<simpara><emphasis role="strong">Do not disable the AppStream repository check box if you want a full Red&#160;Hat Enterprise&#160;Linux 8 installation.</emphasis></simpara>
++<simpara><emphasis role="strong">Do not disable the AppStream repository check box if you want a full EuroLinux 8 installation.</emphasis></simpara>
  </listitem>
  </itemizedlist>
  </important>
-@@ -1019,9 +662,6 @@
+@@ -1073,17 +698,14 @@
  </orderedlist>
  </listitem>
  <listitem>
@@ -628,13 +745,24 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
  <simpara>Optional: Select the <emphasis role="strong">On the network</emphasis> option to download and install packages from a network location instead of local media.</simpara>
  <note>
  <itemizedlist>
-@@ -1102,15 +742,14 @@
+ <listitem>
+-<simpara>If you do not want to download and install additional repositories from a network location, proceed to <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_a_standard_rhel_8_installation/index#configuring-software-selection_configuring-software-settings">Configuring software selection</link>.</simpara>
++<simpara>If you do not want to download and install additional repositories from a network location, proceed to Configuring software selection.</simpara>
+ </listitem>
+ <listitem>
+-<simpara>This option is available only when a network connection is active. See <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_a_standard_rhel_8_installation/index#network-hostname_configuring-system-settings">Configuring network and host name options</link> for information about how to configure network connections in the GUI.</simpara>
++<simpara>This option is available only when a network connection is active.</simpara>
+ </listitem>
+ </itemizedlist>
+ </note>
+@@ -1153,15 +775,15 @@
  </listitem>
  </itemizedlist>
  <simpara>Use a predefined environment and additional software to customize your system. However, in a standard installation, you cannot select individual packages to install. To view the packages contained in a specific environment, see the <literal role="filename"><emphasis>repository</emphasis>/repodata/*-comps-<emphasis>repository</emphasis>.<emphasis>architecture</emphasis>.xml</literal> file on your installation source media (DVD, CD, USB). The XML file contains details of the packages installed as part of a base environment. Available environments are marked by the <literal>&lt;environment&gt;</literal> tag, and additional software packages are marked by the <literal>&lt;group&gt;</literal> tag.</simpara>
--<simpara>If you are unsure about which packages to install, Red Hat recommends that you select the <emphasis role="strong">Minimal Install</emphasis> base environment. Minimal install installs a basic version of Red&#160;Hat Enterprise&#160;Linux with only a minimal amount of additional software. After the system finishes installing and you log in for the first time, you can use the <emphasis role="strong">Yum package manager</emphasis> to install additional software.
--For more information about Yum package manager, see the <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index/"><emphasis>Configuring basic system settings</emphasis></link> document.</simpara>
-+<simpara>If you are unsure about which packages to install, EuroLinux recommends that you select the <emphasis role="strong">Minimal Install</emphasis> base environment. Minimal install installs a basic version of EuroLinux with only a minimal amount of additional software. After the system finishes installing and you log in for the first time, you can use the <emphasis role="strong">Yum package manager</emphasis> to install additional software.</simpara>
+-<simpara>If you are unsure about which packages to install, Red Hat recommends that you select the <emphasis role="strong">Minimal Install</emphasis> base environment. Minimal install installs a basic version of Red&#160;Hat Enterprise&#160;Linux with only a minimal amount of additional software. After the system finishes installing and you log in for the first time, you can use the <emphasis role="strong">YUM package manager</emphasis> to install additional software.
+-For more information about YUM package manager, see the <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index/"><emphasis>Configuring basic system settings</emphasis></link> document.</simpara>
++<simpara>If you are unsure about which packages to install, EuroLinux recommends that you select the <emphasis role="strong">Minimal Install</emphasis> base environment. Minimal install installs a basic version of EuroLinux with only a minimal amount of additional software. After the system finishes installing and you log in for the first time, you can use the <emphasis role="strong">YUM package manager</emphasis> to install additional software.
++</simpara>
  <note>
  <itemizedlist>
  <listitem>
@@ -642,30 +770,34 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
 +<simpara>The <literal>yum group list</literal> command lists all package groups from yum repositories.</simpara>
  </listitem>
  <listitem>
--<simpara>If you need to control which packages are installed, you can use a Kickstart file and define the packages in the <literal>%packages</literal> section. See the <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_an_advanced_rhel_installation/index/"><emphasis>Performing an advanced RHEL installation</emphasis></link> document for information about installing Red&#160;Hat Enterprise&#160;Linux using Kickstart.</simpara>
+-<simpara>If you need to control which packages are installed, you can use a Kickstart file and define the packages in the <literal>%packages</literal> section. See the <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_an_advanced_rhel_8_installation/index/"><emphasis>Performing an advanced RHEL 8 installation</emphasis></link> document for information about installing Red&#160;Hat Enterprise&#160;Linux using Kickstart.</simpara>
 +<simpara>If you need to control which packages are installed, you can use a Kickstart file and define the packages in the <literal>%packages</literal> section.</simpara>
  </listitem>
  </itemizedlist>
  </note>
-@@ -1148,7 +787,7 @@
+@@ -1199,11 +821,7 @@
  </chapter>
  <chapter xml:id="storage-devices_graphical-installation">
  <title>Configuring storage devices</title>
 -<simpara>You can install Red&#160;Hat Enterprise&#160;Linux on a large variety of storage devices. You can configure basic, locally accessible, storage devices in the <emphasis role="strong">Installation Destination</emphasis> window. Basic storage devices directly connected to the local system, such as hard disk drives and solid-state drives, are displayed in the <emphasis role="strong">Local Standard Disks</emphasis> section of the window.
-+<simpara>You can install EuroLinux on a large variety of storage devices. You can configure basic, locally accessible, storage devices in the <emphasis role="strong">Installation Destination</emphasis> window. Basic storage devices directly connected to the local system, such as hard disk drives and solid-state drives, are displayed in the <emphasis role="strong">Local Standard Disks</emphasis> section of the window.
- On IBM Z, this section contains activated Direct Access Storage Devices (DASDs).</simpara>
- <warning>
- <simpara>A known issue prevents DASDs configured as HyperPAV aliases from being automatically attached to the system after the installation is complete. These storage devices are available during the installation, but are not immediately accessible after you finish installing and reboot. To attach HyperPAV alias devices, add them manually to the <literal>/etc/dasd.conf</literal> configuration file of the system.</simpara>
-@@ -1182,7 +821,7 @@
+-On 64-bit IBM Z, this section contains activated Direct Access Storage Devices (DASDs).</simpara>
+-<warning>
+-<simpara>A known issue prevents DASDs configured as HyperPAV aliases from being automatically attached to the system after the installation is complete. These storage devices are available during the installation, but are not immediately accessible after you finish installing and reboot. To attach HyperPAV alias devices, add them manually to the <literal>/etc/dasd.conf</literal> configuration file of the system.</simpara>
+-</warning>
++<simpara>You can install EuroLinux on a large variety of storage devices. You can configure basic, locally accessible, storage devices in the <emphasis role="strong">Installation Destination</emphasis> window. Basic storage devices directly connected to the local system, such as hard disk drives and solid-state drives, are displayed in the <emphasis role="strong">Local Standard Disks</emphasis> section of the window.</simpara>
+ <section xml:id="storage-devices-selection_storage-devices">
+ <title>Storage device selection</title>
+ <simpara role="_abstract">The storage device selection window lists all storage devices that the installation program can access. Depending on your system and available hardware, some tabs might not be displayed.
+@@ -1233,7 +851,7 @@
  <varlistentry>
  <term>NVDIMM Devices</term>
  <listitem>
--<simpara>Under specific circumstances, Red&#160;Hat Enterprise&#160;Linux 8.3 Beta can boot and run from (NVDIMM) devices in sector mode on the Intel 64 and AMD64 architectures.</simpara>
-+<simpara>Under specific circumstances, EuroLinux 8.3 can boot and run from (NVDIMM) devices in sector mode on the Intel 64 and AMD64 architectures.</simpara>
+-<simpara>Under specific circumstances, Red&#160;Hat Enterprise&#160;Linux 8 can boot and run from (NVDIMM) devices in sector mode on the Intel 64 and AMD64 architectures.</simpara>
++<simpara>Under specific circumstances, EuroLinux 8 can boot and run from (NVDIMM) devices in sector mode on the Intel 64 and AMD64 architectures.</simpara>
  </listitem>
  </varlistentry>
  <varlistentry>
-@@ -1220,7 +859,7 @@
+@@ -1271,7 +889,7 @@
  </listitem>
  <listitem>
  <simpara>Select the check box to enable the device that you require during the installation process.</simpara>
@@ -674,47 +806,140 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
  <note>
  <itemizedlist>
  <listitem>
-@@ -1472,10 +1111,10 @@
+@@ -1432,106 +1050,12 @@
+ </listitem>
+ </orderedlist>
  </section>
+-<section xml:id="configuring-dasd-storage-devices_storage-devices">
+-<title>Configuring DASD storage devices</title>
+-<simpara role="_abstract">Complete the following steps to configure DASD storage devices.</simpara>
+-<formalpara>
+-<title>Prerequisite</title>
+-<para>The <emphasis role="strong">Installation Summary</emphasis> window is open.</para>
+-</formalpara>
+-<orderedlist numeration="arabic">
+-<title>Procedure</title>
+-<listitem>
+-<simpara>From the <emphasis role="strong">Installation Summary</emphasis> window, click <emphasis role="strong">Installation Destination</emphasis>. The <emphasis role="strong">Installation Destination</emphasis> window opens, listing all available drives.</simpara>
+-</listitem>
+-<listitem>
+-<simpara>Under the <emphasis role="strong">Specialized &amp; Network Disks</emphasis> section, click <guibutton>Add a disk&#8230;</guibutton>. The storage devices selection window opens.</simpara>
+-</listitem>
+-<listitem>
+-<simpara>Click <guibutton>Add DASD</guibutton>. The <emphasis role="strong">Add DASD Storage Target</emphasis> dialog box opens and prompts you to specify a device number, such as <emphasis role="strong">0.0.0204</emphasis>, and attach additional DASDs that were not detected when the installation started.</simpara>
+-</listitem>
+-<listitem>
+-<simpara>Type the device number of the DASD that you want to attach in the <emphasis role="strong">Device number</emphasis> field.</simpara>
+-</listitem>
+-<listitem>
+-<simpara>Click <guibutton>Start Discovery</guibutton>.</simpara>
+-</listitem>
+-</orderedlist>
+-<note>
+-<itemizedlist>
+-<listitem>
+-<simpara>If a DASD with the specified device number is found and if it is not already attached, the dialog box closes and the newly-discovered drives appear in the list of drives. You can then select the check boxes for the required devices and click <guibutton>Done</guibutton>. The new DASDs are available for selection, marked as <literal>DASD device 0.0.<emphasis>xxxx</emphasis></literal> in the <emphasis role="strong">Local Standard Disks</emphasis> section of the <emphasis role="strong">Installation Destination</emphasis> window.</simpara>
+-</listitem>
+-<listitem>
+-<simpara>If you entered an invalid device number, or if the DASD with the specified device number is already attached to the system, an error message appears in the dialog box, explaining the error and prompting you to try again with a different device number.</simpara>
+-</listitem>
+-</itemizedlist>
+-</note>
+-</section>
+-<section xml:id="configuring-fcp-devices_storage-devices">
+-<title>Configuring FCP devices</title>
+-<simpara role="_abstract">FCP devices enable 64-bit IBM Z to use SCSI devices rather than, or in addition to, Direct Access Storage Device (DASD) devices. FCP devices provide a switched fabric topology that enables 64-bit IBM Z systems to use SCSI LUNs as disk devices in addition to traditional DASD devices.</simpara>
+-<itemizedlist>
+-<title>Prerequisites</title>
+-<listitem>
+-<simpara>The <emphasis role="strong">Installation Summary</emphasis> window is open.</simpara>
+-</listitem>
+-<listitem>
+-<simpara>For an FCP-only installation, remove the <literal>DASD=</literal> option from the CMS configuration file or the <literal>rd.dasd=</literal> option from the parameter file to indicate that no DASD is present.</simpara>
+-</listitem>
+-</itemizedlist>
+-<orderedlist numeration="arabic">
+-<title>Procedure</title>
+-<listitem>
+-<simpara>From the <emphasis role="strong">Installation Summary</emphasis> window, click <emphasis role="strong">Installation Destination</emphasis>. The <emphasis role="strong">Installation Destination</emphasis> window opens, listing all available drives.</simpara>
+-</listitem>
+-<listitem>
+-<simpara>Under the <emphasis role="strong">Specialized &amp; Network Disks</emphasis> section, click <guibutton>Add a disk&#8230;</guibutton>. The storage devices selection window opens.</simpara>
+-</listitem>
+-<listitem>
+-<simpara>Click <guibutton>Add ZFCP LUN</guibutton>. The <emphasis role="strong">Add zFCP Storage Target</emphasis> dialog box opens allowing you to add a FCP (Fibre Channel Protocol) storage device.</simpara>
+-<simpara>64-bit IBM Z requires that you enter any FCP device manually so that the installation program can activate FCP LUNs. You can enter FCP devices either in the graphical installation, or as a unique parameter entry in the parameter or CMS configuration file. The values that you enter must be unique to each site that you configure.</simpara>
+-</listitem>
+-<listitem>
+-<simpara>Type the 4 digit hexadecimal device number in the <emphasis role="strong">Device number</emphasis> field.</simpara>
+-</listitem>
+-<listitem>
+-<simpara>When installing RHEL-8.6 or older releases or if the <literal>zFCP</literal> device is not configured in NPIV mode, or when <literal>auto LUN</literal> scanning is disabled by the <literal>zfcp.allow_lun_scan=0</literal> kernel module parameter, provide the following values:</simpara>
+-<orderedlist numeration="loweralpha">
+-<listitem>
+-<simpara>Type the 16 digit hexadecimal World Wide Port Number (WWPN) in the <emphasis role="strong">WWPN</emphasis> field.</simpara>
+-</listitem>
+-<listitem>
+-<simpara>Type the 16 digit hexadecimal FCP LUN identifier in the <emphasis role="strong">LUN</emphasis> field.</simpara>
+-</listitem>
+-</orderedlist>
+-</listitem>
+-<listitem>
+-<simpara>Click <guibutton>Start Discovery</guibutton> to connect to the FCP device.</simpara>
+-</listitem>
+-</orderedlist>
+-<simpara>The newly-added devices are displayed in the <emphasis role="strong">System z Devices</emphasis> tab of the <emphasis role="strong">Installation Destination</emphasis> window.</simpara>
+-<note>
+-<itemizedlist>
+-<listitem>
+-<simpara>Interactive creation of an FCP device is only possible in graphical mode. It is not possible to configure an FCP device interactively in text mode installation.</simpara>
+-</listitem>
+-<listitem>
+-<simpara>Use only lower-case letters in hex values. If you enter an incorrect value and click <guibutton>Start Discovery</guibutton>, the installation program displays a warning. You can edit the configuration information and retry the discovery attempt.</simpara>
+-</listitem>
+-<listitem>
+-<simpara>For more information about these values, consult the hardware documentation and check with your system administrator.</simpara>
+-</listitem>
+-</itemizedlist>
+-</note>
+-</section>
+-</section>
  <section xml:id="installing-to-a-nvdimm-device_storage-devices">
  <title>Installing to an NVDIMM device</title>
--<simpara>Non-Volatile Dual In-line Memory Module (NVDIMM) devices combine the performance of RAM with disk-like data persistence when no power is supplied. Under specific circumstances, Red&#160;Hat Enterprise&#160;Linux 8.3 Beta can boot and run from NVDIMM devices.</simpara>
+-<simpara>Non-Volatile Dual In-line Memory Module (NVDIMM) devices combine the performance of RAM with disk-like data persistence when no power is supplied. Under specific circumstances, Red&#160;Hat Enterprise&#160;Linux 8 can boot and run from NVDIMM devices.</simpara>
 +<simpara>Non-Volatile Dual In-line Memory Module (NVDIMM) devices combine the performance of RAM with disk-like data persistence when no power is supplied. Under specific circumstances, EuroLinux 8 can boot and run from NVDIMM devices.</simpara>
  <section xml:id="criteria-for-using-an-nvdimm-device-as-an-installation-target_installing-to-a-nvdimm-device">
  <title>Criteria for using an NVDIMM device as an installation target</title>
--<simpara>You can install Red&#160;Hat Enterprise&#160;Linux&#160;8 to Non-Volatile Dual In-line Memory Module (NVDIMM) devices in sector mode on the Intel 64 and AMD64 architectures, supported by the <emphasis role="strong">nd_pmem</emphasis> driver.</simpara>
-+<simpara>You can install EuroLinux 8 to Non-Volatile Dual In-line Memory Module (NVDIMM) devices in sector mode on the Intel 64 and AMD64 architectures, supported by the <emphasis role="strong">nd_pmem</emphasis> driver.</simpara>
+-<simpara role="_abstract">You can install Red&#160;Hat Enterprise&#160;Linux 8 to Non-Volatile Dual In-line Memory Module (NVDIMM) devices in sector mode on the Intel 64 and AMD64 architectures, supported by the <emphasis role="strong">nd_pmem</emphasis> driver.</simpara>
++<simpara role="_abstract">You can install EuroLinux 8 to Non-Volatile Dual In-line Memory Module (NVDIMM) devices in sector mode on the Intel 64 and AMD64 architectures, supported by the <emphasis role="strong">nd_pmem</emphasis> driver.</simpara>
  <formalpara>
  <title>Conditions for using an NVDIMM device as storage</title>
  <para>To use an NVDIMM device as storage, the following conditions must be satisfied:</para>
-@@ -1513,7 +1152,7 @@
+@@ -1569,7 +1093,7 @@
  </section>
  <section xml:id="configuring-an-nvdimm-device-using-anaconda_installing-to-a-nvdimm-device">
  <title>Configuring an NVDIMM device using the graphical installation mode</title>
--<simpara>A Non-Volatile Dual In-line Memory Module (NVDIMM) device must be properly configured for use by Red&#160;Hat Enterprise&#160;Linux 8.3 Beta using the graphical installation.</simpara>
-+<simpara>A Non-Volatile Dual In-line Memory Module (NVDIMM) device must be properly configured for use by EuroLinux 8 using the graphical installation.</simpara>
+-<simpara role="_abstract">A Non-Volatile Dual In-line Memory Module (NVDIMM) device must be properly configured for use by Red&#160;Hat Enterprise&#160;Linux 8 using the graphical installation.</simpara>
++<simpara role="_abstract">A Non-Volatile Dual In-line Memory Module (NVDIMM) device must be properly configured for use by EuroLinux 8 using the graphical installation.</simpara>
  <warning>
  <simpara>Reconfiguration of a NVDIMM device process destroys any data stored on the device.</simpara>
  </warning>
-@@ -1568,13 +1207,13 @@
+@@ -1624,11 +1148,11 @@
  </chapter>
  <chapter xml:id="manual-partitioning_graphical-installation">
  <title>Configuring manual partitioning</title>
 -<simpara>You can use manual partitioning to configure your disk partitions and mount points and define the file system that Red&#160;Hat Enterprise&#160;Linux is installed on.</simpara>
 +<simpara>You can use manual partitioning to configure your disk partitions and mount points and define the file system that EuroLinux is installed on.</simpara>
  <note>
--<simpara>Before installation, you should consider whether you want to use partitioned or unpartitioned disk devices. For more information, see the Knowledgebase article at <link xl:href="https://access.redhat.com/solutions/163853">https://access.redhat.com/solutions/163853</link>.</simpara>
+-<simpara>Before installation, you should consider whether you want to use partitioned or unpartitioned disk devices. For more information on the advantages and disadvantages to using partitioning on LUNs, either directly or with LVM, see the article at <link xl:href="https://access.redhat.com/solutions/163853">https://access.redhat.com/solutions/163853</link>.</simpara>
 +<simpara>Before installation, you should consider whether you want to use partitioned or unpartitioned disk devices.</simpara>
  </note>
--<simpara>An installation of Red&#160;Hat Enterprise&#160;Linux requires a minimum of one partition but Red&#160;Hat recommends using at least the following partitions or volumes: <literal>PReP</literal>, <literal>/</literal>, <literal>/home</literal>, <literal>/boot</literal>, and <literal>swap</literal>. You can also create additional partitions and volumes as you require.</simpara>
-+<simpara>An installation of EuroLinux requires a minimum of one partition but we recommends using at least the following partitions or volumes: <literal>PReP</literal>, <literal>/</literal>, <literal>/home</literal>, <literal>/boot</literal>, and <literal>swap</literal>. You can also create additional partitions and volumes as you require.</simpara>
- <note>
--<simpara>An installation of Red&#160;Hat Enterprise&#160;Linux on IBM Power Systems servers requires a <literal>PReP</literal> boot partition.</simpara>
-+<simpara>An installation of EuroLinux on IBM Power Systems servers requires a <literal>PReP</literal> boot partition.</simpara>
- </note>
+-<simpara>An installation of Red&#160;Hat Enterprise&#160;Linux requires a minimum of one partition but Red&#160;Hat recommends using at least the following partitions or volumes: <literal>/</literal>, <literal>/home</literal>, <literal>/boot</literal>, and <literal>swap</literal>. You can also create additional partitions and volumes as you require.</simpara>
++<simpara>An installation of EuroLinux requires a minimum of one partition but EuroLinux recommends using at least the following partitions or volumes: <literal>/</literal>, <literal>/home</literal>, <literal>/boot</literal>, and <literal>swap</literal>. You can also create additional partitions and volumes as you require.</simpara>
  <warning>
  <simpara>To prevent data loss it is recommended that you back up your data before proceeding. If you are upgrading or creating a dual-boot system, you should back up any data you want to keep on your storage devices.</simpara>
-@@ -1638,7 +1277,7 @@
+ </warning>
+@@ -1691,7 +1215,7 @@
  <simpara>The dialog has a check box that you can use to remove all other partitions used by the system to which the deleted partition belongs.</simpara>
  </listitem>
  <listitem>
@@ -723,27 +948,27 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
  <simpara>A <literal>/boot</literal> partition, a <literal>/</literal> (root) volume, and a <literal>swap</literal> volume proportionate to the size of the available storage are created and listed in the left pane. These are the recommended file systems for a typical installation, but you can add additional file systems and mount points.</simpara>
  </listitem>
  </itemizedlist>
-@@ -1693,7 +1332,7 @@
+@@ -1746,7 +1270,7 @@
  <note>
  <itemizedlist>
  <listitem>
--<simpara>Btfrs support has been removed in Red&#160;Hat Enterprise&#160;Linux 8.3 Beta.</simpara>
-+<simpara>Btfrs support has been removed in EuroLinux 8.3.</simpara>
+-<simpara>Btfrs support has been removed in Red&#160;Hat Enterprise&#160;Linux 8.</simpara>
++<simpara>Btfrs support has been removed in EuroLinux 8.</simpara>
  </listitem>
  <listitem>
  <simpara>The <literal>/boot</literal> partition is always located on a standard partition, regardless of the value selected.</simpara>
-@@ -1804,23 +1443,23 @@
+@@ -1848,23 +1372,23 @@
  </section>
  <section xml:id="preserving-the-home-directory_manual-partitioning">
  <title>Preserving the /home directory</title>
--<simpara>In a RHEL 8 graphical installation, you can preserve the <literal role="filename">/home</literal> directory that was used on your RHEL 7 system.</simpara>
-+<simpara>In a EuroLinux 8 graphical installation, you can preserve the <literal role="filename">/home</literal> directory that was used on your EuroLinux or other Enterprise Linux 7 (including EuroLinux 7, Red Hat Enterprise Linux 7, Oracle Linux 7, CentOS 7, Scientific Linux 7) system.</simpara>
+-<simpara role="_abstract">In a Red&#160;Hat Enterprise&#160;Linux 8 graphical installation, you can preserve the <literal role="filename">/home</literal> directory that was used on your RHEL 7 system.</simpara>
++<simpara role="_abstract">In a EuroLinux 8 graphical installation, you can preserve the <literal role="filename">/home</literal> directory that was used on your EuroLinux 7 system.</simpara>
  <warning>
 -<simpara>Preserving <literal role="filename">/home</literal> is only possible if the <literal role="filename">/home</literal> directory is located on a separate <literal>/home</literal> partition on your RHEL 7 system.</simpara>
-+<simpara>Preserving <literal role="filename">/home</literal> is only possible if the <literal role="filename">/home</literal> directory is located on a separate <literal>/home</literal> partition on your Enterprise Linux 7 system.</simpara>
++<simpara>Preserving <literal role="filename">/home</literal> is only possible if the <literal role="filename">/home</literal> directory is located on a separate <literal>/home</literal> partition on your EuroLinux 7 system.</simpara>
  </warning>
--<simpara>Preserving the <literal role="filename">/home</literal> directory that includes various configuration settings, makes it possible that the GNOME Shell environment on the new RHEL 8 system is set in the same way as it was on your RHEL 7 system.
--Note that this applies only for users on RHEL 8 with the same user name and ID as on the previous RHEL 7 system.</simpara>
+-<simpara>Preserving the <literal role="filename">/home</literal> directory that includes various configuration settings, makes it possible that the GNOME Shell environment on the new Red&#160;Hat Enterprise&#160;Linux 8 system is set in the same way as it was on your RHEL 7 system.
+-Note that this applies only for users on Red&#160;Hat Enterprise&#160;Linux 8 with the same user name and ID as on the previous RHEL 7 system.</simpara>
 -<simpara>Complete this procedure to preserve the <literal role="filename">/home</literal> directory from your RHEL 7 system.</simpara>
 +<simpara>Preserving the <literal role="filename">/home</literal> directory that includes various configuration settings, makes it possible that the GNOME Shell environment on the new EuroLinux 8 system is set in the same way as it was on your EuroLinux 7 system.
 +Note that this applies only for users on EuroLinux 8 with the same user name and ID as on the previous EuroLinux 7 system.</simpara>
@@ -759,62 +984,99 @@ diff -uNr anaconda-user-help-8.3.3/rhel/en-US/anaconda-help.xml anaconda-user-he
 +<simpara>The <literal role="filename">/home</literal> directory is located on a separate <literal>/home</literal> partition on your EuroLinux 7 system.</simpara>
  </listitem>
  <listitem>
--<simpara>The RHEL 8 <literal>Installation Summary</literal> window is currently displayed.</simpara>
+-<simpara>The Red&#160;Hat Enterprise&#160;Linux 8 <literal>Installation Summary</literal> window is currently displayed.</simpara>
 +<simpara>The EuroLinux 8 <literal>Installation Summary</literal> window is currently displayed.</simpara>
  </listitem>
  </itemizedlist>
  <orderedlist numeration="arabic">
-@@ -1847,7 +1486,7 @@
- </figure>
+@@ -1882,7 +1406,7 @@
+ <simpara>Choose the <literal>/home</literal> partition, fill in <literal>/home</literal> under <literal>Mount Point:</literal> and clear the <emphasis role="strong">Reformat</emphasis> check box.</simpara>
  </listitem>
  <listitem>
--<simpara>Optional: You can also customize various aspects of the <literal>/home</literal> partition required for your RHEL 8 system as described in <xref linkend="customizing-a-partition-or-volume_manual-partitioning"/>. However, to preserve <literal>/home</literal> from your RHEL 7 system, it is necessary to clear the <emphasis role="strong">Reformat</emphasis> check box.</simpara>
-+<simpara>Optional: You can also customize various aspects of the <literal>/home</literal> partition required for your EuroLinux 8 system as described in <xref linkend="customizing-a-partition-or-volume_manual-partitioning"/>. However, to preserve <literal>/home</literal> from your EuroLinux or other Enterprise Linux 7 system, it is necessary to clear the <emphasis role="strong">Reformat</emphasis> check box.</simpara>
+-<simpara>Optional: You can also customize various aspects of the <literal>/home</literal> partition required for your Red&#160;Hat Enterprise&#160;Linux 8 system as described in <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_a_standard_rhel_8_installation/index#customizing-a-partition-or-volume_manual-partitioning">Customizing a mount point file system</link>. However, to preserve <literal>/home</literal> from your RHEL 7 system, it is necessary to clear the <emphasis role="strong">Reformat</emphasis> check box.</simpara>
++<simpara>Optional: You can also customize various aspects of the <literal>/home</literal> partition required for your EuroLinux 8 system. However, to preserve <literal>/home</literal> from your EuroLinux 7 system, it is necessary to clear the <emphasis role="strong">Reformat</emphasis> check box.</simpara>
  </listitem>
  <listitem>
  <simpara>After you customized all partitions according to your requirements, click <guibutton>Done</guibutton>. The <emphasis role="strong">Summary of changes</emphasis> dialog box opens.</simpara>
-@@ -1925,7 +1564,7 @@
+@@ -1899,9 +1423,6 @@
+ <title>Creating a software RAID during the installation</title>
+ <simpara>Redundant Arrays of Independent Disks (RAID) devices are constructed from multiple storage devices that are arranged to provide increased performance and, in some configurations, greater fault tolerance.</simpara>
+ <simpara>A RAID device is created in one step and disks are added or removed as necessary. You can configure one RAID partition for each physical disk in your system, so that the number of disks available to the installation program determines the levels of RAID device available. For example, if your system has two hard drives, you cannot create a RAID 10 device, as it requires a minimum of three separate disks.</simpara>
+-<note>
+-<simpara>On 64-bit IBM Z, the storage subsystem uses RAID transparently. You do not have to configure software RAID manually.</simpara>
+-</note>
+ <itemizedlist>
+ <title>Prerequisites</title>
+ <listitem>
+@@ -1941,12 +1462,6 @@
+ <simpara>Click <guibutton>Done</guibutton> to apply the settings to return to the <emphasis role="strong">Installation Summary</emphasis> window.</simpara>
+ </listitem>
+ </orderedlist>
+-<itemizedlist role="_additional-resources">
+-<title>Additional resources</title>
+-<listitem>
+-<simpara><link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_logical_volumes/assembly_configure-mange-raid-configuring-and-managing-logical-volumes#creating-a-raid-lv-with-dm-integrity_configuring-raid-logical-volumes">Creating a RAID LV with DM integrity</link></simpara>
+-</listitem>
+-</itemizedlist>
+ </section>
+ <section xml:id="creating-lvm-logical-volume_manual-partitioning">
+ <title>Creating an LVM logical volume</title>
+@@ -1965,16 +1480,10 @@
  <listitem>
  <simpara>Click the <emphasis role="strong">Device Type</emphasis> drop-down menu and select <literal>LVM</literal>. The <emphasis role="strong">Volume Group</emphasis> drop-down menu is displayed with the newly-created volume group name.</simpara>
  <note>
--<simpara>You cannot specify the size of the volume group&#8217;s physical extents in the configuration dialog. The size is always set to the default value of 4 MiB. If you want to create a volume group with different physical extents, you must create it manually by switching to an interactive shell and using the <literal role="command">vgcreate</literal> command, or use a Kickstart file with the <literal role="command">volgroup --pesize=<emphasis>size</emphasis></literal> command. See the <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_an_advanced_rhel_installation/index/"><emphasis>Performing an advanced RHEL installation</emphasis></link> document for more information about Kickstart.</simpara>
+-<simpara>You cannot specify the size of the volume group&#8217;s physical extents in the configuration dialog. The size is always set to the default value of 4 MiB. If you want to create a volume group with different physical extents, you must create it manually by switching to an interactive shell and using the <literal role="command">vgcreate</literal> command, or use a Kickstart file with the <literal role="command">volgroup --pesize=<emphasis>size</emphasis></literal> command. See the <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_an_advanced_rhel_8_installation/index/"><emphasis>Performing an advanced RHEL 8 installation</emphasis></link> document for more information about Kickstart.</simpara>
 +<simpara>You cannot specify the size of the volume group&#8217;s physical extents in the configuration dialog. The size is always set to the default value of 4 MiB. If you want to create a volume group with different physical extents, you must create it manually by switching to an interactive shell and using the <literal role="command">vgcreate</literal> command, or use a Kickstart file with the <literal role="command">volgroup --pesize=<emphasis>size</emphasis></literal> command.</simpara>
  </note>
  </listitem>
  </orderedlist>
-@@ -1954,7 +1593,7 @@
+-<itemizedlist role="_additional-resources">
+-<title>Additional resources</title>
+-<listitem>
+-<simpara><link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_and_managing_logical_volumes/index">Configuring and managing logical volumes</link></simpara>
+-</listitem>
+-</itemizedlist>
+ </section>
+ <section xml:id="configuring-lvm-logical-volume_manual-partitioning">
+ <title>Configuring an LVM logical volume</title>
+@@ -1994,7 +1503,7 @@
  <simpara>Click <guibutton>Modify</guibutton> to configure the newly-created volume group.</simpara>
  <simpara>The <emphasis role="strong">Configure Volume Group</emphasis> dialog box opens.</simpara>
  <note>
--<simpara>You cannot specify the size of the volume group&#8217;s physical extents in the configuration dialog. The size is always set to the default value of 4 MiB. If you want to create a volume group with different physical extents, you must create it manually by switching to an interactive shell and using the <literal role="command">vgcreate</literal> command, or use a Kickstart file with the <literal role="command">volgroup --pesize=<emphasis>size</emphasis></literal> command. See the <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_an_advanced_rhel_installation/index/"><emphasis>Performing an advanced RHEL installation</emphasis></link> document for more information about Kickstart.</simpara>
+-<simpara>You cannot specify the size of the volume group&#8217;s physical extents in the configuration dialog. The size is always set to the default value of 4 MiB. If you want to create a volume group with different physical extents, you must create it manually by switching to an interactive shell and using the <literal role="command">vgcreate</literal> command, or use a Kickstart file with the <literal role="command">volgroup --pesize=<emphasis>size</emphasis></literal> command. See the <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/performing_an_advanced_rhel_8_installation/index/"><emphasis>Performing an advanced RHEL 8 installation</emphasis></link> document for more information about Kickstart.</simpara>
 +<simpara>You cannot specify the size of the volume group&#8217;s physical extents in the configuration dialog. The size is always set to the default value of 4 MiB. If you want to create a volume group with different physical extents, you must create it manually by switching to an interactive shell and using the <literal role="command">vgcreate</literal> command, or use a Kickstart file with the <literal role="command">volgroup --pesize=<emphasis>size</emphasis></literal> command.</simpara>
  </note>
  </listitem>
  <listitem>
-@@ -2086,7 +1725,7 @@
- <simpara>Click <guibutton>Save Changes</guibutton> to apply the changes and return to the <emphasis role="strong">Configuration</emphasis> window.</simpara>
- </listitem>
- <listitem>
--<simpara>When the installation process is complete, click <guibutton>Reboot</guibutton> to reboot and log in to your Red&#160;Hat Enterprise&#160;Linux 8.3 Beta system.</simpara>
-+<simpara>When the installation process is complete, click <guibutton>Reboot</guibutton> to reboot and log in to your EuroLinux 8 system.</simpara>
+@@ -2031,12 +1540,6 @@
+ <simpara>Click <guibutton>Done</guibutton> to return to the <emphasis role="strong">Installation Summary</emphasis> window.</simpara>
  </listitem>
  </orderedlist>
- <informalexample>
-@@ -2129,13 +1768,12 @@
- </orderedlist>
+-<itemizedlist role="_additional-resources">
+-<title>Additional resources</title>
+-<listitem>
+-<simpara><link xl:href="https://www.ibm.com/docs/en/linux-on-systems?topic=volumes-creating-volume-pervasive-encryption">How to use dm-crypt on IBM Z, LinuxONE and with the PAES cipher</link></simpara>
+-</listitem>
+-</itemizedlist>
  </section>
  </chapter>
--<part xml:id="installation-complete_installing-RHEL">
-+<part xml:id="installation-complete_installing-EuroLinux">
- <title>Completing the installation</title>
- <partintro>
- <simpara>Wait for the installation to complete. It might take a few minutes.</simpara>
- <simpara>After the installation is complete, remove any installation media if it is not ejected automatically upon reboot.</simpara>
--<simpara>Red&#160;Hat Enterprise&#160;Linux&#160;8 starts after your system&#8217;s normal power-up sequence is complete. If your system was installed on a workstation with the X Window System, applications to configure your system are launched. These applications guide you through initial configuration and you can set your system time and date, register your system with Red&#160;Hat, and more. If the X Window System is not installed, a <literal>login:</literal> prompt is displayed.</simpara>
--<simpara>To learn how to complete initial setup, register, and secure your system, see the <link xl:href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/performing_a_standard_rhel_installation/post-installation-tasks_installing-rhel">Completing post-installation tasks</link> section of the <emphasis>Performing a standard RHEL installation</emphasis> document.</simpara>
-+<simpara>EuroLinux 8 starts after your system&#8217;s normal power-up sequence is complete. If your system was installed on a workstation with the X Window System, applications to configure your system are launched. These applications guide you through initial configuration and you can set your system time and date, register your system with EuroLinux, and more. If the X Window System is not installed, a <literal>login:</literal> prompt is displayed.</simpara>
- </partintro>
- </part>
+ <chapter xml:id="configuring-a-root-password_graphical-installation">
+@@ -2175,4 +1678,4 @@
+ </listitem>
+ </orderedlist>
+ </chapter>
 -</book>
 \ No newline at end of file
 +</book>
+diff -urN anaconda-user-help-8.8.3/rhel/en-US/rhel_help_placeholder.txt anaconda-user-help-8.8.3-patched/rhel/en-US/rhel_help_placeholder.txt
+--- anaconda-user-help-8.8.3/rhel/en-US/rhel_help_placeholder.txt	2023-02-14 14:50:05.000000000 +0100
++++ anaconda-user-help-8.8.3-patched/rhel/en-US/rhel_help_placeholder.txt	2023-04-11 17:21:47.443560098 +0200
+@@ -1 +1 @@
+-Help content for this screen is not yet available. See the installation instructions available online at https://access.redhat.com.
++Help content for this screen is not yet available. For assistance, visit the EuroLinux Support Portal at https://support.euro-linux.com.
+diff -urN anaconda-user-help-8.8.3/rhel/en-US/rhel_help_placeholder.xml anaconda-user-help-8.8.3-patched/rhel/en-US/rhel_help_placeholder.xml
+--- anaconda-user-help-8.8.3/rhel/en-US/rhel_help_placeholder.xml	2023-02-14 14:50:05.000000000 +0100
++++ anaconda-user-help-8.8.3-patched/rhel/en-US/rhel_help_placeholder.xml	2023-04-11 17:22:53.524944805 +0200
+@@ -1 +1 @@
+-<section><para><emphasis role="bold">Help content for this screen is not yet available. See the installation instructions available online at <ulink url="https://access.redhat.com/">https://access.redhat.com/</ulink>.</emphasis></para></section>
++<section><para><emphasis role="bold">Help content for this screen is not yet available. For assistance, visit the EuroLinux Support Portal at <ulink url="https://support.euro-linux.com">https://support.euro-linux.com</ulink>.</emphasis></para></section>
