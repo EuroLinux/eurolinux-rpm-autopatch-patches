@@ -1,6 +1,6 @@
-diff -urN anaconda-user-help-8.8.3/rhel/anaconda-help-anchors.json anaconda-user-help-8.8.3-patched/rhel/anaconda-help-anchors.json
---- anaconda-user-help-8.8.3/rhel/anaconda-help-anchors.json	2023-02-14 20:32:44.000000000 +0100
-+++ anaconda-user-help-8.8.3-patched/rhel/anaconda-help-anchors.json	2023-04-11 18:00:23.264885728 +0200
+diff -uNr anaconda-user-help-8.8.3/rhel/anaconda-help-anchors.json anaconda-user-help-8.8.3-patched/rhel/anaconda-help-anchors.json
+--- anaconda-user-help-8.8.3/rhel/anaconda-help-anchors.json	2023-04-13 00:12:26.793877446 +0200
++++ anaconda-user-help-8.8.3-patched/rhel/anaconda-help-anchors.json	2023-04-13 00:12:57.132876953 +0200
 @@ -3,10 +3,10 @@
  "This file contains a list mapping anaconda's help_id to anchor in the docs for the online help. This is in the JSON format as a hash table or dictionary. Look at the next pair of values to see the structural elements: Double quotes enclosing the strings, a colon separating them, and a comma to separe from the next pair. Finally the last pair is special in that it does not have the ending comma. This very comment is also another part of the dictionary and follows the same rules.",
  
@@ -24,9 +24,9 @@ diff -urN anaconda-user-help-8.8.3/rhel/anaconda-help-anchors.json anaconda-user
  "RootPasswordSpoke":
  "configuring-a-root-password_graphical-installation",
  
-diff -urN anaconda-user-help-8.8.3/rhel/en-US/anaconda-help.xml anaconda-user-help-8.8.3-patched/rhel/en-US/anaconda-help.xml
---- anaconda-user-help-8.8.3/rhel/en-US/anaconda-help.xml	2023-02-14 14:50:05.000000000 +0100
-+++ anaconda-user-help-8.8.3-patched/rhel/en-US/anaconda-help.xml	2023-04-11 18:01:12.013164354 +0200
+diff -uNr anaconda-user-help-8.8.3/rhel/en-US/anaconda-help.xml anaconda-user-help-8.8.3-patched/rhel/en-US/anaconda-help.xml
+--- anaconda-user-help-8.8.3/rhel/en-US/anaconda-help.xml	2023-04-13 00:12:26.793877446 +0200
++++ anaconda-user-help-8.8.3-patched/rhel/en-US/anaconda-help.xml	2023-04-13 00:13:55.883875999 +0200
 @@ -2,11 +2,11 @@
  <info>
  <title>Customizing your installation</title>
@@ -806,7 +806,7 @@ diff -urN anaconda-user-help-8.8.3/rhel/en-US/anaconda-help.xml anaconda-user-he
  <note>
  <itemizedlist>
  <listitem>
-@@ -1432,106 +1050,12 @@
+@@ -1432,106 +1050,13 @@
  </listitem>
  </orderedlist>
  </section>
@@ -903,7 +903,7 @@ diff -urN anaconda-user-help-8.8.3/rhel/en-US/anaconda-help.xml anaconda-user-he
 -</itemizedlist>
 -</note>
 -</section>
--</section>
+ </section>
  <section xml:id="installing-to-a-nvdimm-device_storage-devices">
  <title>Installing to an NVDIMM device</title>
 -<simpara>Non-Volatile Dual In-line Memory Module (NVDIMM) devices combine the performance of RAM with disk-like data persistence when no power is supplied. Under specific circumstances, Red&#160;Hat Enterprise&#160;Linux 8 can boot and run from NVDIMM devices.</simpara>
@@ -915,7 +915,7 @@ diff -urN anaconda-user-help-8.8.3/rhel/en-US/anaconda-help.xml anaconda-user-he
  <formalpara>
  <title>Conditions for using an NVDIMM device as storage</title>
  <para>To use an NVDIMM device as storage, the following conditions must be satisfied:</para>
-@@ -1569,7 +1093,7 @@
+@@ -1569,7 +1094,7 @@
  </section>
  <section xml:id="configuring-an-nvdimm-device-using-anaconda_installing-to-a-nvdimm-device">
  <title>Configuring an NVDIMM device using the graphical installation mode</title>
@@ -924,7 +924,7 @@ diff -urN anaconda-user-help-8.8.3/rhel/en-US/anaconda-help.xml anaconda-user-he
  <warning>
  <simpara>Reconfiguration of a NVDIMM device process destroys any data stored on the device.</simpara>
  </warning>
-@@ -1624,11 +1148,11 @@
+@@ -1624,11 +1149,11 @@
  </chapter>
  <chapter xml:id="manual-partitioning_graphical-installation">
  <title>Configuring manual partitioning</title>
@@ -939,7 +939,7 @@ diff -urN anaconda-user-help-8.8.3/rhel/en-US/anaconda-help.xml anaconda-user-he
  <warning>
  <simpara>To prevent data loss it is recommended that you back up your data before proceeding. If you are upgrading or creating a dual-boot system, you should back up any data you want to keep on your storage devices.</simpara>
  </warning>
-@@ -1691,7 +1215,7 @@
+@@ -1691,7 +1216,7 @@
  <simpara>The dialog has a check box that you can use to remove all other partitions used by the system to which the deleted partition belongs.</simpara>
  </listitem>
  <listitem>
@@ -948,7 +948,7 @@ diff -urN anaconda-user-help-8.8.3/rhel/en-US/anaconda-help.xml anaconda-user-he
  <simpara>A <literal>/boot</literal> partition, a <literal>/</literal> (root) volume, and a <literal>swap</literal> volume proportionate to the size of the available storage are created and listed in the left pane. These are the recommended file systems for a typical installation, but you can add additional file systems and mount points.</simpara>
  </listitem>
  </itemizedlist>
-@@ -1746,7 +1270,7 @@
+@@ -1746,7 +1271,7 @@
  <note>
  <itemizedlist>
  <listitem>
@@ -957,7 +957,7 @@ diff -urN anaconda-user-help-8.8.3/rhel/en-US/anaconda-help.xml anaconda-user-he
  </listitem>
  <listitem>
  <simpara>The <literal>/boot</literal> partition is always located on a standard partition, regardless of the value selected.</simpara>
-@@ -1848,23 +1372,23 @@
+@@ -1848,23 +1373,23 @@
  </section>
  <section xml:id="preserving-the-home-directory_manual-partitioning">
  <title>Preserving the /home directory</title>
@@ -989,7 +989,7 @@ diff -urN anaconda-user-help-8.8.3/rhel/en-US/anaconda-help.xml anaconda-user-he
  </listitem>
  </itemizedlist>
  <orderedlist numeration="arabic">
-@@ -1882,7 +1406,7 @@
+@@ -1882,7 +1407,7 @@
  <simpara>Choose the <literal>/home</literal> partition, fill in <literal>/home</literal> under <literal>Mount Point:</literal> and clear the <emphasis role="strong">Reformat</emphasis> check box.</simpara>
  </listitem>
  <listitem>
@@ -998,7 +998,7 @@ diff -urN anaconda-user-help-8.8.3/rhel/en-US/anaconda-help.xml anaconda-user-he
  </listitem>
  <listitem>
  <simpara>After you customized all partitions according to your requirements, click <guibutton>Done</guibutton>. The <emphasis role="strong">Summary of changes</emphasis> dialog box opens.</simpara>
-@@ -1899,9 +1423,6 @@
+@@ -1899,9 +1424,6 @@
  <title>Creating a software RAID during the installation</title>
  <simpara>Redundant Arrays of Independent Disks (RAID) devices are constructed from multiple storage devices that are arranged to provide increased performance and, in some configurations, greater fault tolerance.</simpara>
  <simpara>A RAID device is created in one step and disks are added or removed as necessary. You can configure one RAID partition for each physical disk in your system, so that the number of disks available to the installation program determines the levels of RAID device available. For example, if your system has two hard drives, you cannot create a RAID 10 device, as it requires a minimum of three separate disks.</simpara>
@@ -1008,7 +1008,7 @@ diff -urN anaconda-user-help-8.8.3/rhel/en-US/anaconda-help.xml anaconda-user-he
  <itemizedlist>
  <title>Prerequisites</title>
  <listitem>
-@@ -1941,12 +1462,6 @@
+@@ -1941,12 +1463,6 @@
  <simpara>Click <guibutton>Done</guibutton> to apply the settings to return to the <emphasis role="strong">Installation Summary</emphasis> window.</simpara>
  </listitem>
  </orderedlist>
@@ -1021,7 +1021,7 @@ diff -urN anaconda-user-help-8.8.3/rhel/en-US/anaconda-help.xml anaconda-user-he
  </section>
  <section xml:id="creating-lvm-logical-volume_manual-partitioning">
  <title>Creating an LVM logical volume</title>
-@@ -1965,16 +1480,10 @@
+@@ -1965,16 +1481,10 @@
  <listitem>
  <simpara>Click the <emphasis role="strong">Device Type</emphasis> drop-down menu and select <literal>LVM</literal>. The <emphasis role="strong">Volume Group</emphasis> drop-down menu is displayed with the newly-created volume group name.</simpara>
  <note>
@@ -1039,7 +1039,7 @@ diff -urN anaconda-user-help-8.8.3/rhel/en-US/anaconda-help.xml anaconda-user-he
  </section>
  <section xml:id="configuring-lvm-logical-volume_manual-partitioning">
  <title>Configuring an LVM logical volume</title>
-@@ -1994,7 +1503,7 @@
+@@ -1994,7 +1504,7 @@
  <simpara>Click <guibutton>Modify</guibutton> to configure the newly-created volume group.</simpara>
  <simpara>The <emphasis role="strong">Configure Volume Group</emphasis> dialog box opens.</simpara>
  <note>
@@ -1048,7 +1048,7 @@ diff -urN anaconda-user-help-8.8.3/rhel/en-US/anaconda-help.xml anaconda-user-he
  </note>
  </listitem>
  <listitem>
-@@ -2031,12 +1540,6 @@
+@@ -2031,12 +1541,6 @@
  <simpara>Click <guibutton>Done</guibutton> to return to the <emphasis role="strong">Installation Summary</emphasis> window.</simpara>
  </listitem>
  </orderedlist>
@@ -1061,22 +1061,22 @@ diff -urN anaconda-user-help-8.8.3/rhel/en-US/anaconda-help.xml anaconda-user-he
  </section>
  </chapter>
  <chapter xml:id="configuring-a-root-password_graphical-installation">
-@@ -2175,4 +1678,4 @@
+@@ -2175,4 +1679,4 @@
  </listitem>
  </orderedlist>
  </chapter>
 -</book>
 \ No newline at end of file
 +</book>
-diff -urN anaconda-user-help-8.8.3/rhel/en-US/rhel_help_placeholder.txt anaconda-user-help-8.8.3-patched/rhel/en-US/rhel_help_placeholder.txt
---- anaconda-user-help-8.8.3/rhel/en-US/rhel_help_placeholder.txt	2023-02-14 14:50:05.000000000 +0100
-+++ anaconda-user-help-8.8.3-patched/rhel/en-US/rhel_help_placeholder.txt	2023-04-11 17:21:47.443560098 +0200
+diff -uNr anaconda-user-help-8.8.3/rhel/en-US/rhel_help_placeholder.txt anaconda-user-help-8.8.3-patched/rhel/en-US/rhel_help_placeholder.txt
+--- anaconda-user-help-8.8.3/rhel/en-US/rhel_help_placeholder.txt	2023-04-13 00:12:26.793877446 +0200
++++ anaconda-user-help-8.8.3-patched/rhel/en-US/rhel_help_placeholder.txt	2023-04-13 00:12:57.135876953 +0200
 @@ -1 +1 @@
 -Help content for this screen is not yet available. See the installation instructions available online at https://access.redhat.com.
 +Help content for this screen is not yet available. For assistance, visit the EuroLinux Support Portal at https://support.euro-linux.com.
-diff -urN anaconda-user-help-8.8.3/rhel/en-US/rhel_help_placeholder.xml anaconda-user-help-8.8.3-patched/rhel/en-US/rhel_help_placeholder.xml
---- anaconda-user-help-8.8.3/rhel/en-US/rhel_help_placeholder.xml	2023-02-14 14:50:05.000000000 +0100
-+++ anaconda-user-help-8.8.3-patched/rhel/en-US/rhel_help_placeholder.xml	2023-04-11 17:22:53.524944805 +0200
+diff -uNr anaconda-user-help-8.8.3/rhel/en-US/rhel_help_placeholder.xml anaconda-user-help-8.8.3-patched/rhel/en-US/rhel_help_placeholder.xml
+--- anaconda-user-help-8.8.3/rhel/en-US/rhel_help_placeholder.xml	2023-04-13 00:12:26.793877446 +0200
++++ anaconda-user-help-8.8.3-patched/rhel/en-US/rhel_help_placeholder.xml	2023-04-13 00:12:57.135876953 +0200
 @@ -1 +1 @@
 -<section><para><emphasis role="bold">Help content for this screen is not yet available. See the installation instructions available online at <ulink url="https://access.redhat.com/">https://access.redhat.com/</ulink>.</emphasis></para></section>
 +<section><para><emphasis role="bold">Help content for this screen is not yet available. For assistance, visit the EuroLinux Support Portal at <ulink url="https://support.euro-linux.com">https://support.euro-linux.com</ulink>.</emphasis></para></section>
