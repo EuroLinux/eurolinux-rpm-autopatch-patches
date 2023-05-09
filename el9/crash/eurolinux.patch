@@ -1,16 +1,16 @@
-From e9fc6412a95fe5c84d87a0b806a735d0bc5ba8b6 Mon Sep 17 00:00:00 2001
+From 6806f9740778bad5bebc9e8bea6b6153ee903c35 Mon Sep 17 00:00:00 2001
 From: Alex Baranowski <ab@euro-linux.com>
-Date: Tue, 22 Nov 2022 00:42:26 +0000
+Date: Tue, 9 May 2023 18:57:16 +0000
 Subject: [PATCH] eurolinux branding
 
 ---
- configure.c                        | 8 ++++----
- configure.ccrash-8.0.1_build.patch | 4 ++--
- help.c                             | 2 +-
- 3 files changed, 7 insertions(+), 7 deletions(-)
+ configure.c                        |  8 ++++----
+ configure.ccrash-8.0.2_build.patch |  8 ++++----
+ help.c                             | 10 +++++-----
+ 3 files changed, 13 insertions(+), 13 deletions(-)
 
 diff --git a/configure.c b/configure.c
-index 1c24fdc..0d0ce88 100644
+index 1c24fdc..9767f82 100644
 --- a/configure.c
 +++ b/configure.c
 @@ -1372,8 +1372,8 @@ make_spec_file(struct supported_gdb_version *sp)
@@ -19,7 +19,7 @@ index 1c24fdc..0d0ce88 100644
  	printf("Distribution: Linux 2.2 or greater\n");
 -	printf("Vendor: Red Hat, Inc.\n");
 -	printf("Packager: Dave Anderson <anderson@redhat.com>\n");
-+	printf("Vendor: EuroLinux.\n");
++	printf("Vendor: EuroLinux\n");
 +	printf("Packager: EuroLinux\n");
  	printf("ExclusiveOS: Linux\n");
  	printf("ExclusiveArch: %%{ix86} alpha ia64 ppc ppc64 ppc64pseries ppc64iseries x86_64 s390 s390x arm aarch64 ppc64le mips mipsel mips64el sparc64\n");
@@ -42,10 +42,21 @@ index 1c24fdc..0d0ce88 100644
  	printf("offered by Mission Critical Linux, or the LKCD kernel patch.\n");
  	printf("\n");
  	printf("%%package extensions\n");
-diff --git a/configure.ccrash-8.0.1_build.patch b/configure.ccrash-8.0.1_build.patch
-index 5188851..719c318 100644
---- a/configure.ccrash-8.0.1_build.patch
-+++ b/configure.ccrash-8.0.1_build.patch
+diff --git a/configure.ccrash-8.0.2_build.patch b/configure.ccrash-8.0.2_build.patch
+index 5188851..4508bf1 100644
+--- a/configure.ccrash-8.0.2_build.patch
++++ b/configure.ccrash-8.0.2_build.patch
+@@ -1371,8 +1371,8 @@ make_spec_file(struct supported_gdb_version *sp)
+ 	printf("Source: %%{name}-%%{version}.tar.gz\n");
+ 	printf("URL: https://github.com/crash-utility\n");
+ 	printf("Distribution: Linux 2.2 or greater\n");
+-	printf("Vendor: Red Hat, Inc.\n");
+-	printf("Packager: Dave Anderson <anderson@redhat.com>\n");
++	printf("Vendor: EuroLinux\n");
++	printf("Packager: EuroLinux\n");
+ 	printf("ExclusiveOS: Linux\n");
+ 	printf("ExclusiveArch: %%{ix86} alpha ia64 ppc ppc64 ppc64pseries ppc64iseries x86_64 s390 s390x arm aarch64 ppc64le mips mipsel mips64el sparc64\n");
+ 	printf("Buildroot: %%{_tmppath}/%%{name}-root\n");
 @@ -1383,7 +1383,7 @@ make_spec_file(struct supported_gdb_version *sp)
  	printf("%%description\n");
  	printf("The core analysis suite is a self-contained tool that can be used to\n");
@@ -65,10 +76,28 @@ index 5188851..719c318 100644
  	printf("\n");
  	printf("%%package extensions\n");
 diff --git a/help.c b/help.c
-index 99214c1..5ed7831 100644
+index 99214c1..97f4770 100644
 --- a/help.c
 +++ b/help.c
-@@ -9591,7 +9591,7 @@ README_ENTER_DIRECTORY,
+@@ -2199,7 +2199,7 @@ char *help_bt[] = {
+ " ",
+ "  Display the back trace from a dumpfile that resulted from an attempt to",
+ "  insmod the sample \"crash.c\" kernel module that comes as part of the",
+-"  Red Hat netdump package:\n",
++"  EuroLinux netdump package:\n",
+ "   %s> bt",
+ "   PID: 1696   TASK: c74de000  CPU: 0   COMMAND: \"insmod\"",
+ "    #0 [c74dfdcc] die at c01076ec",
+@@ -9480,7 +9480,7 @@ char *README[] = {
+ "  The core analysis suite is a self-contained tool that can be used to",
+ "  investigate either live systems, kernel core dumps created from dump",
+ "  creation facilities such as kdump, kvmdump, xendump, the netdump and",
+-"  diskdump packages offered by Red Hat, the LKCD kernel patch, the mcore",
++"  diskdump packages offered by EuroLinux, the LKCD kernel patch, the mcore",
+ "  kernel patch created by Mission Critical Linux, as well as other formats",
+ "  created by manufacturer-specific firmware.",
+ "",
+@@ -9591,11 +9591,11 @@ README_ENTER_DIRECTORY,
  "  uncompressed kernel name and the kernel dumpfile name.  ",
  "",
  "  If run on a live system, only the kernel name is required, because /dev/mem ",
@@ -77,6 +106,20 @@ index 99214c1..5ed7831 100644
  "  /dev/mem device is restricted, the /dev/crash memory driver will be used.",
  "  If neither /dev/mem or /dev/crash are available, then /proc/kcore will be",
  "  be used as the live memory source.  If /proc/kcore is also restricted, then",
+-"  the Red Hat /dev/crash driver may be compiled and installed; its source",
++"  the EuroLinux /dev/crash driver may be compiled and installed; its source",
+ README_MEMORY_DRIVER,
+ "",
+ "  If the kernel file is stored in /boot, /, /boot/efi, or in any /usr/src",
+@@ -9641,7 +9641,7 @@ README_HELP_MENU,
+ " ",
+ "  When run on a dumpfile, both the kernel namelist and dumpfile must be ",
+ "  entered on the command line.  For example, when run on a core dump created",
+-"  by the Red Hat netdump or diskdump facilities:",
++"  by the EuroLinux netdump or diskdump facilities:",
+ "",
+ "    $ crash vmlinux vmcore",
+ " ",   
 -- 
 2.31.1
 
