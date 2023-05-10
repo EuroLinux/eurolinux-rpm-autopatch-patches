@@ -1,72 +1,72 @@
-diff '--color=auto' -ur eth-fast-fabric-11.3.0.0/CommonInstall/util_init.pl eth-fast-fabric-11.3.0.0_EL/CommonInstall/util_init.pl
---- eth-fast-fabric-11.3.0.0/CommonInstall/util_init.pl	2022-06-14 01:44:26.000000000 +0200
-+++ eth-fast-fabric-11.3.0.0_EL/CommonInstall/util_init.pl	2022-11-22 14:10:13.271519830 +0100
-@@ -211,7 +211,7 @@
- 		chop($rval);
- 		$rval="ES".$rval;
- 		if ( -e "/etc/redhat-release" ) {
--			if (!system("grep -qi centos /etc/redhat-release") || !system("grep -qi rocky /etc/redhat-release") || !system("grep -qi almalinux /etc/redhat-release") || !system("grep -qi circle /etc/redhat-release")) {
-+			if (!system("grep -qi centos /etc/redhat-release") || !system("grep -qi eurolinux /etc/redhat-release") || !system("grep -qi rocky /etc/redhat-release") || !system("grep -qi almalinux /etc/redhat-release") || !system("grep -qi circle /etc/redhat-release")) {
- 				$rval = `cat /etc/redhat-release | cut -d' ' -f4`;
- 				$rval =~ m/(\d+).(\d+)/;
- 				if ($2 eq "0") {
-@@ -251,6 +251,12 @@
- 			# to the left of the decimal point.
+diff -uNr eth-fast-fabric-11.4.0.0/CommonInstall/util_init.pl eth-fast-fabric-11.4.0.0p/CommonInstall/util_init.pl
+--- eth-fast-fabric-11.4.0.0/CommonInstall/util_init.pl	2022-12-01 05:14:07.000000000 +0000
++++ eth-fast-fabric-11.4.0.0p/CommonInstall/util_init.pl	2023-05-10 00:47:33.764419776 +0000
+@@ -213,7 +213,7 @@
+ 			chop($rval);
+ 			$rval="ES".$rval;
+ 			if ( -e "/etc/redhat-release" ) {
+-				if (!system("grep -qi centos /etc/redhat-release") || !system("grep -qi rocky /etc/redhat-release") || !system("grep -qi almalinux /etc/redhat-release") || !system("grep -qi circle /etc/redhat-release")) {
++				if (!system("grep -qi centos /etc/redhat-release") || !system("grep -qi eurolinux /etc/redhat-release") || !system("grep -qi rocky /etc/redhat-release") || !system("grep -qi almalinux /etc/redhat-release") || !system("grep -qi circle /etc/redhat-release")) {
+ 					$rval = `cat /etc/redhat-release | cut -d' ' -f4`;
+ 					$rval =~ m/(\d+).(\d+)/;
+ 					if ($2 eq "0") {
+@@ -249,6 +249,12 @@
  			$rval = `cat /etc/redhat-release`;
  			$rval =~ m/(\d+).(\d+)/;
-+		} elsif (!system("grep -qi eurolinux /etc/redhat-release")) {
-+			# Find a number of the form "#.#" and output the portion
-+			# to the left of the decimal point.
-+			$rval = `cat /etc/redhat-release`;
-+			$rval =~ m/(\d+).(\d+)/;
-+			$rval="ES".$1.$2;
  			$rval="ES".$1.$2;
- 		} elsif (!system("grep -qi almalinux /etc/redhat-release")) {
++		} elsif (!system("grep -qi eurolinux /etc/redhat-release")) {
++ 			# Find a number of the form "#.#" and output the portion
++ 			# to the left of the decimal point.
++ 			$rval = `cat /etc/redhat-release`;
++ 			$rval =~ m/(\d+).(\d+)/;
++ 			$rval="ES".$1.$2;
+ 		} elsif (!system("grep -qi rocky /etc/redhat-release")) {
  			# Find a number of the form "#.#" and output the portion
-@@ -319,6 +325,8 @@
+ 			# to the left of the decimal point.
+@@ -322,6 +328,8 @@
  		$CUR_DISTRO_VENDOR = "redhat";
  	} elsif ( -s "/etc/rocky-release" ) {
  		$CUR_DISTRO_VENDOR = "redhat";
-+	} elsif ( -s "/etc/el-release" ) {
-+		$CUR_DISTRO_VENDOR = "redhat";
++ 	} elsif ( -s "/etc/el-release" ) {
++ 		$CUR_DISTRO_VENDOR = "redhat";
  	} elsif ( -s "/etc/almalinux-release" ) {
  		$CUR_DISTRO_VENDOR = "redhat";
  	} elsif ( -s "/etc/circle-releas" ) {
-@@ -341,6 +349,7 @@
+@@ -344,6 +352,7 @@
  			"rhel" => "redhat",
  			"centos" => "redhat",
  			"rocky" => "redhat",
-+			"eurolinux" => "redhat",
++ 			"eurolinux" => "redhat",
  			"almalinux" => "redhat",
  			"circle" => "redhat",
  			"sles" => "SuSE",
-@@ -350,6 +359,7 @@
+@@ -354,6 +363,7 @@
  			"rhel" => $NETWORK_CONF_DIR,
  			"centos" => $NETWORK_CONF_DIR,
  			"rocky" => $NETWORK_CONF_DIR,
-+			"eurolinux" => $NETWORK_CONF_DIR,
++ 			"eurolinux" => $NETWORK_CONF_DIR,
  			"almalinux" => $NETWORK_CONF_DIR,
  			"circle" => $NETWORK_CONF_DIR,
  			"sles" => "/etc/sysconfig/network",
-@@ -383,6 +393,8 @@
+@@ -388,6 +398,8 @@
  			$CUR_DISTRO_VENDOR = "redhat";
  		} elsif ($CUR_DISTRO_VENDOR eq "rocky") {
  			$CUR_DISTRO_VENDOR = "redhat";
-+		} elsif ($CUR_DISTRO_VENDOR eq "eurolinux") {
-+			$CUR_DISTRO_VENDOR = "redhat";
++ 		} elsif ($CUR_DISTRO_VENDOR eq "eurolinux") {
++ 			$CUR_DISTRO_VENDOR = "redhat";
  		} elsif ($CUR_DISTRO_VENDOR eq "almalinux") {
  			$CUR_DISTRO_VENDOR = "redhat";
  		} elsif ($CUR_DISTRO_VENDOR eq "circle") {
-diff '--color=auto' -ur eth-fast-fabric-11.3.0.0/get_id_and_versionid.sh eth-fast-fabric-11.3.0.0_EL/get_id_and_versionid.sh
---- eth-fast-fabric-11.3.0.0/get_id_and_versionid.sh	2022-06-14 01:44:26.000000000 +0200
-+++ eth-fast-fabric-11.3.0.0_EL/get_id_and_versionid.sh	2022-11-22 14:12:04.329828965 +0100
+diff -uNr eth-fast-fabric-11.4.0.0/get_id_and_versionid.sh eth-fast-fabric-11.4.0.0p/get_id_and_versionid.sh
+--- eth-fast-fabric-11.4.0.0/get_id_and_versionid.sh	2022-12-01 05:14:07.000000000 +0000
++++ eth-fast-fabric-11.4.0.0p/get_id_and_versionid.sh	2023-05-10 00:48:53.443693111 +0000
 @@ -32,6 +32,9 @@
  			elif [ $rval = 'rocky' ]
  			then
  				rval=redhat
-+			elif [ $rval = 'eurolinux' ]
-+			then
-+				rval=redhat
++ 			elif [ $rval = 'eurolinux' ]
++ 			then
++ 				rval=redhat
  			elif [ $rval = 'almalinux' ]
  			then
  				rval=redhat
@@ -74,51 +74,51 @@ diff '--color=auto' -ur eth-fast-fabric-11.3.0.0/get_id_and_versionid.sh eth-fas
  		then
  			# Rocky Linux
  			rval=`cat /etc/redhat-release | sed -r 's/^.+([[:digit:]])\.([[:digit:]]).+$/\1.\2/'`
-+		elif grep -qi eurolinux /etc/redhat-release
-+		then
-+			# EuroLinux Linux
-+			rval=`cat /etc/redhat-release | sed -r 's/^.+([[:digit:]])\.([[:digit:]]).+$/\1.\2/'`
++ 		elif grep -qi eurolinux /etc/redhat-release
++ 		then
++ 			# EuroLinux Linux
++ 			rval=`cat /etc/redhat-release | sed -r 's/^.+([[:digit:]])\.([[:digit:]]).+$/\1.\2/'`
  		elif grep -qi almalinux /etc/redhat-release
  		then
  			# AlmaLinux
-diff '--color=auto' -ur eth-fast-fabric-11.3.0.0/MakeTools/funcs-ext.sh eth-fast-fabric-11.3.0.0_EL/MakeTools/funcs-ext.sh
---- eth-fast-fabric-11.3.0.0/MakeTools/funcs-ext.sh	2022-06-14 01:44:26.000000000 +0200
-+++ eth-fast-fabric-11.3.0.0_EL/MakeTools/funcs-ext.sh	2022-11-22 14:15:19.707372785 +0100
+diff -uNr eth-fast-fabric-11.4.0.0/MakeTools/funcs-ext.sh eth-fast-fabric-11.4.0.0p/MakeTools/funcs-ext.sh
+--- eth-fast-fabric-11.4.0.0/MakeTools/funcs-ext.sh	2022-12-01 05:14:07.000000000 +0000
++++ eth-fast-fabric-11.4.0.0p/MakeTools/funcs-ext.sh	2023-05-10 00:52:33.231720490 +0000
 @@ -728,6 +728,9 @@
              rocky)
                  rval=redhat
                  ;;
-+            eurolinux)
-+                rval=redhat
-+                ;;
++             eurolinux)
++                 rval=redhat
++                 ;;
              almalinux)
                  rval=redhat
                  ;;
-@@ -768,6 +771,9 @@
+@@ -771,6 +774,9 @@
  		elif [ $rval = 'rocky' ]
  		then
  			rval=redhat
-+		elif [ $rval = 'eurolinux' ]
-+		then
-+			rval=redhat
++ 		elif [ $rval = 'eurolinux' ]
++ 		then
++ 			rval=redhat
  		elif [ $rval = 'almalinux' ]
  		then
  			rval=redhat
-@@ -852,6 +858,10 @@
+@@ -855,6 +861,10 @@
  		then
  			# Rocky Linux
  			rval="ES"`cat /etc/redhat-release | sed -r 's/^.+([[:digit:]])\.([[:digit:]]).+$/\1\2/'`
-+		elif grep -qi eurolinux /etc/redhat-release
-+		then
-+			# EuroLinux
-+			rval="ES"`cat /etc/redhat-release | sed -r 's/^.+([[:digit:]])\.([[:digit:]]).+$/\1\2/'`
++ 		elif grep -qi eurolinux /etc/redhat-release
++ 		then
++ 			# EuroLinux
++ 			rval="ES"`cat /etc/redhat-release | sed -r 's/^.+([[:digit:]])\.([[:digit:]]).+$/\1\2/'`
  		elif grep -qi almalinux /etc/redhat-release
  		then
  			# AlmaLinux
-diff '--color=auto' -ur eth-fast-fabric-11.3.0.0/update_eth_spec.sh eth-fast-fabric-11.3.0.0_EL/update_eth_spec.sh
---- eth-fast-fabric-11.3.0.0/update_eth_spec.sh	2022-06-14 01:44:26.000000000 +0200
-+++ eth-fast-fabric-11.3.0.0_EL/update_eth_spec.sh	2022-11-22 14:17:49.391825640 +0100
-@@ -48,7 +48,7 @@
+diff -uNr eth-fast-fabric-11.4.0.0/update_eth_spec.sh eth-fast-fabric-11.4.0.0p/update_eth_spec.sh
+--- eth-fast-fabric-11.4.0.0/update_eth_spec.sh	2022-12-01 05:14:07.000000000 +0000
++++ eth-fast-fabric-11.4.0.0p/update_eth_spec.sh	2023-05-10 00:53:03.248449791 +0000
+@@ -51,7 +51,7 @@
  
  source ./OpenIb_Host/ff_filegroups.sh
  
