@@ -1,7 +1,7 @@
-diff -uNr scap-security-guide-0.1.54/build-scripts/enable_derivatives.py scap-security-guide-0.1.54p/build-scripts/enable_derivatives.py
---- scap-security-guide-0.1.54/build-scripts/enable_derivatives.py  2021-05-24 15:28:21.301896556 +0000
-+++ scap-security-guide-0.1.54p/build-scripts/enable_derivatives.py 2021-05-24 15:08:49.498559873 +0000
-@@ -28,9 +28,11 @@
+diff -uNr scap-security-guide-0.1.69/build-scripts/enable_derivatives.py scap-security-guide-0.1.69p/build-scripts/enable_derivatives.py
+--- scap-security-guide-0.1.69/build-scripts/enable_derivatives.py	2023-08-31 18:28:04.337376895 +0000
++++ scap-security-guide-0.1.69p/build-scripts/enable_derivatives.py	2023-08-31 18:30:33.823876233 +0000
+@@ -26,9 +26,11 @@
  
  CENTOS_NOTICE_ELEMENT = ssg.xml.ElementTree.fromstring(ssg.constants.CENTOS_NOTICE)
  SL_NOTICE_ELEMENT = ssg.xml.ElementTree.fromstring(ssg.constants.SL_NOTICE)
@@ -13,17 +13,18 @@ diff -uNr scap-security-guide-0.1.54/build-scripts/enable_derivatives.py scap-se
  
  RHEL_CENTOS_TITLE_MAPPING = {
      "Red Hat Enterprise Linux": "CentOS Linux",
-@@ -40,6 +42,9 @@
+@@ -38,6 +40,10 @@
      "Red Hat Enterprise Linux": "Scientific Linux",
  }
  
-+RHEL_EL_TITLE_MAPPING = {                                                                           
-+    "Red Hat Enterprise Linux": "EuroLinux",                                                        
-+}                                                                                                   
++RHEL_EL_TITLE_MAPPING = {
++    "Red Hat Enterprise Linux": "EuroLinux",
++}
++
  
  def parse_args():
      usage = "usage: %prog [options]"
-@@ -48,6 +53,8 @@
+@@ -46,6 +52,8 @@
                        action="store_true", help="Enable CentOS")
      parser.add_option("--enable-sl", dest="sl", default=False,
                        action="store_true", help="Enable Scientific Linux")
@@ -32,51 +33,51 @@ diff -uNr scap-security-guide-0.1.54/build-scripts/enable_derivatives.py scap-se
      parser.add_option("-i", "--input", dest="input_content", default=False,
                        action="store",
                        help="INPUT can be XCCDF or Source DataStream")
-@@ -57,7 +64,7 @@
-                       action="store", help="ID naming scheme")
+@@ -58,9 +66,9 @@
+         dest="cpe_items_dir", help="path to the directory where compiled cpe items are stored")
      (options, args) = parser.parse_args()
  
 -    if options.centos and options.sl:
-+    if options.centos and options.sl and options.el:
++    if options.centos and options.sl and options.el:  # bug but won't happen
          sys.stderr.write(
-             "Cannot enable two derivative OS(s) at the same time\n"
+-            "Cannot enable two derivative OS(s) at the same time\n"
++            "Cannot enable two or more derivative OS(s) at the same time\n"
          )
-@@ -88,6 +95,12 @@
+         parser.print_help()
+         sys.exit(1)
+@@ -87,6 +95,13 @@
          warning = SL_WARNING
          derivative = "Scientific Linux"
          title = RHEL_SL_TITLE_MAPPING
-+    if options.el:                                                                                  
-+        mapping = ssg.constants.RHEL_SL_CPE_MAPPING                                                 
-+        notice = EL_NOTICE_ELEMENT                                                                  
-+        warning = EL_WARNING                                                                        
-+        derivative = "EuroLinux"                                                                    
-+        title = RHEL_EL_TITLE_MAPPING                                                               
++    
++    if options.el:
++        mapping = ssg.constants.RHEL_SL_CPE_MAPPING
++        notice = EL_NOTICE_ELEMENT
++        warning = EL_WARNING
++        derivative = "EuroLinux"
++        title = RHEL_EL_TITLE_MAPPING
  
      tree = ssg.xml.open_xml(options.input_content)
      root = tree.getroot()
-diff -uNr scap-security-guide-0.1.54/products/rhel7/CMakeLists.txt scap-security-guide-0.1.54p/products/rhel7/CMakeLists.txt
---- scap-security-guide-0.1.54/products/rhel7/CMakeLists.txt  2021-02-03 10:54:10.000000000 +0000
-+++ scap-security-guide-0.1.54p/products/rhel7/CMakeLists.txt 2021-05-24 15:10:32.058110043 +0000
-@@ -37,4 +37,5 @@
+diff -uNr scap-security-guide-0.1.69/products/rhel7/CMakeLists.txt scap-security-guide-0.1.69p/products/rhel7/CMakeLists.txt
+--- scap-security-guide-0.1.69/products/rhel7/CMakeLists.txt	2023-08-01 12:38:06.000000000 +0000
++++ scap-security-guide-0.1.69p/products/rhel7/CMakeLists.txt	2023-08-31 18:29:22.153159739 +0000
+@@ -32,4 +32,5 @@
  endif()
- if (SSG_SCIENTIFIC_LINUX_DERIVATIVES_ENABLED)
+ if(SSG_SCIENTIFIC_LINUX_DERIVATIVES_ENABLED)
      ssg_build_derivative_product(${PRODUCT} "sl" "sl7")
 +    ssg_build_derivative_product(${PRODUCT} "el" "el7")
  endif()
-diff -uNr scap-security-guide-0.1.54/shared/applicability/derivatives.yml scap-security-guide-0.1.54p/shared/applicability/derivatives.yml
---- scap-security-guide-0.1.54/shared/applicability/derivatives.yml 2021-02-03 10:54:10.000000000 +0000
-+++ scap-security-guide-0.1.54p/shared/applicability/derivatives.yml  2021-05-24 15:28:33.779964981 +0000
-@@ -15,3 +15,7 @@
-       title: "Scientific Linux 7"
-       check_id: installed_OS_is_sl7
- 
-+  - el7:
-+      name: "cpe:/o:eurolinux:eurolinux:7"
-+      title: "EuroLinux 7 "
-+      check_id: installed_OS_is_el7
-diff -uNr scap-security-guide-0.1.54/shared/checks/oval/installed_OS_is_el7.xml scap-security-guide-0.1.54p/shared/checks/oval/installed_OS_is_el7.xml
---- scap-security-guide-0.1.54/shared/checks/oval/installed_OS_is_el7.xml 1970-01-01 00:00:00.000000000 +0000
-+++ scap-security-guide-0.1.54p/shared/checks/oval/installed_OS_is_el7.xml  2021-05-24 15:14:05.704256124 +0000
+diff -uNr scap-security-guide-0.1.69/shared/applicability/el7.yml scap-security-guide-0.1.69p/shared/applicability/el7.yml
+--- scap-security-guide-0.1.69/shared/applicability/el7.yml	1970-01-01 00:00:00.000000000 +0000
++++ scap-security-guide-0.1.69p/shared/applicability/el7.yml	2023-08-31 18:29:22.153159739 +0000
+@@ -0,0 +1,3 @@
++name: cpe:/o:eurolinux:eurolinux:7
++title: EuroLinux 7
++check_id: installed_OS_is_el7
+diff -uNr scap-security-guide-0.1.69/shared/checks/oval/installed_OS_is_el7.xml scap-security-guide-0.1.69p/shared/checks/oval/installed_OS_is_el7.xml
+--- scap-security-guide-0.1.69/shared/checks/oval/installed_OS_is_el7.xml	1970-01-01 00:00:00.000000000 +0000
++++ scap-security-guide-0.1.69p/shared/checks/oval/installed_OS_is_el7.xml	2023-08-31 18:29:22.153159739 +0000
 @@ -0,0 +1,35 @@
 +<def-group>
 +  <definition class="inventory"
@@ -113,10 +114,10 @@ diff -uNr scap-security-guide-0.1.54/shared/checks/oval/installed_OS_is_el7.xml 
 +  </linux:rpminfo_object>
 +
 +</def-group>
-diff -uNr scap-security-guide-0.1.54/ssg/constants.py scap-security-guide-0.1.54p/ssg/constants.py
---- scap-security-guide-0.1.54/ssg/constants.py 2021-02-03 10:54:10.000000000 +0000
-+++ scap-security-guide-0.1.54p/ssg/constants.py  2021-05-24 15:12:13.348653405 +0000
-@@ -210,6 +210,48 @@
+diff -uNr scap-security-guide-0.1.69/ssg/constants.py scap-security-guide-0.1.69p/ssg/constants.py
+--- scap-security-guide-0.1.69/ssg/constants.py	2023-08-01 12:38:06.000000000 +0000
++++ scap-security-guide-0.1.69p/ssg/constants.py	2023-08-31 18:29:22.153159739 +0000
+@@ -302,6 +302,12 @@
      "cpe:/o:redhat:enterprise_linux:7": "cpe:/o:scientificlinux:scientificlinux:7",
  }
  
@@ -126,6 +127,13 @@ diff -uNr scap-security-guide-0.1.54/ssg/constants.py scap-security-guide-0.1.54
 +   "cpe:/o:redhat:enterprise_linux:7": "cpe:/o:eurolinux:eurolinux:7",
 +}
 +
+ CENTOS_NOTICE = \
+     "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n" \
+     "<p>This benchmark is a direct port of a <i>SCAP Security Guide </i> " \
+@@ -377,6 +383,42 @@
+     ".</p>" \
+     "</div>"
+ 
 +EUROLINUX_NOTICE = \
 +    "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n" \
 +    "<p>This benchmark is a direct port of a <i>SCAP Security Guide </i> " \
@@ -162,6 +170,6 @@ diff -uNr scap-security-guide-0.1.54/ssg/constants.py scap-security-guide-0.1.54
 +    "</div>"
 +
 +
- CENTOS_NOTICE = \
-     "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n" \
-     "<p>This benchmark is a direct port of a <i>SCAP Security Guide </i> " \
+ XCCDF_REFINABLE_PROPERTIES = ["weight", "severity", "role", "selector"]
+ 
+ OVAL_TO_XCCDF_DATATYPE_CONSTRAINTS = {
