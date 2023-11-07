@@ -1,19 +1,18 @@
-From 7cbb8d7efffad157a0f74932159022a5f3c25ac8 Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Tomasz=20Podsiad=C5=82y?= <tp@euro-linux.com>
-Date: Thu, 7 Apr 2022 07:25:12 +0000
-Subject: [PATCH] eurolinux
+From a083f15c153a878a663c7450ba1901c000ed27da Mon Sep 17 00:00:00 2001
+From: Aleksander Baranowski <alex@euro-linux.com>
+Date: Fri, 6 Oct 2023 21:57:56 +0000
+Subject: [PATCH] Changes for EuroLinux
 
 ---
- configure.c                  | 6 +++---
- configure.crhel8_build.patch | 6 +++---
- help.c                       | 2 +-
- 3 files changed, 7 insertions(+), 7 deletions(-)
+ configure.c | 6 +++---
+ help.c      | 8 ++++----
+ 2 files changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/configure.c b/configure.c
-index e813b5a..1da96e4 100644
+index 508e418..100805a 100644
 --- a/configure.c
 +++ b/configure.c
-@@ -197,7 +197,7 @@ struct supported_gdb_version {
+@@ -203,7 +203,7 @@ struct supported_gdb_version {
  } supported_gdb_versions[SUPPORTED_GDB_VERSIONS] = {
  	{
  	    "GDB=gdb-5.3post-0.20021129.36rh",
@@ -22,7 +21,7 @@ index e813b5a..1da96e4 100644
  	    "GDB_FILES=${GDB_5.3post-0.20021129.36rh_FILES}",	   
  	    "GDB_OFILES=${GDB_5.3post-0.20021129.36rh_OFILES}",
  	    "GDB_PATCH_FILES=",
-@@ -1374,7 +1374,7 @@ make_spec_file(struct supported_gdb_version *sp)
+@@ -1408,7 +1408,7 @@ make_spec_file(struct supported_gdb_version *sp)
  	printf("%%description\n");
  	printf("The core analysis suite is a self-contained tool that can be used to\n");
  	printf("investigate either live systems, kernel core dumps created from the\n");
@@ -31,38 +30,7 @@ index e813b5a..1da96e4 100644
  	printf("offered by Mission Critical Linux, or the LKCD kernel patch.\n");
  	printf("\n");
  	printf("%%package devel\n");
-@@ -1385,7 +1385,7 @@ make_spec_file(struct supported_gdb_version *sp)
- 	printf("%%description devel\n");
- 	printf("The core analysis suite is a self-contained tool that can be used to\n");
- 	printf("investigate either live systems, kernel core dumps created from the\n");
--	printf("netdump, diskdump and kdump packages from Red Hat Linux, the mcore kernel patch\n");
-+	printf("netdump, diskdump and kdump packages from EuroLinux, the mcore kernel patch\n");
- 	printf("offered by Mission Critical Linux, or the LKCD kernel patch.\n");
- 	printf("\n");
- 	printf("%%package extensions\n");
-diff --git a/configure.crhel8_build.patch b/configure.crhel8_build.patch
-index b691a13..21b9c5a 100644
---- a/configure.crhel8_build.patch
-+++ b/configure.crhel8_build.patch
-@@ -197,7 +197,7 @@ struct supported_gdb_version {
- } supported_gdb_versions[SUPPORTED_GDB_VERSIONS] = {
- 	{
- 	    "GDB=gdb-5.3post-0.20021129.36rh",
--	    "Red Hat Linux (5.3post-0.20021129.36rh)",
-+	    "EuroLinux (5.3post-0.20021129.36rh)",
- 	    "GDB_FILES=${GDB_5.3post-0.20021129.36rh_FILES}",	   
- 	    "GDB_OFILES=${GDB_5.3post-0.20021129.36rh_OFILES}",
- 	    "GDB_PATCH_FILES=",
-@@ -1373,7 +1373,7 @@ make_spec_file(struct supported_gdb_version *sp)
- 	printf("%%description\n");
- 	printf("The core analysis suite is a self-contained tool that can be used to\n");
- 	printf("investigate either live systems, kernel core dumps created from the\n");
--	printf("netdump, diskdump and kdump facilities from Red Hat Linux, the mcore kernel patch\n");
-+	printf("netdump, diskdump and kdump facilities from EuroLinux, the mcore kernel patch\n");
- 	printf("offered by Mission Critical Linux, or the LKCD kernel patch.\n");
- 	printf("\n");
- 	printf("%%package devel\n");
-@@ -1384,7 +1384,7 @@ make_spec_file(struct supported_gdb_version *sp)
+@@ -1419,7 +1419,7 @@ make_spec_file(struct supported_gdb_version *sp)
  	printf("%%description devel\n");
  	printf("The core analysis suite is a self-contained tool that can be used to\n");
  	printf("investigate either live systems, kernel core dumps created from the\n");
@@ -72,10 +40,28 @@ index b691a13..21b9c5a 100644
  	printf("\n");
  	printf("%%package extensions\n");
 diff --git a/help.c b/help.c
-index e221607..e3bcb43 100644
+index 26f0d75..475fc0a 100644
 --- a/help.c
 +++ b/help.c
-@@ -9437,7 +9437,7 @@ README_ENTER_DIRECTORY,
+@@ -2206,7 +2206,7 @@ char *help_bt[] = {
+ " ",
+ "  Display the back trace from a dumpfile that resulted from an attempt to",
+ "  insmod the sample \"crash.c\" kernel module that comes as part of the",
+-"  Red Hat netdump package:\n",
++"  EuroLinux netdump package:\n",
+ "   %s> bt",
+ "   PID: 1696   TASK: c74de000  CPU: 0   COMMAND: \"insmod\"",
+ "    #0 [c74dfdcc] die at c01076ec",
+@@ -9533,7 +9533,7 @@ char *README[] = {
+ "  The core analysis suite is a self-contained tool that can be used to",
+ "  investigate either live systems, kernel core dumps created from dump",
+ "  creation facilities such as kdump, kvmdump, xendump, the netdump and",
+-"  diskdump packages offered by Red Hat, the LKCD kernel patch, the mcore",
++"  diskdump packages offered by EuroLinux, the LKCD kernel patch, the mcore",
+ "  kernel patch created by Mission Critical Linux, as well as other formats",
+ "  created by manufacturer-specific firmware.",
+ "",
+@@ -9646,7 +9646,7 @@ README_ENTER_DIRECTORY,
  "  uncompressed kernel name and the kernel dumpfile name.  ",
  "",
  "  If run on a live system, only the kernel name is required, because /dev/mem ",
@@ -84,6 +70,15 @@ index e221607..e3bcb43 100644
  "  /dev/mem device is restricted, the /dev/crash memory driver will be used.",
  "  If neither /dev/mem or /dev/crash are available, then /proc/kcore will be",
  "  be used as the live memory source.  If /proc/kcore is also restricted, then",
+@@ -9696,7 +9696,7 @@ README_HELP_MENU,
+ " ",
+ "  When run on a dumpfile, both the kernel namelist and dumpfile must be ",
+ "  entered on the command line.  For example, when run on a core dump created",
+-"  by the Red Hat netdump or diskdump facilities:",
++"  by the EuroLinux netdump or diskdump facilities:",
+ "",
+ "    $ crash vmlinux vmcore",
+ " ",   
 -- 
-2.27.0
+2.39.3
 
