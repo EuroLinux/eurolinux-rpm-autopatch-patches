@@ -1,10 +1,8 @@
-diff --git a/kernel.spec b/kernel.spec.patched
-index a9322e7..205eaed 100644
 --- a/kernel.spec
-+++ b/kernel.spec.patched
-@@ -323,6 +323,19 @@
- %define kernel_prereq  coreutils, systemd >= 203-2, /usr/bin/kernel-install
++++ b/kernel.spec
+@@ -324,6 +324,19 @@
  %define initrd_prereq  dracut >= 027
+ 
  
 +# EuroLinux override
 +# Normaly this should be done in rpmmacros, but because the packages must be rebuildable with beast
@@ -19,10 +17,10 @@ index a9322e7..205eaed 100644
 +# End of EuroLinux override
 +
 +
- 
  Name: kernel%{?variant}
  Group: System Environment/Kernel
-@@ -550,8 +563,8 @@ Patch999999: linux-kernel-test.patch
+ License: GPLv2 and Redistributable, no modification permitted
+@@ -550,8 +563,8 @@
  BuildRoot: %{_tmppath}/%{name}-%{KVERREL}-root
  
  %description
@@ -33,7 +31,7 @@ index a9322e7..205eaed 100644
  compatibility of a set of approved symbols, however it is heavily modified with
  backports and fixes pulled from newer upstream Linux %{name} releases. This means
  this is not a %{version} kernel anymore: it includes several components which come
-@@ -559,7 +572,7 @@ from newer upstream linux versions, while maintaining a well tested and stable
+@@ -559,7 +572,7 @@
  core. Some of the components/backports that may be pulled in are: changes like
  updates to the core kernel (eg.: scheduler, cgroups, memory management, security
  fixes and features), updates to block layer, supported filesystems, major driver
@@ -42,7 +40,7 @@ index a9322e7..205eaed 100644
  enterprise customers, etc.
  
  #
-@@ -807,14 +820,14 @@ kernel-gcov includes the gcov graph and source files for gcov coverage collectio
+@@ -807,14 +820,14 @@
  %endif
  
  %package -n %{name}-abi-stablelists
@@ -50,7 +48,7 @@ index a9322e7..205eaed 100644
 +Summary: The EuroLinux kernel ABI symbol stablelists
  Group: System Environment/Kernel
  AutoReqProv: no
- Obsoletes: %{name}-abi-whitelists < %{rpmversion}-%{pkg_release}
+ Obsoletes: %{name}-abi-whitelists < %{specversion}-%{pkg_release}
  Provides: %{name}-abi-whitelists
  %description -n %{name}-abi-stablelists
 -The kABI package contains information pertaining to the Red Hat Enterprise
@@ -60,30 +58,36 @@ index a9322e7..205eaed 100644
  external Linux kernel modules, and a yum plugin to aid enforcement.
  
  %if %{with_kabidw_base}
-@@ -823,8 +836,8 @@ Summary: The baseline dataset for kABI verification using DWARF data
+@@ -823,8 +836,8 @@
  Group: System Environment/Kernel
  AutoReqProv: no
  %description kernel-kabidw-base-internal
 -The package contains data describing the current ABI of the Red Hat Enterprise
 -Linux kernel, suitable for the kabi-dw tool.
-+The package contains data describing the current ABI of the EuroLinux 
++The package contains data describing the current ABI of the EuroLinux
 +kernel, suitable for the kabi-dw tool.
  %endif
  
  #
-@@ -1068,9 +1081,9 @@ ApplyPatch()
-     exit 1
-   fi
+@@ -898,7 +911,7 @@
+ AutoReq: no\
+ AutoProv: yes\
+ %description %{?1:%{1}-}modules-internal\
+-This package provides kernel modules for the %{?2:%{2} }kernel package for Red Hat internal usage.\
++This package provides kernel modules for the %{?2:%{2} }kernel package for EuroLinux internal usage.\
+ %{nil}
+ 
+ #
+@@ -1070,7 +1083,7 @@
    if ! grep -E "^Patch[0-9]+: $patch\$" %{_specdir}/${RPM_PACKAGE_NAME%%%%%{?variant}}.spec ; then
--    if [ "${patch:0:8}" != "patch-4." ] ; then
-+    if [ "${patch:0:9}" != "patch-4." ] ; then
+     if [ "${patch:0:8}" != "patch-4." ] ; then
        echo "ERROR: Patch  $patch  not listed as a source patch in specfile"
 -      exit 1
-+      #exit 1
++      # exit 1
      fi
    fi 2>/dev/null
    case "$patch" in
-@@ -1100,6 +1113,9 @@ mv linux-%{rpmversion}-%{pkgrelease} linux-%{KVERREL}
+@@ -1100,6 +1113,9 @@
  
  cd linux-%{KVERREL}
  
@@ -93,10 +97,12 @@ index a9322e7..205eaed 100644
  ApplyOptionalPatch linux-kernel-test.patch
  
  # END OF PATCH APPLICATIONS
-@@ -1752,18 +1768,18 @@ BuildKernel() {
+@@ -1750,20 +1766,20 @@
+     # build a BLS config for this kernel
+     %{SOURCE43} "$KernelVer" "$RPM_BUILD_ROOT" "%{?variant}"
  
-     # Red Hat UEFI Secure Boot CA cert, which can be used to authenticate the kernel
-     mkdir -p $RPM_BUILD_ROOT%{_datadir}/doc/kernel-keys/$KernelVer
+-    # Red Hat UEFI Secure Boot CA cert, which can be used to authenticate the kernel
+-    mkdir -p $RPM_BUILD_ROOT%{_datadir}/doc/kernel-keys/$KernelVer
 -    install -m 0644 %{secureboot_ca_0} $RPM_BUILD_ROOT%{_datadir}/doc/kernel-keys/$KernelVer/kernel-signing-ca.cer
 -    %ifarch s390x ppc64le
 -    if [ $DoModules -eq 1 ]; then
@@ -109,6 +115,8 @@ index a9322e7..205eaed 100644
 -	fi
 -    fi
 -    %endif
++#    # EuroLinux UEFI Secure Boot CA cert, which can be used to authenticate the kernel
++   mkdir -p $RPM_BUILD_ROOT%{_datadir}/doc/kernel-keys/$KernelVer
 +#    install -m 0644 %{secureboot_ca_0} $RPM_BUILD_ROOT%{_datadir}/doc/kernel-keys/$KernelVer/kernel-signing-ca.cer
 +#    %ifarch s390x ppc64le
 +#    if [ $DoModules -eq 1 ]; then
