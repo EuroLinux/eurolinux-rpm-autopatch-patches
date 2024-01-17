@@ -78,16 +78,20 @@
  %{nil}
  
  #
-@@ -1070,7 +1083,7 @@
-   if ! grep -E "^Patch[0-9]+: $patch\$" %{_specdir}/${RPM_PACKAGE_NAME%%%%%{?variant}}.spec ; then
-     if [ "${patch:0:8}" != "patch-4." ] ; then
-       echo "ERROR: Patch  $patch  not listed as a source patch in specfile"
+@@ -1067,12 +1080,6 @@
+   if [ ! -f $RPM_SOURCE_DIR/$patch ]; then
+     exit 1
+   fi
+-  if ! grep -E "^Patch[0-9]+: $patch\$" %{_specdir}/${RPM_PACKAGE_NAME%%%%%{?variant}}.spec ; then
+-    if [ "${patch:0:8}" != "patch-4." ] ; then
+-      echo "ERROR: Patch  $patch  not listed as a source patch in specfile"
 -      exit 1
-+      # exit 1
-     fi
-   fi 2>/dev/null
+-    fi
+-  fi 2>/dev/null
    case "$patch" in
-@@ -1100,6 +1113,9 @@
+   *.bz2) bunzip2 < "$RPM_SOURCE_DIR/$patch" | $patch_command ${1+"$@"} ;;
+   *.gz)  gunzip  < "$RPM_SOURCE_DIR/$patch" | $patch_command ${1+"$@"} ;;
+@@ -1100,6 +1107,9 @@
  
  cd linux-%{KVERREL}
  
@@ -97,7 +101,7 @@
  ApplyOptionalPatch linux-kernel-test.patch
  
  # END OF PATCH APPLICATIONS
-@@ -1750,20 +1766,20 @@
+@@ -1750,20 +1760,7 @@
      # build a BLS config for this kernel
      %{SOURCE43} "$KernelVer" "$RPM_BUILD_ROOT" "%{?variant}"
  
@@ -115,20 +119,7 @@
 -	fi
 -    fi
 -    %endif
-+#    # EuroLinux UEFI Secure Boot CA cert, which can be used to authenticate the kernel
 +   mkdir -p $RPM_BUILD_ROOT%{_datadir}/doc/kernel-keys/$KernelVer
-+#    install -m 0644 %{secureboot_ca_0} $RPM_BUILD_ROOT%{_datadir}/doc/kernel-keys/$KernelVer/kernel-signing-ca.cer
-+#    %ifarch s390x ppc64le
-+#    if [ $DoModules -eq 1 ]; then
-+#	if [ -x /usr/bin/rpm-sign ]; then
-+#	    install -m 0644 %{secureboot_key_0} $RPM_BUILD_ROOT%{_datadir}/doc/kernel-keys/$KernelVer/%{signing_key_filename}
-+#	else
-+#	    install -m 0644 certs/signing_key.x509.sign${Flav} $RPM_BUILD_ROOT%{_datadir}/doc/kernel-keys/$KernelVer/kernel-signing-ca.cer
-+#	    openssl x509 -in certs/signing_key.pem.sign${Flav} -outform der -out $RPM_BUILD_ROOT%{_datadir}/doc/kernel-keys/$KernelVer/%{signing_key_filename}
-+#	    chmod 0644 $RPM_BUILD_ROOT%{_datadir}/doc/kernel-keys/$KernelVer/%{signing_key_filename}
-+#	fi
-+#    fi
-+#    %endif
  
  %if %{with_ipaclones}
      MAXPROCS=$(echo %{?_smp_mflags} | sed -n 's/-j\s*\([0-9]\+\)/\1/p')
