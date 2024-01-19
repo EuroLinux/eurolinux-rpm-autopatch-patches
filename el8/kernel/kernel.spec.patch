@@ -96,7 +96,7 @@
  cd linux-%{KVERREL}
  
 +ApplyOptionalPatch debrand-single-cpu.patch
-+#ApplyOptionalPatch debrand-rh_taint.patch
++ApplyOptionalPatch debrand-specific-versions-of-hardware.patch
 +ApplyOptionalPatch debrand-rh-i686-cpu.patch
  ApplyOptionalPatch linux-kernel-test.patch
  
