@@ -1,6 +1,6 @@
---- osinfo-db.spec	2022-11-22 15:34:15.794427473 +0100
-+++ osinfo-db.spec_EL	2022-11-22 15:41:01.872423463 +0100
-@@ -16,6 +16,8 @@
+--- osinfo-db.spec	2024-05-09 12:40:57.434122006 +0000
++++ osinfo-db.spec.patch	2024-05-09 12:39:44.953636316 +0000
+@@ -11,6 +11,8 @@
  BuildRequires: intltool
  BuildRequires: git-core
  BuildRequires: osinfo-db-tools
@@ -9,10 +9,10 @@
  BuildArch: noarch
  Requires: hwdata
  
-@@ -33,6 +35,11 @@
+@@ -24,6 +26,11 @@
  
  %install
- osinfo-db-import  --root %{buildroot} --dir %{_datadir}/osinfo %{PatchedSource}
+ osinfo-db-import  --root %{buildroot} --dir %{_datadir}/osinfo %{SOURCE0}
 +
 +cd %{buildroot}/%{_datadir}/osinfo
 +git apply %{SOURCE100}
