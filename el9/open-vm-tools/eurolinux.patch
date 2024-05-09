@@ -1,7 +1,8 @@
-diff -uNr open-vm-tools-12.3.5-22544099/lib/include/guest_os.h open-vm-tools-12.3.5-22544099p/lib/include/guest_os.h
---- open-vm-tools-12.3.5-22544099/lib/include/guest_os.h	2023-10-03 09:05:51.000000000 +0000
-+++ open-vm-tools-12.3.5-22544099p/lib/include/guest_os.h	2024-05-09 11:07:37.376428551 +0000
-@@ -216,6 +216,7 @@
+diff --git x/a/lib/include/guest_os.h x/b/lib/include/guest_os.h
+index 28e2c6a..6f830b0 100644
+--- x/a/lib/include/guest_os.h
++++ x/b/lib/include/guest_os.h
+@@ -216,6 +216,7 @@ Bool Gos_InSetArray(uint32 gos, const uint32 *set);
  #define ALL4XLINUX64          BS(OTHER4XLINUX_64), BS(PHOTON_64),       \
                                BS(CENTOS8_64),      BS(CENTOS9_64),      \
                                BS(ORACLE8_64),      BS(ORACLE9_64),      \
@@ -9,7 +10,7 @@ diff -uNr open-vm-tools-12.3.5-22544099/lib/include/guest_os.h open-vm-tools-12.
                                BS(CRXSYS1_64),      BS(CRXPOD1_64),      \
                                BS(AMAZONLINUX2_64), BS(AMAZONLINUX3_64), \
                                BS(LINUX_MINT_64)
-@@ -341,6 +342,7 @@
+@@ -341,6 +342,7 @@ Bool Gos_InSetArray(uint32 gos, const uint32 *set);
  #define STR_OS_NOVELL             "nld"
  #define STR_OS_NOVELL_FULL        "Novell Linux Desktop 9"
  #define STR_OS_ORACLE             "oraclelinux"
@@ -17,10 +18,11 @@ diff -uNr open-vm-tools-12.3.5-22544099/lib/include/guest_os.h open-vm-tools-12.
  #define STR_OS_OTHER_LINUX        "otherlinux"
  #define STR_OS_OTHER_LINUX_FULL   "Other Linux"
  #define STR_OS_OTHER              "other"
-diff -uNr open-vm-tools-12.3.5-22544099/lib/include/guest_os_tables.h open-vm-tools-12.3.5-22544099p/lib/include/guest_os_tables.h
---- open-vm-tools-12.3.5-22544099/lib/include/guest_os_tables.h	2023-10-03 09:05:51.000000000 +0000
-+++ open-vm-tools-12.3.5-22544099p/lib/include/guest_os_tables.h	2024-05-09 11:08:53.766939405 +0000
-@@ -167,6 +167,14 @@
+diff --git x/a/lib/include/guest_os_tables.h x/b/lib/include/guest_os_tables.h
+index 3ddd05e..a7c56cd 100644
+--- x/a/lib/include/guest_os_tables.h
++++ x/b/lib/include/guest_os_tables.h
+@@ -167,6 +167,14 @@ extern "C" {
     GOT(GUEST_OS_ORACLE8_64)                                                \
     GOT(GUEST_OS_ORACLE9_64)                                                \
     GOT(GUEST_OS_ORACLE10_64)                                               \
@@ -35,7 +37,7 @@ diff -uNr open-vm-tools-12.3.5-22544099/lib/include/guest_os_tables.h open-vm-to
     GOT(GUEST_OS_CENTOS)                                                    \
     GOT(GUEST_OS_CENTOS_64)                                                 \
     GOT(GUEST_OS_CENTOS6)                                                   \
-@@ -318,6 +326,14 @@
+@@ -318,6 +326,14 @@ extern "C" {
     GOKM("oraclelinux7-64",                      oracleLinux7_64Guest,    TRUE) \
     GOKM("oraclelinux8-64",                      oracleLinux8_64Guest,    TRUE) \
     GOKM("oraclelinux9-64",                      oracleLinux9_64Guest,    TRUE) \
@@ -50,10 +52,11 @@ diff -uNr open-vm-tools-12.3.5-22544099/lib/include/guest_os_tables.h open-vm-to
     GOKM("suse",                                 suseGuest,               TRUE) \
     GOKM("suse-64",                              suse64Guest,             TRUE) \
     GOKM("sles",                                 slesGuest,               TRUE) \
-diff -uNr open-vm-tools-12.3.5-22544099/lib/misc/hostinfoPosix.c open-vm-tools-12.3.5-22544099p/lib/misc/hostinfoPosix.c
---- open-vm-tools-12.3.5-22544099/lib/misc/hostinfoPosix.c	2023-10-03 09:05:38.000000000 +0000
-+++ open-vm-tools-12.3.5-22544099p/lib/misc/hostinfoPosix.c	2024-05-09 11:11:33.208005650 +0000
-@@ -223,6 +223,7 @@
+diff --git x/a/lib/misc/hostinfoPosix.c x/b/lib/misc/hostinfoPosix.c
+index 1e7e59f..a67aeb8 100644
+--- x/a/lib/misc/hostinfoPosix.c
++++ x/b/lib/misc/hostinfoPosix.c
+@@ -223,6 +223,7 @@ static const DistroInfo distroArray[] = {
     { "MkLinux",            "/etc/mklinux-release"       },
     { "Novell",             "/etc/nld-release"           },
     { "OracleLinux",        "/etc/oracle-release"        },
@@ -61,10 +64,13 @@ diff -uNr open-vm-tools-12.3.5-22544099/lib/misc/hostinfoPosix.c open-vm-tools-1
     { "Photon",             "/etc/lsb-release"           },
     { "PLD",                "/etc/pld-release"           },
     { "RedHat",             "/etc/redhat-release"        },
-@@ -1122,6 +1123,42 @@
- /*
-  *-----------------------------------------------------------------------------
-  *
+@@ -1119,6 +1120,42 @@ HostinfoSetOracleShortName(const ShortNameSet *entry, // IN: Unused
+ }
+ 
+ 
++/*
++ *-----------------------------------------------------------------------------
++ *
 + * HostinfoSetEuroLinuxShortName --
 + *
 + *      Set the short name for the EuroLinux distro.
@@ -98,13 +104,10 @@ diff -uNr open-vm-tools-12.3.5-22544099/lib/misc/hostinfoPosix.c open-vm-tools-1
 +
 +
 +
-+/*
-+ *-----------------------------------------------------------------------------
-+ *
-  * HostinfoSetRedHatShortName --
+ /*
+  *-----------------------------------------------------------------------------
   *
-  *      Set short name of the RedHat distro.
-@@ -1276,6 +1313,7 @@
+@@ -1276,6 +1313,7 @@ static const ShortNameSet shortNameArray[] = {
  { "aurox",               STR_OS_AUROX,              HostinfoGenericSetShortName },
  { "black cat",           STR_OS_BLACKCAT,           HostinfoGenericSetShortName },
  { "centos",              NULL,                      HostinfoSetCentosShortName  },
