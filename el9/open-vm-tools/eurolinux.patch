@@ -1,15 +1,16 @@
-diff '--color=auto' -ur ./open-vm-tools-12.0.5-19716617/lib/include/guest_os.h ./open-vm-tools-12.0.5-19716617_EL/lib/include/guest_os.h
---- ./open-vm-tools-12.0.5-19716617/lib/include/guest_os.h	2022-04-28 11:15:22.000000000 +0200
-+++ ./open-vm-tools-12.0.5-19716617_EL/lib/include/guest_os.h	2022-11-21 10:09:17.059961873 +0100
-@@ -215,6 +215,7 @@
+diff --git x/a/lib/include/guest_os.h x/b/lib/include/guest_os.h
+index 28e2c6a..6f830b0 100644
+--- x/a/lib/include/guest_os.h
++++ x/b/lib/include/guest_os.h
+@@ -216,6 +216,7 @@ Bool Gos_InSetArray(uint32 gos, const uint32 *set);
  #define ALL4XLINUX64          BS(OTHER4XLINUX_64), BS(PHOTON_64),       \
                                BS(CENTOS8_64),      BS(CENTOS9_64),      \
                                BS(ORACLE8_64),      BS(ORACLE9_64),      \
-+                              BS(EUROLINUX8_64),   BS(EUROLINUX9_64),   \
++                              BS(EUROLINUX8_64),   BS(EUROLINUX9_64),      \
                                BS(CRXSYS1_64),      BS(CRXPOD1_64),      \
                                BS(AMAZONLINUX2_64), BS(AMAZONLINUX3_64), \
                                BS(LINUX_MINT_64)
-@@ -323,6 +324,7 @@
+@@ -341,6 +342,7 @@ Bool Gos_InSetArray(uint32 gos, const uint32 *set);
  #define STR_OS_NOVELL             "nld"
  #define STR_OS_NOVELL_FULL        "Novell Linux Desktop 9"
  #define STR_OS_ORACLE             "oraclelinux"
@@ -17,51 +18,55 @@ diff '--color=auto' -ur ./open-vm-tools-12.0.5-19716617/lib/include/guest_os.h .
  #define STR_OS_OTHER_LINUX        "otherlinux"
  #define STR_OS_OTHER_LINUX_FULL   "Other Linux"
  #define STR_OS_OTHER              "other"
-diff '--color=auto' -ur ./open-vm-tools-12.0.5-19716617/lib/include/guest_os_tables.h ./open-vm-tools-12.0.5-19716617_EL/lib/include/guest_os_tables.h
---- ./open-vm-tools-12.0.5-19716617/lib/include/guest_os_tables.h	2022-04-28 11:15:22.000000000 +0200
-+++ ./open-vm-tools-12.0.5-19716617_EL/lib/include/guest_os_tables.h	2022-11-21 10:13:07.645044321 +0100
-@@ -158,6 +158,13 @@
-    GOT(GUEST_OS_ORACLE7_64)                                                \
+diff --git x/a/lib/include/guest_os_tables.h x/b/lib/include/guest_os_tables.h
+index 3ddd05e..a7c56cd 100644
+--- x/a/lib/include/guest_os_tables.h
++++ x/b/lib/include/guest_os_tables.h
+@@ -167,6 +167,14 @@ extern "C" {
     GOT(GUEST_OS_ORACLE8_64)                                                \
     GOT(GUEST_OS_ORACLE9_64)                                                \
-+   GOT(GUEST_OS_EUROLINUX)                                                 \
-+   GOT(GUEST_OS_EUROLINUX_64)                                              \
-+   GOT(GUEST_OS_EUROLINUX6)                                                \
-+   GOT(GUEST_OS_EUROLINUX6_64)                                             \
-+   GOT(GUEST_OS_EUROLINUX7_64)                                             \
-+   GOT(GUEST_OS_EUROLINUX8_64)                                             \
-+   GOT(GUEST_OS_EUROLINUX9_64)                                             \
+    GOT(GUEST_OS_ORACLE10_64)                                               \
++   GOT(GUEST_OS_EUROLINUX)                                                    \
++   GOT(GUEST_OS_EUROLINUX_64)                                                 \
++   GOT(GUEST_OS_EUROLINUX6)                                                   \
++   GOT(GUEST_OS_EUROLINUX6_64)                                                \
++   GOT(GUEST_OS_EUROLINUX7_64)                                                \
++   GOT(GUEST_OS_EUROLINUX8_64)                                                \
++   GOT(GUEST_OS_EUROLINUX9_64)                                                \
++   GOT(GUEST_OS_EUROLINUX10_64)                                               \
     GOT(GUEST_OS_CENTOS)                                                    \
     GOT(GUEST_OS_CENTOS_64)                                                 \
     GOT(GUEST_OS_CENTOS6)                                                   \
-@@ -303,6 +310,13 @@
-    GOKM("oraclelinux7",                         oracleLinux7Guest,       FALSE) \
+@@ -318,6 +326,14 @@ extern "C" {
     GOKM("oraclelinux7-64",                      oracleLinux7_64Guest,    TRUE) \
     GOKM("oraclelinux8-64",                      oracleLinux8_64Guest,    TRUE) \
-+   GOKM("eurolinux",                            euroLinuxGuest,          TRUE) \
-+   GOKM("eurolinux-64",                       	euroLinux64Guest,        TRUE) \
-+   GOKM("eurolinux6",                         	euroLinux6Guest,         TRUE) \
-+   GOKM("eurolinux6-64",                      	euroLinux6_64Guest,      TRUE) \
-+   GOKM("eurolinux7-64",                      	euroLinux7_64Guest,      TRUE) \
-+   GOKM("eurolinux8-64",      	                euroLinux8_64Guest,      TRUE) \
-+   GOKM("eurolinux9-64",       	                euroLinux9_64Guest,      TRUE) \
     GOKM("oraclelinux9-64",                      oracleLinux9_64Guest,    TRUE) \
++   GOKM("eurolinux",                            euroLinuxGuest,        TRUE) \
++   GOKM("eurolinux-64",                         euroLinux64Guest,      TRUE) \
++   GOKM("eurolinux6",                           euroLinux6Guest,       TRUE) \
++   GOKM("eurolinux6-64",                        euroLinux6_64Guest,    TRUE) \
++   GOKM("eurolinux7",                           euroLinux7Guest,       FALSE) \
++   GOKM("eurolinux7-64",                        euroLinux7_64Guest,    TRUE) \
++   GOKM("eurolinux8-64",                        euroLinux8_64Guest,    TRUE) \
++   GOKM("eurolinux9-64",                        euroLinux9_64Guest,    TRUE) \
     GOKM("suse",                                 suseGuest,               TRUE) \
     GOKM("suse-64",                              suse64Guest,             TRUE) \
-diff '--color=auto' -ur ./open-vm-tools-12.0.5-19716617/lib/misc/hostinfoPosix.c ./open-vm-tools-12.0.5-19716617_EL/lib/misc/hostinfoPosix.c
---- ./open-vm-tools-12.0.5-19716617/lib/misc/hostinfoPosix.c	2022-04-28 11:15:10.000000000 +0200
-+++ ./open-vm-tools-12.0.5-19716617_EL/lib/misc/hostinfoPosix.c	2022-11-21 10:18:55.495675781 +0100
-@@ -224,6 +224,7 @@
+    GOKM("sles",                                 slesGuest,               TRUE) \
+diff --git x/a/lib/misc/hostinfoPosix.c x/b/lib/misc/hostinfoPosix.c
+index 1e7e59f..a67aeb8 100644
+--- x/a/lib/misc/hostinfoPosix.c
++++ x/b/lib/misc/hostinfoPosix.c
+@@ -223,6 +223,7 @@ static const DistroInfo distroArray[] = {
     { "MkLinux",            "/etc/mklinux-release"       },
     { "Novell",             "/etc/nld-release"           },
     { "OracleLinux",        "/etc/oracle-release"        },
-+   { "EuroLinux",          "/etc/el-release"        	  },
++   { "EuroLinux",          "/etc/el-release"            },
     { "Photon",             "/etc/lsb-release"           },
     { "PLD",                "/etc/pld-release"           },
     { "RedHat",             "/etc/redhat-release"        },
-@@ -1106,6 +1107,40 @@
-    return TRUE;
+@@ -1119,6 +1120,42 @@ HostinfoSetOracleShortName(const ShortNameSet *entry, // IN: Unused
  }
+ 
  
 +/*
 + *-----------------------------------------------------------------------------
@@ -97,10 +102,12 @@ diff '--color=auto' -ur ./open-vm-tools-12.0.5-19716617/lib/misc/hostinfoPosix.c
 +}
 +
 +
- 
++
++
  /*
   *-----------------------------------------------------------------------------
-@@ -1264,6 +1299,7 @@
+  *
+@@ -1276,6 +1313,7 @@ static const ShortNameSet shortNameArray[] = {
  { "aurox",               STR_OS_AUROX,              HostinfoGenericSetShortName },
  { "black cat",           STR_OS_BLACKCAT,           HostinfoGenericSetShortName },
  { "centos",              NULL,                      HostinfoSetCentosShortName  },
