@@ -1,0 +1,20 @@
+diff --git a/postgresql-16.spec b/postgresql-16.spec
+index aaf42b6..3a5b64e 100644
+--- a/postgresql-16.spec
++++ b/postgresql-16.spec
+@@ -910,6 +910,15 @@ if [ "$1" -eq 0 ]
+ 	/sbin/ldconfig
+ fi
+ 
++%posttrans
++if [ -e /usr/eurodb-16 ]; then
++  pgdata_path="$(cat /usr/lib/systemd/system/eurodb16.service | grep =PGDATA= | cut -d'=' -f 3)"
++  if [ ! "$(ls -A /var/lib/pgsql/16/data/)" ]; then
++    rm -rf /var/lib/pgsql/16/data
++    ln -s "$pgdata_path" /var/lib/pgsql/16/
++  fi
++fi
++
+ # FILES section.
+ 
+ %files -f pg_main.lst
