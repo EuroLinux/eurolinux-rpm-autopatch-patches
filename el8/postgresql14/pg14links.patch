@@ -1,0 +1,20 @@
+diff --git a/postgresql-14.spec b/postgresql-14.spec
+index 09dc5ae..8e16fcb 100644
+--- a/postgresql-14.spec
++++ b/postgresql-14.spec
+@@ -1048,6 +1048,15 @@ if [ "$1" -eq 0 ]
+        /sbin/ldconfig
+ fi
+
++%posttrans
++if [ -e /usr/eurodb-14 ]; then
++  pgdata_path="$(cat /usr/lib/systemd/system/eurodb14.service | grep =PGDATA= | cut -d'=' -f 3)"
++  if [ ! "$(ls -A /var/lib/pgsql/14/data/)" ]; then
++    rm -rf /var/lib/pgsql/14/data
++    ln -s "$pgdata_path" /var/lib/pgsql/14/
++  fi
++fi
++
+ # FILES section.
+
+ %files -f pg_main.lst
