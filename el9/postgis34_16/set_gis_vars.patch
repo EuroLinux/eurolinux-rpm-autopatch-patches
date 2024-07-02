@@ -1,8 +1,8 @@
 diff --git a/postgis34.spec b/postgis34.spec
-index 798c61a..e24c873 100644
+index 798c61a..828252f 100644
 --- a/postgis34.spec
 +++ b/postgis34.spec
-@@ -4,19 +4,17 @@
+@@ -4,19 +4,18 @@
  %global postgiscurrmajorversion %(echo %{postgismajorversion}|tr -d '.')
  %global sname  postgis
 
@@ -25,9 +25,9 @@ index 798c61a..e24c873 100644
 +%global gdalfullversion 3.8.5
 +%global gdalmajorversion 38
 +%global gdalinstdir /usr
-+%global projmajorversion 9.4.1
-+%global projfullversion 94
++%global projfullversion 9.4.1
++%global projmajorversion 94
 +%global projinstdir /usr
++%global libgeotiffmajorversion 17
 
  %{!?llvm:%global llvm 1}
-
