@@ -1,0 +1,33 @@
+diff --git a/postgis34.spec b/postgis34.spec
+index 798c61a..e24c873 100644
+--- a/postgis34.spec
++++ b/postgis34.spec
+@@ -4,19 +4,17 @@
+ %global postgiscurrmajorversion %(echo %{postgismajorversion}|tr -d '.')
+ %global sname  postgis
+
+-%pgdg_set_gis_variables
+-
+ # Override some variables. PostGIS 3.4 is best served with GeOS 3.12,
+ # GDAL 3.8 and PROJ 9.4:
+-%global geosfullversion %geos312fullversion
+-%global geosmajorversion %geos312majorversion
+-%global geosinstdir %geos312instdir
+-%global gdalfullversion %gdal38fullversion
+-%global gdalmajorversion %gdal38majorversion
+-%global gdalinstdir %gdal38instdir
+-%global projmajorversion %proj94majorversion
+-%global projfullversion %proj94fullversion
+-%global projinstdir %proj94instdir
++%global geosfullversion 3.12.2
++%global geosmajorversion 312
++%global geosinstdir /usr
++%global gdalfullversion 3.8.5
++%global gdalmajorversion 38
++%global gdalinstdir /usr
++%global projmajorversion 9.4.1
++%global projfullversion 94
++%global projinstdir /usr
+
+ %{!?llvm:%global llvm 1}
+
