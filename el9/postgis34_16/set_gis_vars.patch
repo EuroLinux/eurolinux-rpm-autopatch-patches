@@ -1,5 +1,5 @@
 diff --git a/postgis34.spec b/postgis34.spec
-index 798c61a..828252f 100644
+index 798c61a..e8b087c 100644
 --- a/postgis34.spec
 +++ b/postgis34.spec
 @@ -4,19 +4,18 @@
@@ -31,3 +31,13 @@ index 798c61a..828252f 100644
 +%global libgeotiffmajorversion 17
 
  %{!?llvm:%global llvm 1}
+
+@@ -211,7 +210,7 @@ export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:%{projinstdir}/lib64/pkgconfig
+
+ autoconf
+
+-%configure --with-pgconfig=%{pginstdir}/bin/pg_config \
++%configure CC="gcc" CFLAGS="-O3 -Wall" --with-pgconfig=%{pginstdir}/bin/pg_config \
+        --bindir=%{pginstdir}/bin/ \
+        --datadir=%{pginstdir}/share/ \
+        --enable-lto \
