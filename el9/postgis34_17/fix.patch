@@ -1,8 +1,8 @@
 diff --git a/postgis34.spec b/postgis34.spec
-index 23ea1b2..d097f2d 100644
+index 709ac43..fb003af 100644
 --- a/postgis34.spec
 +++ b/postgis34.spec
-@@ -4,7 +4,87 @@
+@@ -4,7 +4,86 @@
  %global postgiscurrmajorversion %(echo %{postgismajorversion}|tr -d '.')
  %global sname	postgis
  
@@ -87,24 +87,6 @@ index 23ea1b2..d097f2d 100644
 +%global gdal36fullversion		3.6.3
 +%global gdal35fullversion		3.5.3
 +%global gdal33fullversion		3.3.3 
-+
  
- # Override some variables. PostGIS 3.4 is best served with GeOS 3.13,
- # PROJ 9.5 and GDAL 3.10 (except on RHEL 8 where GDAL 3.8 is available):
-@@ -204,7 +284,7 @@ LDFLAGS="-Wl,-rpath,%{projinstdir}/lib ${LDFLAGS}" ; export LDFLAGS
- SHLIB_LINK="$SHLIB_LINK -Wl,-rpath,%{geosinstdir}/lib64" ; export SHLIB_LINK
- SFCGAL_LDFLAGS="$SFCGAL_LDFLAGS -L/usr/lib64"; export SFCGAL_LDFLAGS
- 
--LDFLAGS="$LDFLAGS -L%{geosinstdir}/lib64 -lgeos_c -L%{projinstdir}/lib -L%{gdalinstdir}/lib -L%{libgeotiffinstdir}/lib -ltiff -L/usr/lib64"; export LDFLAGS
-+LDFLAGS="$LDFLAGS -L%{geosinstdir}/lib64 -lgeos_c -L%{projinstdir}/lib64 -L%{gdalinstdir}/lib -L%{libgeotiffinstdir}/lib -ltiff -L/usr/lib64"; export LDFLAGS
- CFLAGS="$CFLAGS -I%{gdalinstdir}/include"; export CFLAGS
- export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:%{projinstdir}/lib64/pkgconfig
- 
-@@ -213,6 +293,7 @@ autoconf
- %configure --with-pgconfig=%{pginstdir}/bin/pg_config \
- 	--bindir=%{pginstdir}/bin/ \
- 	--datadir=%{pginstdir}/share/ \
-+        --with-projdir=%{projinstdir} \
- 	--enable-lto \
- %if !%raster
- 	--without-raster \
+ # Override some variables:
+ %global	geosfullversion %geos313fullversion
