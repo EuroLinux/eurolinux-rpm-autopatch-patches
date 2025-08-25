@@ -1,5 +1,5 @@
 diff --git a/postgis34.spec b/postgis34.spec
-index 709ac43..37b0a84 100644
+index 709ac43..62975a9 100644
 --- a/postgis34.spec
 +++ b/postgis34.spec
 @@ -4,7 +4,94 @@
@@ -98,12 +98,3 @@ index 709ac43..37b0a84 100644
  
  # Override some variables:
  %global	geosfullversion %geos313fullversion
-@@ -44,7 +131,7 @@
- Summary:	Geographic Information Systems Extensions to PostgreSQL
- Name:		%{sname}%{postgiscurrmajorversion}_%{pgmajorversion}
- Version:	%{postgismajorversion}.4
--Release:	8PGDG%{?dist}
-+Release:	8SM%{?dist}
- License:	GPLv2+
- Source0:	https://download.osgeo.org/postgis/source/postgis-%{version}.tar.gz
- Source2:	https://download.osgeo.org/postgis/docs/postgis-%{version}-en.pdf
