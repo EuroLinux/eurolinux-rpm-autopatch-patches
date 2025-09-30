@@ -1,14 +1,15 @@
 diff --git a/postgis36.spec b/postgis36.spec
-index 3e768a3..ebd1564 100644
+index 3e768a3..30a940b 100644
 --- a/postgis36.spec
 +++ b/postgis36.spec
-@@ -4,7 +4,92 @@
+@@ -4,7 +4,95 @@
  %global postgiscurrmajorversion %(echo %{postgismajorversion}|tr -d '.')
  %global sname	postgis
  
 -%pgdg_set_gis_variables
 +# COPIED FROM /usr/lib/rpm/macros.d/macros.pgdg-postgresql
 +%global geosmajorversion                39
++%global geos314majorversion             314
 +%global geos313majorversion             313
 +%global geos312majorversion             312
 +%global geos311majorversion             311
@@ -53,6 +54,7 @@ index 3e768a3..ebd1564 100644
 +%global geos311instdir                  /usr/geos%{geos311majorversion}
 +%global geos312instdir                  /usr/geos%{geos312majorversion}
 +%global geos313instdir                  /usr/geos%{geos313majorversion}
++%global geos314instdir                  /usr/geos%{geos314majorversion}
 +#%global geosinstdir                    /usr/geos%{geosmajorversion}
 +%global libgeotiffinstdir               /usr/libgeotiff%{libgeotiffmajorversion}
 +%global libgeotiff17instdir             /usr/libgeotiff%{libgeotiff17majorversion}
@@ -67,6 +69,7 @@ index 3e768a3..ebd1564 100644
 +%global proj91instdir                   /usr/proj%{proj91majorversion}
 +%global proj82instdir                   /usr/proj%{proj82majorversion}
 +%global proj72instdir                   /usr/proj%{proj72majorversion}
++%global geos314fullversion              3.14.0
 +%global geos313fullversion              3.13.0
 +%global geos312fullversion              3.12.2
 +%global geos311fullversion              3.11.4
