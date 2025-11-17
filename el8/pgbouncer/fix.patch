@@ -2,12 +2,12 @@ diff --git a/pgbouncer.spec b/pgbouncer.spec
 index d9b9545..df47bbc 100644
 --- a/pgbouncer.spec
 +++ b/pgbouncer.spec
-@@ -45,7 +45,7 @@ Requires:     libldap-2_4-2
- BuildRequires: openldap2-devel
- Requires:      libldap-2
+@@ -45,7 +45,7 @@ Requires:	libldap-2_4-2
+ BuildRequires:	openldap2-devel
+ Requires:	libldap-2
  %endif
 -%if 0%{?fedora} >= 41 || 0%{?rhel} >= 9
 +%if 0%{?fedora} >= 41 || 0%{?rhel} >= 8
- BuildRequires: openldap-devel
- Requires:      openldap
+ BuildRequires:	openldap-devel
+ Requires:	openldap
  %endif
