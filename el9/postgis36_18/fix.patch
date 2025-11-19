@@ -1,8 +1,8 @@
 diff --git a/postgis36.spec b/postgis36.spec
-index 3e768a3..30a940b 100644
+index 51ef187..5ba6e12 100644
 --- a/postgis36.spec
 +++ b/postgis36.spec
-@@ -4,7 +4,95 @@
+@@ -4,7 +4,97 @@
  %global postgiscurrmajorversion %(echo %{postgismajorversion}|tr -d '.')
  %global sname	postgis
  
@@ -28,6 +28,7 @@ index 3e768a3..30a940b 100644
 +%global libgeotiff17majorversion        17
 +%global ogdimajorversion                41
 +%global projmajorversion                82
++%global proj97majorversion              97
 +%global proj96majorversion              96
 +%global proj95majorversion              95
 +%global proj94majorversion              94
@@ -61,6 +62,7 @@ index 3e768a3..30a940b 100644
 +%global libspatialiteinstdir            /usr/libspatialite%{libspatialitemajorversion}
 +%global ogdiinstdir                     /usr/ogdi%{ogdimajorversion}
 +#%global projinstdir                    /usr/proj%{projmajorversion}
++%global proj97instdir                   /usr/proj%{proj97majorversion}
 +%global proj96instdir                   /usr/proj%{proj96majorversion}
 +%global proj95instdir                   /usr/proj%{proj95majorversion}
 +%global proj94instdir                   /usr/proj%{proj94majorversion}
@@ -77,6 +79,7 @@ index 3e768a3..30a940b 100644
 +%global geos39fullversion               3.9.2
 +%global geosfullversion                 3.9.2
 +%global projfullversion                 8.1.1
++%global proj97fullversion               9.7.0
 +%global proj96fullversion               9.6.0
 +%global proj95fullversion               9.5.0
 +%global proj94fullversion               9.4.1
@@ -95,7 +98,6 @@ index 3e768a3..30a940b 100644
 +%global gdal36fullversion               3.6.3
 +%global gdal35fullversion               3.5.3
 +%global gdal33fullversion               3.3.3
-+
  
  # Override some variables:
  %global	geosfullversion %geos314fullversion
