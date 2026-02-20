@@ -1,8 +1,8 @@
 diff --git a/postgis36.spec b/postgis36.spec
-index 51ef187..5ba6e12 100644
+index 91616a2..f2706f7 100644
 --- a/postgis36.spec
 +++ b/postgis36.spec
-@@ -4,7 +4,97 @@
+@@ -4,7 +4,100 @@
  %global postgiscurrmajorversion %(echo %{postgismajorversion}|tr -d '.')
  %global sname	postgis
  
