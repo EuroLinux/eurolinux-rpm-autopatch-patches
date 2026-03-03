@@ -1,12 +1,13 @@
 diff --git a/postgis34.spec b/postgis34.spec
-index 65ebe81..e6ba527 100644
+index 65ebe81..f34e82b 100644
 --- a/postgis34.spec
 +++ b/postgis34.spec
-@@ -4,7 +4,27 @@
+@@ -4,7 +4,28 @@
  %global postgiscurrmajorversion %(echo %{postgismajorversion}|tr -d '.')
  %global sname	postgis
  
 -%pgdg_set_gis_variables
++%global pgmajorversion                  17
 +%global geos314majorversion             314
 +%global gdal312majorversion             312
 +%global gdal311majorversion             311
