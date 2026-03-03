@@ -1,5 +1,5 @@
 diff --git a/postgis34.spec b/postgis34.spec
-index 65ebe81..f34e82b 100644
+index 65ebe81..1d5c8f9 100644
 --- a/postgis34.spec
 +++ b/postgis34.spec
 @@ -4,7 +4,28 @@
@@ -20,7 +20,7 @@ index 65ebe81..f34e82b 100644
 +%global gdal312instdir                  /usr/gdal%{gdal312majorversion}
 +%global gdal311instdir                  /usr/gdal%{gdal311majorversion}
 +%global gdal38instdir                   /usr/gdal%{gdal38majorversion}
-+%global proj97instdir                   /usr/proj%{proj96majorversion}
++%global proj97instdir                   /usr/proj%{proj97majorversion}
 +%global proj96instdir                   /usr/proj%{proj96majorversion}
 +%global geos314fullversion              3.14.0
 +%global gdal312fullversion              3.12.2
