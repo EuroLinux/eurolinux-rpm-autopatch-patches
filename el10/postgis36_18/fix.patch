@@ -1,0 +1,33 @@
+diff --git a/postgis36.spec b/postgis36.spec
+index 91616a2..246e6c0 100644
+--- a/postgis36.spec
++++ b/postgis36.spec
+@@ -4,7 +4,27 @@
+ %global postgiscurrmajorversion %(echo %{postgismajorversion}|tr -d '.')
+ %global sname	postgis
+ 
+-%pgdg_set_gis_variables
++# COPIED FROM /usr/lib/rpm/macros.d/macros.pgdg-postgresql
++%global geos314majorversion             314
++%global gdal312majorversion             312
++%global gdal311majorversion             311
++%global gdal38majorversion              38
++%global libgeotiffmajorversion          17
++%global proj97majorversion              97
++%global proj96majorversion              96
++%global gdal312instdir                  /usr/gdal%{gdal312majorversion}
++%global gdal311instdir                  /usr/gdal%{gdal311majorversion}
++%global gdal38instdir                   /usr/gdal%{gdal38majorversion}
++%global geos314instdir                  /usr/geos%{geos314majorversion}
++%global libgeotiffinstdir               /usr/libgeotiff%{libgeotiffmajorversion}
++%global proj97instdir                   /usr/proj%{proj97majorversion}
++%global proj96instdir                   /usr/proj%{proj96majorversion}
++%global geos314fullversion              3.14.1
++%global proj97fullversion               9.7.1
++%global proj96fullversion               9.6.2
++%global gdal312fullversion              3.12.2
++%global gdal311fullversion              3.11.3
++%global gdal38fullversion               3.8.4
+ 
+ # Override some variables:
+ %global	geosfullversion %geos314fullversion

@@ -1,0 +1,20 @@
+diff --git a/pgbadger.spec b/pgbadger.spec
+index addf902..1643446 100644
+--- a/pgbadger.spec
++++ b/pgbadger.spec
+@@ -33,14 +33,13 @@ compressed file.
+ %install
+ %{__rm} -rf %{buildroot}
+ %{__make} pure_install PERL_INSTALL_ROOT=%{buildroot}
+-# Remove .packlist file (per rpmlint)
+-%{__rm} -f %{buildroot}/%perl_vendorarch/auto/pgBadger/.packlist
+ 
+ %files
+ %doc README
+ %license LICENSE
+ %attr(755,root,root) %{_bindir}/%{name}
+ %{_mandir}/man1/%{name}.1p.gz
++/usr/lib64/perl5/vendor_perl/auto/pgBadger/.packlist
+ 
+ %changelog
+ * Mon May 06 2024 EuroLinux Autopatch <devel@euro-linux.com>
