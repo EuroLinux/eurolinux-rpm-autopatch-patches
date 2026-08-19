@@ -4,8 +4,8 @@ index d36fbe7..548f11b 100644
 +++ b/barman.spec
 @@ -1,30 +1,5 @@
 -%if 0%{?fedora} && 0%{?fedora} == 44
--%global __ospython %{_bindir}/python3.15
--%global python3_pkgversion 3.15
+-%global __ospython %{_bindir}/python3.14
+-%global python3_pkgversion 3.14
 -%endif
 -%if 0%{?fedora} && 0%{?fedora} == 43
 -%global __ospython %{_bindir}/python3.14
