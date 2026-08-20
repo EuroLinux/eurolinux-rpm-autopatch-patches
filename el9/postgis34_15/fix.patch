@@ -1,14 +1,15 @@
 diff --git a/postgis34.spec b/postgis34.spec
-index e324495..ef5a2e0 100644
+index 54bb5d1..95205b5 100644
 --- a/postgis34.spec
 +++ b/postgis34.spec
-@@ -4,7 +4,30 @@
+@@ -4,7 +4,33 @@
  %global postgiscurrmajorversion %(echo %{postgismajorversion}|tr -d '.')
  %global sname	postgis
  
 -%pgdg_set_gis_variables
 +%global pgmajorversion                  15
 +%global geos314majorversion             314
++%global gdal313majorversion             313
 +%global gdal312majorversion             312
 +%global gdal311majorversion             311
 +%global gdal38majorversion              38
@@ -18,6 +19,7 @@ index e324495..ef5a2e0 100644
 +%global proj96majorversion              96
 +%global geos314instdir                  /usr/geos%{geos314majorversion}
 +%global libgeotiffinstdir               /usr/libgeotiff%{libgeotiffmajorversion}
++%global gdal313instdir                  /usr/gdal%{gdal313majorversion}
 +%global gdal312instdir                  /usr/gdal%{gdal312majorversion}
 +%global gdal311instdir                  /usr/gdal%{gdal311majorversion}
 +%global gdal38instdir                   /usr/gdal%{gdal38majorversion}
@@ -25,6 +27,7 @@ index e324495..ef5a2e0 100644
 +%global proj97instdir                   /usr/proj%{proj97majorversion}
 +%global proj96instdir                   /usr/proj%{proj96majorversion}
 +%global geos314fullversion              3.14.0
++%global gdal313fullversion              3.13.3
 +%global gdal312fullversion              3.12.2
 +%global gdal311fullversion              3.11.3
 +%global gdal38fullversion               3.8.4
