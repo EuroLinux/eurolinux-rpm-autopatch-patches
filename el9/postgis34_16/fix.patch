@@ -1,37 +1,30 @@
 diff --git a/postgis34.spec b/postgis34.spec
-index e324495..afccae6 100644
+index a642c74..3faae25 100644
 --- a/postgis34.spec
 +++ b/postgis34.spec
-@@ -4,7 +4,31 @@
+@@ -4,7 +4,24 @@
  %global postgiscurrmajorversion %(echo %{postgismajorversion}|tr -d '.')
  %global sname	postgis
  
 -%pgdg_set_gis_variables
 +%global pgmajorversion                  16
-+%global geos314majorversion             314
-+%global gdal312majorversion             312
-+%global gdal311majorversion             311
++%global geos315majorversion             315
++%global gdal313majorversion             313
 +%global gdal38majorversion              38
 +%global libgeotiffmajorversion          17
 +%global proj98majorversion              98
-+%global proj97majorversion              97
 +%global proj96majorversion              96
-+%global geos314instdir                  /usr/geos%{geos314majorversion}
++%global geos315instdir                  /usr/geos%{geos315majorversion}
 +%global libgeotiffinstdir               /usr/libgeotiff%{libgeotiffmajorversion}
-+%global gdal312instdir                  /usr/gdal%{gdal312majorversion}
-+%global gdal311instdir                  /usr/gdal%{gdal311majorversion}
++%global gdal313instdir                  /usr/gdal%{gdal313majorversion}
 +%global gdal38instdir                   /usr/gdal%{gdal38majorversion}
 +%global proj98instdir                   /usr/proj%{proj98majorversion}
-+%global proj97instdir                   /usr/proj%{proj97majorversion}
 +%global proj96instdir                   /usr/proj%{proj96majorversion}
-+%global geos314fullversion              3.14.0
-+%global gdal312fullversion              3.12.2
-+%global gdal311fullversion              3.11.3
++%global geos315fullversion              3.15.1
++%global gdal313fullversion              3.13.3
 +%global gdal38fullversion               3.8.4
 +%global proj98fullversion               9.8.0
-+%global proj97fullversion               9.7.0
 +%global proj96fullversion               9.6.0
-+
  
  # Override some variables:
- %global	geosfullversion %geos314fullversion
+ %global	geosfullversion %geos315fullversion
